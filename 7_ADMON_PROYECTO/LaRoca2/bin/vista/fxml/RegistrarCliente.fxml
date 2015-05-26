@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarCliente">
+   <children>
+      <GridPane prefHeight="500.0" prefWidth="900.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="272.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="650.0" minWidth="10.0" prefWidth="628.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="24.0" text="Nombre" />
+                  <Label layoutX="10.0" layoutY="52.0" text="Nombre 2:" />
+                  <Label layoutX="10.0" layoutY="80.0" text="Apellido Paterno:" />
+                  <Label layoutX="10.0" layoutY="108.0" text="Apellido Materno:" />
+                  <Label layoutX="10.0" layoutY="136.0" text="Teléfono" />
+                  <Label layoutX="10.0" layoutY="164.0" text="Teléfono 2:" />
+                  <Label layoutX="10.0" layoutY="193.0" text="Celular:" />
+                  <Label layoutX="10.0" layoutY="221.0" text="Celular 2:" />
+                  <Label layoutX="10.0" layoutY="251.0" text="Dirección" />
+                  <Label layoutX="10.0" layoutY="279.0" text="Número de cliente:" />
+                  <Label layoutX="10.0" layoutY="309.0" text="Cliente Frecuente:" />
+                  <TextField layoutX="123.0" layoutY="20.0" />
+                  <TextField layoutX="123.0" layoutY="48.0" />
+                  <TextField layoutX="123.0" layoutY="76.0" />
+                  <TextField layoutX="123.0" layoutY="104.0" />
+                  <TextField layoutX="123.0" layoutY="132.0" />
+                  <TextField layoutX="123.0" layoutY="160.0" />
+                  <TextField layoutX="123.0" layoutY="189.0" />
+                  <TextField layoutX="123.0" layoutY="217.0" />
+                  <TextField layoutX="123.0" layoutY="247.0" />
+                  <TextField layoutX="123.0" layoutY="275.0" />
+                  <CheckBox layoutX="123.0" layoutY="309.0" mnemonicParsing="false" />
+                  <Button layoutX="24.0" layoutY="378.0" mnemonicParsing="false" text="Guardar" />
+                  <Button layoutX="164.0" layoutY="378.0" mnemonicParsing="false" text="Modificar" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <ScrollPane prefHeight="500.0" prefWidth="628.0">
+                     <content>
+                        <AnchorPane prefHeight="500.0" prefWidth="1300.0">
+                           <children>
+                              <TableView layoutX="-1.0" prefHeight="500.0" prefWidth="1300.0">
+                                <columns>
+                                  <TableColumn prefWidth="100.0" text="Nombre" />
+                                  <TableColumn text="Nombre 2" />
+                                    <TableColumn prefWidth="150.0" text="Apellido Paterno" />
+                                    <TableColumn prefWidth="150.0" text="Apellido Materno" />
+                                    <TableColumn minWidth="0.0" text="Teléfono" />
+                                    <TableColumn text="Teléfono 2" />
+                                    <TableColumn minWidth="80.0" text="Celular" />
+                                    <TableColumn text="Celular 2" />
+                                    <TableColumn prefWidth="260.0" text="Dirección" />
+                                    <TableColumn minWidth="0.0" prefWidth="120.0" text="Número de Cliente" />
+                                    <TableColumn prefWidth="120.0" text="Cliente Frecuente" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

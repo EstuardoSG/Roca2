@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="500.0" prefWidth="1000.0">
+         <children>
+            <AnchorPane prefHeight="500.0" prefWidth="500.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="14.0" text="Nombre:" />
+                  <Label layoutX="10.0" layoutY="42.0" text="Nombre1:" />
+                  <Label layoutX="10.0" layoutY="70.0" text="Apellido Paterno:" />
+                  <Label layoutX="10.0" layoutY="98.0" text="Apellido Materno:" />
+                  <Label layoutX="10.0" layoutY="126.0" text="Teléfono:" />
+                  <Label layoutX="10.0" layoutY="154.0" text="Teléfono2:" />
+                  <Label layoutX="10.0" layoutY="182.0" text="Celular:" />
+                  <Label layoutX="10.0" layoutY="210.0" text="Celular2:" />
+                  <Label layoutX="10.0" layoutY="238.0" text="Domicilio:" />
+                  <Label layoutX="10.0" layoutY="266.0" text="Número Interior:" />
+                  <Label layoutX="10.0" layoutY="294.0" text="Número Exterior:" />
+                  <Label layoutX="10.0" layoutY="322.0" text="Calle:" />
+                  <Label layoutX="10.0" layoutY="350.0" text="Localidad:" />
+                  <Label layoutX="10.0" layoutY="378.0" text="Ciudad:" />
+                  <Label layoutX="10.0" layoutY="406.0" text="Estado:" />
+                  <Label layoutX="10.0" layoutY="434.0" text="Código Postal:" />
+                  <Label layoutX="10.0" layoutY="462.0" text="Correo:" />
+                  <Label layoutX="270.0" layoutY="14.0" text="Usuario:" />
+                  <Label layoutX="270.0" layoutY="42.0" text="Contraseña:" />
+                  <Label layoutX="270.0" layoutY="70.0" text="Privilegio:" />
+                  <Label layoutX="270.0" layoutY="98.0" text="Estatus:" />
+                  <TextField layoutX="117.0" layoutY="10.0" />
+                  <TextField layoutX="117.0" layoutY="38.0" />
+                  <TextField layoutX="117.0" layoutY="66.0" />
+                  <TextField layoutX="117.0" layoutY="94.0" />
+                  <TextField layoutX="117.0" layoutY="122.0" />
+                  <TextField layoutX="117.0" layoutY="150.0" />
+                  <TextField layoutX="117.0" layoutY="178.0" />
+                  <TextField layoutX="117.0" layoutY="206.0" />
+                  <TextField layoutX="117.0" layoutY="234.0" />
+                  <TextField layoutX="117.0" layoutY="262.0" />
+                  <TextField layoutX="117.0" layoutY="290.0" />
+                  <TextField layoutX="117.0" layoutY="318.0" />
+                  <TextField layoutX="117.0" layoutY="346.0" />
+                  <TextField layoutX="117.0" layoutY="374.0" />
+                  <TextField layoutX="117.0" layoutY="402.0" />
+                  <TextField layoutX="117.0" layoutY="430.0" />
+                  <TextField layoutX="117.0" layoutY="458.0" />
+                  <TextField layoutX="351.0" layoutY="10.0" />
+                  <TextField layoutX="351.0" layoutY="38.0" />
+                  <PasswordField layoutX="351.0" layoutY="66.0" />
+                  <CheckBox layoutX="353.0" layoutY="98.0" mnemonicParsing="false" />
+                  <Label layoutX="270.0" layoutY="126.0" text="Fecha:" />
+                  <TextField layoutX="351.0" layoutY="122.0" />
+                  <TextField layoutX="351.0" layoutY="150.0" />
+                  <Label layoutX="270.0" layoutY="154.0" text="Fecha F:" />
+                  <Button layoutX="338.0" layoutY="238.0" mnemonicParsing="false" text="Guardar" />
+                  <Button layoutX="338.0" layoutY="327.0" mnemonicParsing="false" text="Modificar" />
+                  <Button layoutX="338.0" layoutY="394.0" mnemonicParsing="false" text="Deshabilitar" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="500.0" prefWidth="491.0">
+               <children>
+                  <ScrollPane prefHeight="500.0" prefWidth="500.0">
+                     <content>
+                        <TableView prefHeight="497.0" prefWidth="2440.0">
+                           <columns>
+                              <TableColumn prefWidth="100.0" text="Nombre" />
+                              <TableColumn prefWidth="100.0" text="Nombre 2" />
+                              <TableColumn prefWidth="100.0" text="Apellido Paterno" />
+                              <TableColumn prefWidth="110.0" text="Apellido Materno" />
+                              <TableColumn prefWidth="100.0" text="Teléfono" />
+                              <TableColumn minWidth="0.0" prefWidth="100.0" text="Teléfono 2" />
+                              <TableColumn prefWidth="100.0" text="Celular" />
+                              <TableColumn prefWidth="100.0" text="Celular 2" />
+                              <TableColumn prefWidth="200.0" text="Domicilio" />
+                              <TableColumn prefWidth="110.0" text="Número Interior" />
+                              <TableColumn prefWidth="110.0" text="Número Exterior" />
+                              <TableColumn prefWidth="100.0" text="Calle" />
+                              <TableColumn prefWidth="100.0" text="Localidad" />
+                              <TableColumn prefWidth="100.0" text="Ciudad" />
+                              <TableColumn prefWidth="100.0" text="Estado" />
+                              <TableColumn prefWidth="110.0" text="Código Postal" />
+                              <TableColumn prefWidth="100.0" text="Correo" />
+                              <TableColumn prefWidth="100.0" text="Usuario" />
+                              <TableColumn prefWidth="100.0" text="Contraseña" />
+                              <TableColumn minWidth="8.0" prefWidth="100.0" text="Privilegio" />
+                              <TableColumn prefWidth="100.0" text="Estatus" />
+                              <TableColumn prefWidth="100.0" text="Fecha" />
+                              <TableColumn prefWidth="100.0" text="Fecha F" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
