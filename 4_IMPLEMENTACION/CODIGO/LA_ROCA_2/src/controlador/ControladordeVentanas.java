@@ -85,6 +85,7 @@ public class ControladordeVentanas {
 			FXMLLoader interfaz = new FXMLLoader(getClass().getResource(ruta));
 			subContenedorDialog = (AnchorPane)interfaz.load();
 			contenedorDialog.setLeft(subContenedorDialog);
+			contenedorDialog.setCenter(null);
 			Stage dialogEscenario =  MainRoca2.getPrimaryStage();
 			dialogEscenario.setScene(escena);
 			dialogEscenario.show();			
@@ -95,7 +96,22 @@ public class ControladordeVentanas {
 		}
 	}
 	
+
 	public void asignarCentro(String ruta){
+		try{
+			
+			FXMLLoader interfaz = new FXMLLoader(getClass().getResource(ruta));
+			subContenedorDialog = (AnchorPane)interfaz.load();
+			contenedorDialog.setCenter(subContenedorDialog);
+			Stage dialogEscenario = MainRoca2.getPrimaryStage();
+			dialogEscenario.setScene(escena);
+			dialogEscenario.show();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void asignarCentroI(String ruta){
 		try{
 			
 			FXMLLoader interfaz = new FXMLLoader(getClass().getResource(ruta));
@@ -109,5 +125,6 @@ public class ControladordeVentanas {
 			e.printStackTrace();
 		}
 	}
+	
 	
 }

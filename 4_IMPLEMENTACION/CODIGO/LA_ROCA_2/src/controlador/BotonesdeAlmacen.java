@@ -15,21 +15,18 @@ public class BotonesdeAlmacen implements Initializable {
 	private controlador.ControladordeVentanas ventanas;
 	
 	public void refacciones(ActionEvent event){
-	
+		ventanas.asignarCentro("../vista/fxml/RegistrarAlmacen.fxml");
 	}
 	public void almacen(ActionEvent event){
 		//mainRoca2.showRegistrarAlmacen();
+		ventanas.asignarCentro("../vista/fxml/RegistrarRefaccion.fxml");
 		
 	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		ventanas = ControladordeVentanas.getInstancia(); 
 		
-	}
-	
-	public void setControladordeVentanas(controlador.ControladordeVentanas ventanas){
-		this.ventanas = ventanas;
 	}
 
 }

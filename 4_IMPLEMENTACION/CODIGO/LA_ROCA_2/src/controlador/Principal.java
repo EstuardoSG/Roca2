@@ -54,7 +54,7 @@ public class Principal implements Initializable {
 	}
 	
 	public void registrarEmpleado(ActionEvent event){
-		ventanas.asignarCentro("../vista/fxml/RegistrarEmpleado.fxml");
+		ventanas.asignarCentroI("../vista/fxml/RegistrarEmpleado.fxml");
 		
 	}
 
