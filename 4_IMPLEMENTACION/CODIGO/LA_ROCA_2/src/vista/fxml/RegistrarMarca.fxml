@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="355.0" layoutY="28.0" text="Regitrar marcas de las motocicletas." />
+      <Label layoutX="23.0" layoutY="104.0" text="Nombre de la marca:" />
+      <TextField layoutX="140.0" layoutY="100.0" />
+      <Button layoutX="52.0" layoutY="238.0" mnemonicParsing="false" text="Guardar" />
+      <Button layoutX="215.0" layoutY="238.0" mnemonicParsing="false" text="Modificar" />
+      <TableView layoutX="355.0" layoutY="83.0" prefHeight="366.0" prefWidth="491.0">
+        <columns>
+          <TableColumn prefWidth="490.0" text="Nombre de la marca" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

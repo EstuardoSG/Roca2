@@ -10,30 +10,29 @@ import javafx.scene.control.Button;
 
 public class BotonesdeReparacion implements Initializable {
 
-	@FXML Button btnPendientes, btnEntregar, btnEntregadas, btn30dias;
+	@FXML Button btnCheckList, btnReparacion, btnServicios, btnRealizados, btnPartes;
 	
-	private vista.MainRoca2 mainRoca2;
-	
-	public void pendientes(ActionEvent event){
-		
-	}
-	public void entregar(ActionEvent event){
-		
-	}
-	public void entregadas(ActionEvent event){
-		
-	}
-	public void diasmas(ActionEvent event){
-		
-	}
-
+	private controlador.ControladordeVentanas ventanas;
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		ventanas = ControladordeVentanas.getInstancia(); 
+		
 	}
 	
-	public void setMainRoca2(vista.MainRoca2 mainRoca2){
-		this.mainRoca2 = mainRoca2;
+	public void checkList(ActionEvent event){
+		ventanas.asignarCentro("../vista/fxml/CheckList.fxml");
+	}
+	public void reparacion(ActionEvent event){
+		ventanas.asignarCentro("../vista/fxml/RegistrarReparacion.fxml");
+	}
+	public void servicios(ActionEvent event){
+		ventanas.asignarCentro("../vista/fxml/Servicios.fxml");
+	}
+	public void realizados(ActionEvent event){
+		ventanas.asignarCentro("../vista/fxml/ServiciosRealizados.fxml");
+	}
+	public void partes(ActionEvent event){
+		ventanas.asignarCentro("../vista/fxml/ReparacionPartes.fxml");
 	}
 }

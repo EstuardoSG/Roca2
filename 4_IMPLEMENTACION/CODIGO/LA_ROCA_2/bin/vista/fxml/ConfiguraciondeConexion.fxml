@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ConfiguraciondeConexion">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ConfiguraciondeConexion">
    <children>
-      <BorderPane layoutX="-1.0" prefHeight="274.0" prefWidth="392.0">
-         <bottom>
-            <AnchorPane prefHeight="30.0" prefWidth="382.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="lblMensaje" layoutX="22.0" layoutY="6.0" />
-               </children>
-            </AnchorPane>
-         </bottom>
-         <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label layoutX="121.0" layoutY="20.0" text="Configuración de la Conexión" />
-                  <Label layoutX="32.0" layoutY="64.0" text="Base de Datos:" />
-                  <Label layoutX="36.0" layoutY="101.0" text="Usuario:" />
-                  <Label layoutX="40.0" layoutY="141.0" text="Contraseña:" />
-                  <TextField fx:id="txtBasedeDatos" layoutX="174.0" layoutY="60.0" prefHeight="25.0" prefWidth="195.0" />
-                  <TextField fx:id="txtUsuario" layoutX="176.0" layoutY="97.0" prefHeight="25.0" prefWidth="195.0" />
-                  <PasswordField fx:id="pwdContrasenia" layoutX="175.0" layoutY="137.0" prefHeight="25.0" prefWidth="195.0" />
-                  <Button fx:id="btnConectar" layoutX="128.0" layoutY="188.0" mnemonicParsing="false" text="Conectar" />
-                  <Button fx:id="btnDesconectar" layoutX="274.0" layoutY="188.0" mnemonicParsing="false" text="Desconectar" />
-               </children>
-            </AnchorPane>
-         </center>
-      </BorderPane>
+      <Label layoutX="290.0" layoutY="30.0" text="Configuración de la base de datos:">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="300.0" layoutY="100.0" text="Dirección IP:" />
+      <Label layoutX="300.0" layoutY="150.0" text="Puerto:" />
+      <Label layoutX="300.0" layoutY="200.0" text="Base de datos:" />
+      <Label layoutX="300.0" layoutY="250.0" text="Usuario:" />
+      <Label layoutX="300.0" layoutY="300.0" text="Contraseña" />
+      <TextField layoutX="450.0" layoutY="96.0" />
+      <TextField layoutX="450.0" layoutY="146.0" />
+      <TextField layoutX="450.0" layoutY="196.0" />
+      <TextField layoutX="450.0" layoutY="246.0" />
+      <PasswordField layoutX="450.0" layoutY="296.0" />
+      <Button layoutX="298.0" layoutY="386.0" mnemonicParsing="false" text="Conectar" />
+      <Button layoutX="484.0" layoutY="386.0" mnemonicParsing="false" text="Desconectar" />
    </children>
 </AnchorPane>

@@ -14,7 +14,7 @@ import javafx.scene.control.MenuItem;
 public class Principal implements Initializable {
 
 	private ControladordeVentanas ventanas;
-	@FXML Button btnAlmacen, btnRegistro, btnReparacion, btnClientes, btnCerrarSesion;
+	@FXML Button btnProveedor, btnAlmacen, btnRegistro, btnReparacion, btnClientes, btnCerrarSesion;
 	
 	@FXML Label lblMensaje;
 	
@@ -27,6 +27,9 @@ public class Principal implements Initializable {
 		ventanas = ControladordeVentanas.getInstancia(); 
 	}
 	
+	public void proveedor(ActionEvent event){
+		ventanas.asignarIzquierda("../vista/fxml/BotonesdeProveedor.fxml");
+	}
 	public void almacen(ActionEvent event){
 		//mainRoca2.showBotonesdeAlmacen();
 		ventanas.asignarIzquierda("../vista/fxml/BotonesdeAlmacen.fxml");
@@ -48,9 +51,10 @@ public class Principal implements Initializable {
 	/*
 	 * Configuracion de Menu bar
 	 */
-	
+
+
 	public void configuracion(ActionEvent event){
-		//mainRoca2.showConfiguraciondeConexion();
+		ventanas.asignarCentroI("../vista/fxml/Validar.fxml");
 	}
 	
 	public void registrarEmpleado(ActionEvent event){

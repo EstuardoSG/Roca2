@@ -6,41 +6,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.BotonesdeReparacion">
    <children>
-      <GridPane prefHeight="500.0" prefWidth="100.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="186.0" minHeight="7.0" prefHeight="107.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="349.0" minHeight="10.0" prefHeight="113.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="432.0" minHeight="10.0" prefHeight="105.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="20.0" layoutY="14.0" text="Reparación" />
-                  <Button fx:id="btnPendientes" layoutX="15.0" layoutY="68.0" mnemonicParsing="false" onAction="#pendientes" text="Pendientes" />
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-               <children>
-                  <Button fx:id="btnEntregar" layoutX="20.0" layoutY="55.0" mnemonicParsing="false" onAction="#entregar" text="Entregar" />
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-               <children>
-                  <Button fx:id="btnEntregadas" layoutX="13.0" layoutY="41.0" mnemonicParsing="false" onAction="#entregadas" text="Entregadas" />
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
-               <children>
-                  <Button fx:id="btn30dias" layoutX="19.0" layoutY="48.0" mnemonicParsing="false" onAction="#diasmas" text="30 días +" />
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
-         </children>
-      </GridPane>
+      <Label layoutX="20.0" layoutY="14.0" text="Reparación" />
+      <Button fx:id="btnCheckList" layoutX="17.0" layoutY="50.0" mnemonicParsing="false" onAction="#checkList" text="CheckList" />
+      <Button fx:id="btnReparacion" layoutX="12.0" layoutY="150.0" mnemonicParsing="false" onAction="#reparacion" text="Reparación" />
+      <Button fx:id="btnServicios" layoutX="19.0" layoutY="250.0" mnemonicParsing="false" onAction="#servicios" text="Servicios" />
+      <Button fx:id="btnRealizados" layoutX="14.0" layoutY="350.0" mnemonicParsing="false" onAction="#realizados" text="Realizados" />
+      <Button fx:id="btnPartes" layoutX="14.0" layoutY="450.0" mnemonicParsing="false" onAction="#partes" prefHeight="25.0" prefWidth="73.0" text="Partes" />
    </children>
 </AnchorPane>

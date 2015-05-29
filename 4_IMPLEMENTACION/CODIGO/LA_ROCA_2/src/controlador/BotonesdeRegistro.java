@@ -10,31 +10,24 @@ import javafx.scene.control.Button;
 
 public class BotonesdeRegistro implements Initializable {
 	
-	@FXML Button btnCliente, btnMotocileta, btnReparacion, btnProveedor;
+	@FXML Button btnCliente, btnMotocileta, btnMarca;
 	
-	private vista.MainRoca2 mainRoca2;
-	
-	public void cliente(ActionEvent event){
-		//mainRoca2.showRegistrarCliente();
-	}
-	public void motocicleta(ActionEvent event){
-		//mainRoca2.showRegistrarMotocicleta();
-	}
-	public void reparacion(ActionEvent event){
-		//mainRoca2.showRegistrarReparacion();
-	}
-	public void proveedor(ActionEvent event){
-		//mainRoca2.showRegistrarProveedor();
-	}
+	private ControladordeVentanas ventanas;
 
-	
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		ventanas = ControladordeVentanas.getInstancia();
 	}
-
-	public void setMainRoca2(vista.MainRoca2 mainRoca2){
-		this.mainRoca2 = mainRoca2;
+	
+	
+	public void cliente(ActionEvent event){
+		ventanas.asignarCentro("../vista/fxml/RegistrarCliente.fxml");
 	}
+	public void motocicleta(ActionEvent event){
+		ventanas.asignarCentro("../vista/fxml/RegistrarMotocicleta.fxml");
+	}
+	public void marca(ActionEvent event){
+		ventanas.asignarCentro("../vista/fxml/RegistrarMarca.fxml");
+	}
+	
 }

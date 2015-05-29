@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.BotonesdeProveedor">
+   <children>
+      <Button fx:id="btnProveedor" layoutX="15.0" layoutY="100.0" mnemonicParsing="false" onAction="#proveedor" text="Proveedor" />
+      <Button fx:id="btnContacto" layoutX="18.0" layoutY="200.0" mnemonicParsing="false" onAction="#contacto" text="Contacto" />
+      <Button fx:id="btnActivo" layoutX="25.0" layoutY="300.0" mnemonicParsing="false" onAction="#activo" text="Activo" />
+      <Label layoutX="23.0" layoutY="22.0" text="Proveedor" />
+   </children>
+</AnchorPane>

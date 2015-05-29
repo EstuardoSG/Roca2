@@ -20,6 +20,7 @@ public class Usuario {
 	//Para ejecutar una instrucción SQL.
 	private PreparedStatement comando;
 	
+
 	/*
 	 * Constructor
 	 */
@@ -28,8 +29,10 @@ public class Usuario {
 		this.contrasenia = null;
 		this.privilegio = null;
 		this.estatus = null;
+		
 	}
 	
+
 	/*
 	 * Getters and Setters.
 	 */
