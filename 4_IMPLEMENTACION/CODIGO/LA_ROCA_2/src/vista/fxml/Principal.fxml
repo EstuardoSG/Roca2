@@ -8,11 +8,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Principal">
+<BorderPane prefHeight="650.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Principal">
    <bottom>
-      <AnchorPane prefHeight="50.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="50.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnCerrarSesion" layoutX="999.0" layoutY="13.0" mnemonicParsing="false" onAction="#cerrarsesion" text="Cerrar Sesión" />
+            <Button fx:id="btnCerrarSesion" layoutX="903.0" layoutY="13.0" mnemonicParsing="false" onAction="#cerrarsesion" text="Cerrar Sesión" />
             <Label fx:id="lblMensaje" layoutX="14.0" layoutY="17.0" />
          </children>
       </AnchorPane>
@@ -23,22 +23,10 @@
    <left>
       <AnchorPane prefHeight="525.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </left>
-   <right>
-      <AnchorPane prefHeight="525.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="23.0" text="Consultas">
-               <font>
-                  <Font name="Arial" size="14.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnClientes" layoutX="24.0" layoutY="23.0" mnemonicParsing="false" onAction="#clientes" text="Clientes" />
-         </children>
-      </AnchorPane>
-   </right>
    <top>
-      <AnchorPane prefHeight="100.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="100.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <GridPane layoutX="-1.0" layoutY="-3.0" prefHeight="100.0" prefWidth="1100.0">
+            <GridPane layoutX="-1.0" layoutY="-3.0" prefHeight="100.0" prefWidth="1000.0">
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -46,7 +34,8 @@
                            <menus>
                               <Menu mnemonicParsing="false" text="Base de datos">
                                  <items>
-                                    <MenuItem fx:id="miConfiguracion" mnemonicParsing="false" onAction="#configuracion" text="Configuración" />
+                                    <MenuItem fx:id="miRespaldo" mnemonicParsing="false" onAction="#respaldo" text="Hacer respaldo" />
+                                    <MenuItem mnemonicParsing="false" text="Hacer restauración" />
                                  </items>
                               </Menu>
                               <Menu mnemonicParsing="false" text="Empleados">
@@ -61,6 +50,7 @@
                               </Menu>
                               <Menu mnemonicParsing="false" text="Ayuda">
                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="Manual de usuario" />
                                   <MenuItem mnemonicParsing="false" text="Acerca de Nosotros" />
                                 </items>
                               </Menu>
@@ -70,11 +60,25 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
+                        <Button fx:id="btnProveedor" layoutX="80.0" mnemonicParsing="false" onAction="#proveedor" prefHeight="70.0" prefWidth="105.0">
+                           <graphic>
+                              <ImageView fitHeight="62.0" fitWidth="87.0">
+                                 <image>
+                                    <Image url="@../images/Iconos/servicio-mudanzas-miami-large.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                         <Button fx:id="btnAlmacen" layoutX="357.0" layoutY="25.0" mnemonicParsing="false" onAction="#almacen" text="Almacen" />
                         <Button fx:id="btnRegistro" layoutX="626.0" layoutY="25.0" mnemonicParsing="false" onAction="#registro" text="Registro" />
-                        <Button fx:id="btnReparacion" layoutX="900.0" layoutY="25.0" mnemonicParsing="false" onAction="#reparacion" text="Reparación" />
+                        <Button fx:id="btnReparacion" layoutX="835.0" mnemonicParsing="false" onAction="#reparacion" prefHeight="70.0" prefWidth="105.0">
+                           <graphic>
+                              <ImageView fitHeight="62.0" fitWidth="87.0">
+                                 <image>
+                                    <Image url="@../images/Iconos/tool-kit-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                         <Separator layoutY="70.0" prefHeight="4.0" prefWidth="1504.0" />
-                        <Button fx:id="btnProveedor" layoutX="113.0" layoutY="25.0" mnemonicParsing="false" onAction="#proveedor" text="Proveedor" />
                      </children>
                   </AnchorPane>
                </children>

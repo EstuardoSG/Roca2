@@ -12,7 +12,7 @@ public class MainRoca2 extends Application {
 	
 	public void start(Stage primaryStage){
 		try{
-			Parent root = FXMLLoader.load(getClass().getResource("fxml/Login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("fxml/IniciarSesion.fxml"));
 			Scene scene = new Scene(root);
 			this.primaryStage = primaryStage;
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

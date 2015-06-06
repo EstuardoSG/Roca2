@@ -17,13 +17,29 @@ public class Conexion {
 	private Connection con;
 	
 	private Conexion(){
+		ip = "127.0.0.1";
+		puerto = "5432";
 		bd = "Roca2";
 		usuario = "postgres";
 		contrasenia = "root";
 		servidor = "jdbc:postgresql://localhost:5432/";
-		ip = "127.0.0.1";
-		puerto = "5432";
 		con = null;
+	}
+	
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public String getPuerto() {
+		return puerto;
+	}
+
+	public void setPuerto(String puerto) {
+		this.puerto = puerto;
 	}
 
 	public String getBd() {
@@ -49,31 +65,14 @@ public class Conexion {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
-	public String getPuerto() {
-		return puerto;
-	}
-
-	public void setPuerto(String puerto) {
-		this.puerto = puerto;
-	}
 	
 	private Conexion(String bd, String usuario, String contrasenia, String ip, String puerto){
-		
-		this.servidor = "jdbc:postgresql://localhost:5432/";
-		this.contrasenia = contrasenia;
-		this.usuario = usuario;
-		this.bd = bd;
 		this.ip = ip;
 		this.puerto = puerto;
+		this.bd = bd;
+		this.usuario = usuario;
+		this.contrasenia = contrasenia;
+		this.servidor = "jdbc:postgresql://localhost:5432/";
 		con = null;
 	}
 	

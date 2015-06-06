@@ -14,14 +14,12 @@ import javafx.scene.control.MenuItem;
 public class Principal implements Initializable {
 
 	private ControladordeVentanas ventanas;
-	@FXML Button btnProveedor, btnAlmacen, btnRegistro, btnReparacion, btnClientes, btnCerrarSesion;
+	@FXML Button btnProveedor, btnAlmacen, btnRegistro, btnReparacion, btnCerrarSesion;
 	
 	@FXML Label lblMensaje;
 	
-	@FXML MenuItem miConfiguracion, miRegistrarEmpleado;
+	@FXML MenuItem miConfiguracion, miRegistrarEmpleado, miRespaldo;
 
-	
-	private vista.MainRoca2 mainRoca2;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ventanas = ControladordeVentanas.getInstancia(); 
@@ -41,9 +39,7 @@ public class Principal implements Initializable {
 	public void reparacion(ActionEvent event){
 		ventanas.asignarIzquierda("../vista/fxml/BotonesdeReparacion.fxml");
 	}
-	public void clientes(ActionEvent event){
-		//mainRoca2.showConsultaCliente();
-	}
+	
 	public void cerrarsesion(ActionEvent event){
 		System.exit(0);
 	}
@@ -60,6 +56,32 @@ public class Principal implements Initializable {
 	public void registrarEmpleado(ActionEvent event){
 		ventanas.asignarCentroI("../vista/fxml/RegistrarEmpleado.fxml");
 		
+	}
+	public void respaldo(ActionEvent event){
+		/*try {
+	        String path = "C:/Users/stuart/Desktop/ana";
+	        Runtime r = Runtime.getRuntime();
+	 
+	        //PostgreSQL variables            
+	        String user = "postgres";
+	        String dbase = "Roca2";
+	        String password = "root";
+	        Process p;
+	        ProcessBuilder pb;
+	 
+	        
+	          //Ejecucion del proceso de respaldo
+	         
+	        r = Runtime.getRuntime();        
+	        pb = new ProcessBuilder("pg_dump", "-v", "-D", "-f", path, "-U", user, dbase);
+	        pb.environment().put("PGPASSWORD", password);
+	        pb.redirectErrorStream(true);
+	        p = pb.start();        
+	        System.out.println("se hizo con exito el respaldo");
+	 
+	    } catch (Exception e) {
+	    }*/
+
 	}
 
 }

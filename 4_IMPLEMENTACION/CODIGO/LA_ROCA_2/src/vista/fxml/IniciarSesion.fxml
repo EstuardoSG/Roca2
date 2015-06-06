@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.IniciarSesion">
+   <bottom>
+      <AnchorPane prefHeight="36.0" prefWidth="512.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblMensaje" layoutX="14.0" layoutY="10.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <Accordion fx:id="acVista" BorderPane.alignment="CENTER">
+        <panes>
+          <TitledPane fx:id="tbIniciarSesion" animated="false" text="Iniciar Sesión">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="170.0" layoutY="198.0" text="Usuario" />
+                        <Label layoutX="170.0" layoutY="247.0" text="Contraseña" />
+                        <TextField fx:id="txtUsuario" layoutX="297.0" layoutY="194.0" />
+                        <PasswordField fx:id="pwdContrasenia" layoutX="297.0" layoutY="243.0" />
+                        <Button fx:id="btnIniciarSesion" layoutX="266.0" layoutY="313.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="45.0" prefWidth="45.0">
+                           <graphic>
+                              <ImageView fitHeight="46.0" fitWidth="46.0">
+                                 <image>
+                                    <Image url="@../images/Iconos/login-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <ImageView fitHeight="155.0" fitWidth="276.0" layoutX="159.0" layoutY="8.0">
+                           <image>
+                              <Image url="@../images/Iconos/aprilia-mana-850-dibujo-4.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+          <TitledPane fx:id="tpConfiguracion" animated="false" onMousePressed="#click_Accion" text="Configuración del servidor">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="116.0" layoutY="100.0" text="IP:" />
+                        <Label layoutX="116.0" layoutY="128.0" text="Puerto:" />
+                        <Label layoutX="116.0" layoutY="156.0" text="Base de datos:" />
+                        <Label layoutX="116.0" layoutY="184.0" text="Usuario" />
+                        <Label layoutX="116.0" layoutY="212.0" text="Contraseña" />
+                        <TextField fx:id="txtIP" layoutX="282.0" layoutY="96.0" />
+                        <TextField fx:id="txtPuerto" layoutX="282.0" layoutY="124.0" />
+                        <TextField fx:id="txtBasedeDatos" layoutX="281.0" layoutY="152.0" />
+                        <TextField fx:id="txtUsuarioConfi" layoutX="282.0" layoutY="180.0" />
+                        <PasswordField fx:id="pwdContraseniaConfi" layoutX="282.0" layoutY="208.0" />
+                        <Button fx:id="btnConectar" layoutX="136.0" layoutY="254.0" mnemonicParsing="false" onAction="#conectar" prefHeight="50.0" prefWidth="45.0">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0">
+                                 <image>
+                                    <Image url="@../images/Iconos/Conectar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="btnDesconectar" layoutX="345.0" layoutY="254.0" mnemonicParsing="false" onAction="#desconectar" prefHeight="50.0" prefWidth="45.0">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0">
+                                 <image>
+                                    <Image url="@../images/Iconos/Desconectar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+   </center>
+</BorderPane>

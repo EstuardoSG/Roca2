@@ -73,6 +73,7 @@ public class ControladordeVentanas {
 			dialogEscenario.setTitle(titulo);
 			escena = new Scene(contenedorDialog);
 			dialogEscenario.setScene(escena);
+			dialogEscenario.centerOnScreen();
 			dialogEscenario.show();
 			
 		}catch(Exception e){
