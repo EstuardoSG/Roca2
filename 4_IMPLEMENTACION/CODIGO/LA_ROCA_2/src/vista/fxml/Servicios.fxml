@@ -1,23 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarServicios">
    <children>
-      <Label layoutX="47.0" layoutY="150.0" text="Nombre del servicio:" />
-      <Label layoutX="47.0" layoutY="178.0" text="Activo:" />
-      <TextField layoutX="201.0" layoutY="150.0" />
-      <CheckBox layoutX="202.0" layoutY="178.0" mnemonicParsing="false" />
-      <Button layoutX="65.0" layoutY="250.0" mnemonicParsing="false" text="Guardar" />
-      <Button layoutX="223.0" layoutY="250.0" mnemonicParsing="false" text="Modificar" />
-      <TableView layoutX="360.0" prefHeight="500.0" prefWidth="545.0">
-        <columns>
-          <TableColumn prefWidth="472.0" text="Nombre del servicio" />
-          <TableColumn prefWidth="72.0" text="Activo" />
-        </columns>
-      </TableView>
+      <Label alignment="CENTER" contentDisplay="BOTTOM" layoutY="-1.0" prefHeight="33.0" prefWidth="850.0" text="Registro de servicios" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <TitledPane animated="false" collapsible="false" layoutX="12.0" layoutY="101.0" prefHeight="89.0" prefWidth="826.0" text="Información del servicio">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="118.0" prefWidth="824.0">
+               <children>
+                  <TextField fx:id="txtNombreServicio" layoutX="72.0" layoutY="10.0" prefHeight="25.0" prefWidth="201.0" />
+                  <TextField fx:id="txtPrecio1Servicio" layoutX="353.0" layoutY="10.0" />
+                  <Label layoutX="14.0" layoutY="14.0" text="Nombre" />
+                  <Label layoutX="306.0" layoutY="14.0" text="Precio1" />
+                  <Label layoutX="533.0" layoutY="14.0" text="Precio2" />
+                  <TextField fx:id="txtPrecio2Servicio" layoutX="584.0" layoutY="10.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="202.0" prefHeight="384.0" prefWidth="826.0" text="Servicios disponibles">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"> <children>
+                  <TableView fx:id="tableServicios" layoutX="19.0" layoutY="31.0" onMouseClicked="#click_TablaServicios" prefHeight="309.0" prefWidth="786.0">
+                    <columns>
+                      <TableColumn fx:id="tcNombreServicio" prefWidth="523.0" text="Nombre" />
+                      <TableColumn fx:id="tcPrecio1Servicio" minWidth="0.0" prefWidth="149.0" text="Precio 1" />
+                        <TableColumn fx:id="tcPrecio2Servicio" prefWidth="147.0" text="Precio2" />
+                    </columns>
+                  </TableView>
+                  <Label fx:id="lblMensajeServicios" layoutX="19.0" layoutY="6.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <ToolBar layoutX="12.0" layoutY="34.0" prefHeight="48.0" prefWidth="826.0">
+         <items>
+            <Button fx:id="btnGuardarServicio" mnemonicParsing="false" onAction="#guardarServicio" prefHeight="48.0" prefWidth="152.0" text="Guardar" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
+            <Button fx:id="btnActualizarServicio" mnemonicParsing="false" onAction="#actualizarServicio" prefHeight="48.0" prefWidth="152.0" text="Actualizar" />
+            <Separator orientation="VERTICAL" prefHeight="45.0" prefWidth="4.0" />
+            <Button fx:id="btnEstatusServicio" mnemonicParsing="false" onAction="#eliminarServicio" prefHeight="48.0" prefWidth="152.0" text="Eliminar" />
+            <Separator orientation="VERTICAL" prefHeight="45.0" prefWidth="2.0" />
+            <Button fx:id="btnNuevoServicio" mnemonicParsing="false" onAction="#nuevoServicio" prefHeight="48.0" prefWidth="153.0" text="Nuevo servicio" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <CheckBox fx:id="chbFiltrarServicios" mnemonicParsing="false" onMouseClicked="#filtrarServicios" text="Registros eliminados" />
+         </items>
+      </ToolBar>
    </children>
 </AnchorPane>

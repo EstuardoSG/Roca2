@@ -14,7 +14,7 @@ import javafx.scene.control.MenuItem;
 public class Principal implements Initializable {
 
 	private ControladordeVentanas ventanas;
-	@FXML Button btnProveedor, btnAlmacen, btnRegistro, btnReparacion, btnCerrarSesion;
+	@FXML Button btnProveedor, btnAlmacen, btnRegistro, btnReparacion;
 	
 	@FXML Label lblMensaje;
 	
@@ -40,10 +40,7 @@ public class Principal implements Initializable {
 		ventanas.asignarIzquierda("../vista/fxml/BotonesdeReparacion.fxml");
 	}
 	
-	public void cerrarsesion(ActionEvent event){
-		System.exit(0);
-	}
-	
+
 	/*
 	 * Configuracion de Menu bar
 	 */

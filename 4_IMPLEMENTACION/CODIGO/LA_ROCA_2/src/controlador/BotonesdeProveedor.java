@@ -20,7 +20,7 @@ public class BotonesdeProveedor implements Initializable {
 	}
 
 	public void proveedor(ActionEvent event){
-		ventanas.asignarCentro("../vista/fxml/RegistrarProveedor.fxml");
+		ventanas.asignarCentro("../vista/fxml/Proveedor.fxml");
 	}
 	public void contacto(ActionEvent event){
 		ventanas.asignarCentro("../vista/fxml/Contacto.fxml");

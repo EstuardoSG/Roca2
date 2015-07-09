@@ -18,7 +18,7 @@ public class ControladordeVentanas {
 	 */
 	
 	private static ControladordeVentanas ventanas;
-	private Stage primaryStage;
+	private Stage primaryStage, dialogEscenario;
 	private Scene escena;
 	private BorderPane contenedor;
 	private BorderPane contenedorDialog;
@@ -127,5 +127,21 @@ public class ControladordeVentanas {
 		}
 	}
 	
+	public void modal(String ruta, String titulo){
+		try {
+			FXMLLoader interfaz = new FXMLLoader(getClass().getResource(ruta));
+			contenedorDialog = (BorderPane)interfaz.load();			
+			dialogEscenario = new Stage();
+			dialogEscenario.setTitle(titulo);
+			dialogEscenario.initModality(Modality.WINDOW_MODAL);
+			dialogEscenario.initOwner(primaryStage);
+			escena = new Scene(contenedorDialog);			
+			dialogEscenario.setScene(escena);	
+			dialogEscenario.centerOnScreen();
+			dialogEscenario.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

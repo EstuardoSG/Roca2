@@ -18,15 +18,14 @@
          <children>
             <AnchorPane prefHeight="500.0" prefWidth="271.0">
                <children>
-                  <Label layoutX="10.0" layoutY="23.0" text="Nombre:" />
-                  <Label layoutX="10.0" layoutY="51.0" text="Marca:" />
+                  <Label layoutX="10.0" layoutY="23.0" text="Marca:" />
+                  <Label layoutX="10.0" layoutY="51.0" text="Nombre:" />
                   <Label layoutX="10.0" layoutY="79.0" text="Modelo:" />
-                  <Label layoutX="10.0" layoutY="108.0" text="Precio de Compra:" />
-                  <Label layoutX="10.0" layoutY="136.0" text="I.V.A.:" />
-                  <Label layoutX="10.0" layoutY="164.0" text="Precio Total:" />
-                  <Label layoutX="10.0" layoutY="192.0" text="Fecha:" />
-                  <Label layoutX="10.0" layoutY="220.0" text="Hora:" />
-                  <TextField layoutX="126.0" layoutY="19.0" />
+                  <Label layoutX="10.0" layoutY="108.0" text="Precio 1:" />
+                  <Label layoutX="10.0" layoutY="136.0" text="Precio 2:" />
+                  <Label layoutX="10.0" layoutY="164.0" text="IVA:" />
+                  <Label layoutX="10.0" layoutY="192.0" text="Existencia:" />
+                  <Label layoutX="10.0" layoutY="220.0" text="Stock Mínimo:" />
                   <TextField layoutX="126.0" layoutY="47.0" />
                   <TextField layoutX="126.0" layoutY="75.0" />
                   <TextField layoutX="126.0" layoutY="104.0" />
@@ -34,9 +33,17 @@
                   <TextField layoutX="126.0" layoutY="160.0" />
                   <TextField layoutX="126.0" layoutY="188.0" />
                   <TextField layoutX="126.0" layoutY="216.0" />
-                  <Button layoutX="25.0" layoutY="322.0" mnemonicParsing="false" text="Guardar" />
-                  <Button layoutX="177.0" layoutY="322.0" mnemonicParsing="false" text="Actualizar" />
-                  <Button layoutX="104.0" layoutY="414.0" mnemonicParsing="false" text="Modificar" />
+                  <ComboBox layoutX="126.0" layoutY="19.0" prefWidth="150.0" />
+                  <TextField layoutX="127.0" layoutY="245.0" />
+                  <Label layoutX="11.0" layoutY="277.0" text="Activo:" />
+                  <Label layoutX="11.0" layoutY="249.0" text="Stock Máximo:" />
+                  <CheckBox layoutX="126.0" layoutY="277.0" mnemonicParsing="false" />
+                  <ToolBar layoutY="460.0" prefHeight="40.0" prefWidth="276.0">
+                    <items>
+                      <Button mnemonicParsing="false" text="Guardar" />
+                        <Button mnemonicParsing="false" text="Eliminar" />
+                    </items>
+                  </ToolBar>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -45,14 +52,16 @@
                      <content>
                         <TableView prefHeight="493.0" prefWidth="800.0">
                           <columns>
-                            <TableColumn prefWidth="150.0" text="Nombre" />
-                            <TableColumn prefWidth="75.0" text="Marca" />
-                              <TableColumn prefWidth="75.0" text="Modelo" />
-                              <TableColumn prefWidth="150.0" text="Precio de Compra" />
-                              <TableColumn prefWidth="75.0" text="I.V.A." />
-                              <TableColumn prefWidth="126.0" text="Precio Total" />
-                              <TableColumn prefWidth="75.0" text="Fecha" />
-                              <TableColumn prefWidth="81.0" text="Hora" />
+                            <TableColumn prefWidth="111.0" text="Marca" />
+                            <TableColumn prefWidth="107.0" text="Nombre" />
+                              <TableColumn prefWidth="82.0" text="Modelo" />
+                              <TableColumn prefWidth="115.0" text="Precio 1" />
+                              <TableColumn prefWidth="110.0" text="Precio 2" />
+                              <TableColumn prefWidth="126.0" text="IVA" />
+                              <TableColumn prefWidth="75.0" text="Existencia" />
+                              <TableColumn prefWidth="81.0" text="Stock Mínimo" />
+                              <TableColumn prefWidth="75.0" text="Stock Máximo" />
+                              <TableColumn prefWidth="75.0" text="Activo" />
                           </columns>
                         </TableView>
                      </content>

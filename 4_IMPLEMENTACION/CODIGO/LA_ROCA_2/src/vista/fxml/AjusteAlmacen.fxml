@@ -4,7 +4,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="10.0" layoutY="100.0" text="Refacción Almacen:" />
@@ -15,8 +14,6 @@
       <ComboBox layoutX="119.0" layoutY="124.0" prefWidth="150.0" />
       <TextField layoutX="119.0" layoutY="152.0" />
       <CheckBox layoutX="119.0" layoutY="184.0" mnemonicParsing="false" />
-      <Button layoutX="5.0" layoutY="238.0" mnemonicParsing="false" text="Guardar" />
-      <Button layoutX="194.0" layoutY="238.0" mnemonicParsing="false" text="Modificar" />
       <TableView layoutX="287.0" prefHeight="500.0" prefWidth="613.0">
         <columns>
           <TableColumn prefWidth="252.0" text="Refacción Almacen" />
@@ -25,5 +22,11 @@
             <TableColumn prefWidth="55.0" text="Activo" />
         </columns>
       </TableView>
+      <ToolBar layoutY="460.0" prefHeight="40.0" prefWidth="287.0">
+        <items>
+          <Button mnemonicParsing="false" text="Guardar" />
+            <Button mnemonicParsing="false" text="Eliminar" />
+        </items>
+      </ToolBar>
    </children>
 </AnchorPane>

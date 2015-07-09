@@ -1,103 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarEmpleado">
    <children>
-      <HBox prefHeight="500.0" prefWidth="1000.0">
-         <children>
-            <AnchorPane prefHeight="500.0" prefWidth="500.0">
+      <Label alignment="CENTER" contentDisplay="TOP" layoutY="-1.0" prefHeight="31.0" prefWidth="850.0" text="Registro de empleados">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="94.0" prefHeight="171.0" prefWidth="280.0" text="Información personal">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="153.0" prefWidth="278.0">
                <children>
-                  <Label layoutX="10.0" layoutY="14.0" text="Nombre:" />
-                  <Label layoutX="10.0" layoutY="42.0" text="Nombre1:" />
-                  <Label layoutX="10.0" layoutY="70.0" text="Apellido Paterno:" />
-                  <Label layoutX="10.0" layoutY="98.0" text="Apellido Materno:" />
-                  <Label layoutX="10.0" layoutY="126.0" text="Teléfono:" />
-                  <Label layoutX="10.0" layoutY="154.0" text="Teléfono2:" />
-                  <Label layoutX="10.0" layoutY="182.0" text="Celular:" />
-                  <Label layoutX="10.0" layoutY="210.0" text="Celular2:" />
-                  <Label layoutX="10.0" layoutY="238.0" text="Domicilio:" />
-                  <Label layoutX="10.0" layoutY="266.0" text="Número Interior:" />
-                  <Label layoutX="10.0" layoutY="294.0" text="Número Exterior:" />
-                  <Label layoutX="10.0" layoutY="322.0" text="Calle:" />
-                  <Label layoutX="10.0" layoutY="350.0" text="Localidad:" />
-                  <Label layoutX="10.0" layoutY="378.0" text="Ciudad:" />
-                  <Label layoutX="10.0" layoutY="406.0" text="Estado:" />
-                  <Label layoutX="10.0" layoutY="434.0" text="Código Postal:" />
-                  <Label layoutX="10.0" layoutY="462.0" text="Correo:" />
-                  <Label layoutX="270.0" layoutY="14.0" text="Usuario:" />
-                  <Label layoutX="270.0" layoutY="42.0" text="Contraseña:" />
-                  <Label layoutX="270.0" layoutY="70.0" text="Privilegio:" />
-                  <Label layoutX="270.0" layoutY="98.0" text="Estatus:" />
-                  <TextField layoutX="117.0" layoutY="10.0" />
-                  <TextField layoutX="117.0" layoutY="38.0" />
-                  <TextField layoutX="117.0" layoutY="66.0" />
-                  <TextField layoutX="117.0" layoutY="94.0" />
-                  <TextField layoutX="117.0" layoutY="122.0" />
-                  <TextField layoutX="117.0" layoutY="150.0" />
-                  <TextField layoutX="117.0" layoutY="178.0" />
-                  <TextField layoutX="117.0" layoutY="206.0" />
-                  <TextField layoutX="117.0" layoutY="234.0" />
-                  <TextField layoutX="117.0" layoutY="262.0" />
-                  <TextField layoutX="117.0" layoutY="290.0" />
-                  <TextField layoutX="117.0" layoutY="318.0" />
-                  <TextField layoutX="117.0" layoutY="346.0" />
-                  <TextField layoutX="117.0" layoutY="374.0" />
-                  <TextField layoutX="117.0" layoutY="402.0" />
-                  <TextField layoutX="117.0" layoutY="430.0" />
-                  <TextField layoutX="117.0" layoutY="458.0" />
-                  <TextField layoutX="351.0" layoutY="10.0" />
-                  <TextField layoutX="351.0" layoutY="38.0" />
-                  <PasswordField layoutX="351.0" layoutY="66.0" />
-                  <CheckBox layoutX="353.0" layoutY="98.0" mnemonicParsing="false" />
-                  <Label layoutX="270.0" layoutY="126.0" text="Fecha:" />
-                  <TextField layoutX="351.0" layoutY="122.0" />
-                  <TextField layoutX="351.0" layoutY="150.0" />
-                  <Label layoutX="270.0" layoutY="154.0" text="Fecha F:" />
-                  <Button layoutX="338.0" layoutY="238.0" mnemonicParsing="false" text="Guardar" />
-                  <Button layoutX="338.0" layoutY="327.0" mnemonicParsing="false" text="Modificar" />
-                  <Button layoutX="338.0" layoutY="394.0" mnemonicParsing="false" text="Deshabilitar" />
+                  <Label layoutX="8.0" layoutY="12.0" text="Nombre" />
+                  <Label layoutX="8.0" layoutY="46.0" text="Segundo nombre" />
+                  <Label layoutX="8.0" layoutY="80.0" text="Apellido Paterno" />
+                  <TextField fx:id="txtNombre" layoutX="115.0" layoutY="8.0" />
+                  <TextField fx:id="txtNombre2" layoutX="115.0" layoutY="42.0" />
+                  <TextField fx:id="txtApellidoPaterno" layoutX="115.0" layoutY="76.0" />
+                  <TextField fx:id="txtApellidoMaterno" layoutX="115.0" layoutY="111.0" />
+                  <Label layoutX="8.0" layoutY="115.0" text="Apellido Materno" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="500.0" prefWidth="491.0">
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="272.0" prefHeight="106.0" prefWidth="825.0" text="Información de contacto">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="500.0" prefWidth="500.0">
-                     <content>
-                        <TableView prefHeight="497.0" prefWidth="2440.0">
-                           <columns>
-                              <TableColumn prefWidth="100.0" text="Nombre" />
-                              <TableColumn prefWidth="100.0" text="Nombre 2" />
-                              <TableColumn prefWidth="100.0" text="Apellido Paterno" />
-                              <TableColumn prefWidth="110.0" text="Apellido Materno" />
-                              <TableColumn prefWidth="100.0" text="Teléfono" />
-                              <TableColumn minWidth="0.0" prefWidth="100.0" text="Teléfono 2" />
-                              <TableColumn prefWidth="100.0" text="Celular" />
-                              <TableColumn prefWidth="100.0" text="Celular 2" />
-                              <TableColumn prefWidth="200.0" text="Domicilio" />
-                              <TableColumn prefWidth="110.0" text="Número Interior" />
-                              <TableColumn prefWidth="110.0" text="Número Exterior" />
-                              <TableColumn prefWidth="100.0" text="Calle" />
-                              <TableColumn prefWidth="100.0" text="Localidad" />
-                              <TableColumn prefWidth="100.0" text="Ciudad" />
-                              <TableColumn prefWidth="100.0" text="Estado" />
-                              <TableColumn prefWidth="110.0" text="Código Postal" />
-                              <TableColumn prefWidth="100.0" text="Correo" />
-                              <TableColumn prefWidth="100.0" text="Usuario" />
-                              <TableColumn prefWidth="100.0" text="Contraseña" />
-                              <TableColumn minWidth="8.0" prefWidth="100.0" text="Privilegio" />
-                              <TableColumn prefWidth="100.0" text="Estatus" />
-                              <TableColumn prefWidth="100.0" text="Fecha" />
-                              <TableColumn prefWidth="100.0" text="Fecha F" />
-                           </columns>
-                        </TableView>
-                     </content>
-                  </ScrollPane>
+                  <Label layoutX="8.0" layoutY="15.0" text="Teléfono 1" />
+                  <Label layoutX="8.0" layoutY="50.0" text="Teléfono 2" />
+                  <TextField fx:id="txtTelefono" layoutX="110.0" layoutY="11.0" prefHeight="25.0" prefWidth="164.0" />
+                  <TextField fx:id="txtTelefono2" layoutX="110.0" layoutY="46.0" prefHeight="25.0" prefWidth="165.0" />
+                  <Label layoutX="295.0" layoutY="15.0" text="Celular 1" />
+                  <Label layoutX="295.0" layoutY="50.0" text="Celular 2" />
+                  <TextField fx:id="txtCelular" layoutX="377.0" layoutY="11.0" prefHeight="25.0" prefWidth="167.0" />
+                  <TextField fx:id="txtCelular2" layoutX="377.0" layoutY="46.0" prefHeight="25.0" prefWidth="168.0" />
+                  <Label layoutX="563.0" layoutY="15.0" text="Correo electrónico" />
+                  <TextField fx:id="txtCorreo" layoutX="563.0" layoutY="46.0" prefHeight="25.0" prefWidth="202.0" />
                </children>
             </AnchorPane>
-         </children>
-      </HBox>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="300.0" layoutY="94.0" prefHeight="171.0" prefWidth="538.0" text="Datos del domicilio">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="536.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Ciudad" />
+                  <Label layoutX="15.0" layoutY="46.0" text="Estado" />
+                  <Label layoutX="14.0" layoutY="81.0" text="Localidad" />
+                  <Label layoutX="14.0" layoutY="114.0" text="Domicilio" />
+                  <TextField fx:id="txtCiudad" layoutX="91.0" layoutY="10.0" prefHeight="25.0" prefWidth="162.0" />
+                  <TextField fx:id="txtEstado" layoutX="91.0" layoutY="42.0" prefHeight="25.0" prefWidth="162.0" />
+                  <TextField fx:id="txtLocalidad" layoutX="92.0" layoutY="77.0" prefHeight="25.0" prefWidth="161.0" />
+                  <TextField fx:id="txtDomicilio" layoutX="92.0" layoutY="110.0" prefHeight="25.0" prefWidth="161.0" />
+                  <Label layoutX="271.0" layoutY="14.0" text="Código postal" />
+                  <Label layoutX="271.0" layoutY="46.0" text="Calle " />
+                  <Label layoutX="271.0" layoutY="81.0" text="Número exterior" />
+                  <Label layoutX="272.0" layoutY="114.0" text="Número interior" />
+                  <TextField fx:id="txtCodigoPostal" layoutX="367.0" layoutY="10.0" prefHeight="25.0" prefWidth="161.0" />
+                  <TextField fx:id="txtCalle" layoutX="367.0" layoutY="42.0" prefHeight="25.0" prefWidth="160.0" />
+                  <TextField fx:id="txtNumeroExterior" layoutX="367.0" layoutY="77.0" prefHeight="25.0" prefWidth="160.0" />
+                  <TextField fx:id="txtNumeroInterior" layoutX="367.0" layoutY="110.0" prefHeight="25.0" prefWidth="161.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="384.0" prefHeight="81.0" prefWidth="825.0" text="Perfil de usuario">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="59.0" prefWidth="823.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="6.0" text="Usuario" />
+                  <Label layoutX="213.0" layoutY="6.0" text="Contraseña" />
+                  <Label layoutX="426.0" layoutY="6.0" text="Privilegio" />
+                  <Label layoutX="633.0" layoutY="6.0" text="Fecha de salida" />
+                  <TextField fx:id="txtUsuario" layoutX="7.0" layoutY="23.0" prefHeight="25.0" prefWidth="182.0" />
+                  <PasswordField fx:id="pwdContrasenia" layoutX="213.0" layoutY="23.0" prefHeight="25.0" prefWidth="182.0" />
+                  <TextField fx:id="txtPrivilegio" layoutX="426.0" layoutY="23.0" prefHeight="25.0" prefWidth="182.0" />
+                  <DatePicker fx:id="dateFecha" layoutX="633.0" layoutY="23.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <ToolBar layoutX="13.0" layoutY="30.0" prefHeight="57.0" prefWidth="825.0">
+        <items>
+          <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarEmpleado" prefHeight="48.0" prefWidth="152.0" text="Guardar" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnActualizarEmpleado" mnemonicParsing="false" onAction="#actualizarEmpleado" prefHeight="48.0" prefWidth="152.0" text="Actualizar" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEliminarEmpleado" mnemonicParsing="false" onAction="#eliminarEmpleado" prefHeight="48.0" prefWidth="152.0" text="Eliminar" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="1.0" />
+            <Button fx:id="btnNuevoRegistroEmpleado" mnemonicParsing="false" onAction="#registrarNuevoEmpleado" prefHeight="48.0" prefWidth="152.0" text="Nuevo registro" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <CheckBox fx:id="chbEmpleados" mnemonicParsing="false" onMouseClicked="#filtrarEmpleados" text="Registros eliminados" />
+        </items>
+      </ToolBar>
+      <TableView fx:id="TableEmpleado" layoutX="14.0" layoutY="471.0" onMouseClicked="#click_TablaEmpleados" prefHeight="100.0" prefWidth="825.0">
+        <columns>
+          <TableColumn fx:id="tcNombre" prefWidth="150.0" text="Nombre" />
+          <TableColumn fx:id="tcApellidoPaterno" prefWidth="150.0" text="Apellido Paterno" />
+            <TableColumn fx:id="tcApellidoMaterno" prefWidth="150.0" text="Apellido Materno" />
+            <TableColumn fx:id="tcCorreo" prefWidth="180.0" text="Correo" />
+            <TableColumn fx:id="tcDireccion" prefWidth="191.0" text="Dirección" />
+        </columns>
+      </TableView>
+      <Label fx:id="lblMensajeEmpleado" layoutX="13.0" layoutY="578.0" />
+      <Label fx:id="lblFechaRegistro" layoutX="248.0" layoutY="578.0" />
    </children>
 </AnchorPane>

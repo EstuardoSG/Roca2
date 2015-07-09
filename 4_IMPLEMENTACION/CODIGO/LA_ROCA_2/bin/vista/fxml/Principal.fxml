@@ -9,14 +9,6 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane prefHeight="650.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Principal">
-   <bottom>
-      <AnchorPane prefHeight="50.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnCerrarSesion" layoutX="903.0" layoutY="13.0" mnemonicParsing="false" onAction="#cerrarsesion" text="Cerrar Sesión" />
-            <Label fx:id="lblMensaje" layoutX="14.0" layoutY="17.0" />
-         </children>
-      </AnchorPane>
-   </bottom>
    <center>
       <AnchorPane prefHeight="525.0" prefWidth="900.0" BorderPane.alignment="CENTER" />
    </center>
@@ -64,11 +56,18 @@
                            <graphic>
                               <ImageView fitHeight="62.0" fitWidth="87.0">
                                  <image>
+                                    <Image url="@../images/Iconos/icono-almacen.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="btnAlmacen" layoutX="346.0" layoutY="1.0" mnemonicParsing="false" onAction="#almacen" prefHeight="70.0" prefWidth="105.0">
+                           <graphic>
+                              <ImageView fitHeight="62.0" fitWidth="87.0">
+                                 <image>
                                     <Image url="@../images/Iconos/servicio-mudanzas-miami-large.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button fx:id="btnAlmacen" layoutX="357.0" layoutY="25.0" mnemonicParsing="false" onAction="#almacen" text="Almacen" />
                         <Button fx:id="btnRegistro" layoutX="626.0" layoutY="25.0" mnemonicParsing="false" onAction="#registro" text="Registro" />
                         <Button fx:id="btnReparacion" layoutX="835.0" mnemonicParsing="false" onAction="#reparacion" prefHeight="70.0" prefWidth="105.0">
                            <graphic>

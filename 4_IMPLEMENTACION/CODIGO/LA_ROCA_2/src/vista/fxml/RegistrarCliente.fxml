@@ -1,96 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarCliente">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarCliente">
    <children>
-      <GridPane prefHeight="500.0" prefWidth="900.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="525.0" minWidth="10.0" prefWidth="392.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="650.0" minWidth="10.0" prefWidth="508.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <AnchorPane prefHeight="500.0" prefWidth="330.0">
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="191.0" prefHeight="109.0" prefWidth="830.0" text="Datos de ubicación">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="110.0" prefWidth="828.0">
                <children>
-                  <Label layoutX="10.0" layoutY="14.0" text="Nombre" />
-                  <Label layoutX="10.0" layoutY="42.0" text="Nombre 2:" />
-                  <Label layoutX="10.0" layoutY="70.0" text="Apellido Paterno:" />
-                  <Label layoutX="10.0" layoutY="98.0" text="Apellido Materno:" />
-                  <Label layoutX="10.0" layoutY="126.0" text="Teléfono" />
-                  <Label layoutX="10.0" layoutY="154.0" text="Teléfono 2:" />
-                  <Label layoutX="10.0" layoutY="183.0" text="Celular:" />
-                  <Label layoutX="10.0" layoutY="211.0" text="Celular 2:" />
-                  <Label layoutX="10.0" layoutY="241.0" text="Domicilio:" />
-                  <Label layoutX="10.0" layoutY="269.0" text="Número Interior:" />
-                  <TextField layoutX="123.0" layoutY="10.0" />
-                  <TextField layoutX="123.0" layoutY="38.0" />
-                  <TextField layoutX="123.0" layoutY="66.0" />
-                  <TextField layoutX="123.0" layoutY="94.0" />
-                  <TextField layoutX="123.0" layoutY="122.0" />
-                  <TextField layoutX="123.0" layoutY="150.0" />
-                  <TextField layoutX="123.0" layoutY="179.0" />
-                  <TextField layoutX="123.0" layoutY="207.0" />
-                  <TextField layoutX="123.0" layoutY="237.0" />
-                  <TextField layoutX="123.0" layoutY="265.0" />
-                  <Label layoutX="10.0" layoutY="297.0" text="Número Exterior;" />
-                  <Label layoutX="10.0" layoutY="325.0" text="Calle:" />
-                  <Label layoutX="10.0" layoutY="353.0" text="Localidad:" />
-                  <Label layoutX="10.0" layoutY="381.0" text="Ciudad:" />
-                  <Label layoutX="10.0" layoutY="409.0" text="Estado:" />
-                  <Label layoutX="10.0" layoutY="437.0" text="Código Postal:" />
-                  <Label layoutX="10.0" layoutY="465.0" text="Número de Cliente:" />
-                  <Label layoutX="272.0" layoutY="14.0" text="Cliente Frecuente:" />
-                  <Label layoutX="272.0" layoutY="42.0" text="Activo:" />
-                  <TextField layoutX="123.0" layoutY="293.0" />
-                  <TextField layoutX="123.0" layoutY="321.0" />
-                  <TextField layoutX="122.0" layoutY="349.0" />
-                  <TextField layoutX="123.0" layoutY="377.0" />
-                  <TextField layoutX="122.0" layoutY="405.0" />
-                  <TextField layoutX="122.0" layoutY="433.0" />
-                  <TextField layoutX="123.0" layoutY="461.0" />
-                  <CheckBox layoutX="368.0" layoutY="14.0" mnemonicParsing="false" />
-                  <CheckBox layoutX="368.0" layoutY="42.0" mnemonicParsing="false" />
-                  <Button layoutX="298.0" layoutY="377.0" mnemonicParsing="false" text="Guardar" />
-                  <Button layoutX="294.0" layoutY="461.0" mnemonicParsing="false" text="Modificar" />
+                  <Label layoutX="7.0" layoutY="7.0" text="Domicilio:" />
+                  <TextField fx:id="txtDomicilio" layoutX="106.0" layoutY="2.0" />
+                  <TextField fx:id="txtNumeroInterior" layoutX="106.0" layoutY="30.0" />
+                  <Label layoutX="7.0" layoutY="33.0" text="Número Interior:" />
+                  <Label layoutX="7.0" layoutY="60.0" text="Número Exterior:" />
+                  <TextField fx:id="txtNumeroExterior" layoutX="106.0" layoutY="58.0" />
+                  <Label layoutX="272.0" layoutY="9.0" text="Calle:" />
+                  <TextField fx:id="txtCalle" layoutX="387.0" layoutY="2.0" />
+                  <Label layoutX="272.0" layoutY="35.0" text="Localidad:" />
+                  <TextField fx:id="txtLocalidad" layoutX="387.0" layoutY="30.0" />
+                  <Label layoutX="272.0" layoutY="60.0" text="Ciudad:" />
+                  <TextField fx:id="txtCiudad" layoutX="387.0" layoutY="58.0" />
+                  <Label layoutX="565.0" layoutY="6.0" text="Estado:" />
+                  <TextField fx:id="txtEstado" layoutX="672.0" layoutY="2.0" />
+                  <TextField fx:id="txtCodigoPostal" layoutX="672.0" layoutY="30.0" />
+                  <TextField fx:id="txtNumerodeCliente" layoutX="672.0" layoutY="58.0" />
+                  <Label layoutX="565.0" layoutY="33.0" text="Código Postal:" />
+                  <Label layoutX="565.0" layoutY="60.0" text="Número de Cliente:" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="79.0" prefHeight="109.0" prefWidth="830.0" text="Datos generales">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="828.0">
                <children>
-                  <ScrollPane prefHeight="500.0" prefWidth="508.0">
-                     <content>
-                        <TableView prefHeight="498.0" prefWidth="2060.0">
-                          <columns>
-                            <TableColumn prefWidth="100.0" text="Nombre" />
-                            <TableColumn prefWidth="100.0" text="Nombre 2" />
-                              <TableColumn prefWidth="100.0" text="Apellido Paterno" />
-                              <TableColumn minWidth="9.0" prefWidth="110.0" text="Apellido Materno" />
-                              <TableColumn prefWidth="100.0" text="Teléfono" />
-                              <TableColumn prefWidth="100.0" text="Teléfono 2" />
-                              <TableColumn prefWidth="100.0" text="Celular" />
-                              <TableColumn prefWidth="100.0" text="Celular 2" />
-                              <TableColumn prefWidth="200.0" text="Domicilio" />
-                              <TableColumn prefWidth="110.0" text="Número Interior" />
-                              <TableColumn prefWidth="110.0" text="Número Exterior" />
-                              <TableColumn prefWidth="100.0" text="Calle" />
-                              <TableColumn prefWidth="100.0" text="Localidad" />
-                              <TableColumn prefWidth="100.0" text="Ciudad" />
-                              <TableColumn prefWidth="100.0" text="Estado" />
-                              <TableColumn prefWidth="100.0" text="Código Postal" />
-                              <TableColumn prefWidth="120.0" text="Número de Cliente" />
-                              <TableColumn prefWidth="110.0" text="Cliente Frecuente" />
-                              <TableColumn prefWidth="100.0" text="Activo" />
-                          </columns>
-                        </TableView>
-                     </content>
-                  </ScrollPane>
+                  <TextField fx:id="txtNombre" layoutX="107.0" layoutY="2.0" />
+                  <Label layoutX="7.0" layoutY="6.0" prefHeight="0.0" prefWidth="47.0" text="Nombre:" />
+                  <Label layoutX="7.0" layoutY="34.0" text="Nombre 2:" />
+                  <TextField fx:id="txtNombre2" layoutX="107.0" layoutY="30.0" />
+                  <Label layoutX="7.0" layoutY="62.0" text="Apellido Paterno:" />
+                  <TextField fx:id="txtApellidoPaterno" layoutX="107.0" layoutY="58.0" />
+                  <Label layoutX="272.0" layoutY="6.0" text="Apellido Materno:" />
+                  <TextField fx:id="txtApellidoMaterno" layoutX="387.0" layoutY="2.0" />
+                  <Label layoutX="272.0" layoutY="34.0" text="Teléfono" />
+                  <TextField fx:id="txtTelefono" layoutX="387.0" layoutY="30.0" />
+                  <Label layoutX="272.0" layoutY="62.0" text="Teléfono 2:" />
+                  <TextField fx:id="txtTelefono2" layoutX="387.0" layoutY="58.0" />
+                  <Label layoutX="565.0" layoutY="6.0" text="Celular:" />
+                  <TextField fx:id="txtCelular" layoutX="672.0" layoutY="2.0" />
+                  <Label layoutX="565.0" layoutY="34.0" text="Celular 2:" />
+                  <TextField fx:id="txtCelular2" layoutX="672.0" layoutY="30.0" />
+                  <CheckBox fx:id="chkClienteFrecuente" layoutX="672.0" layoutY="61.0" mnemonicParsing="false" />
+                  <Label layoutX="565.0" layoutY="62.0" text="Cliente frecuente:" />
                </children>
             </AnchorPane>
-         </children>
-      </GridPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="302.0" prefHeight="297.0" prefWidth="830.0" text="Tabla">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Pagination fx:id="paginador" layoutX="-1.0" layoutY="45.0" prefHeight="217.0" prefWidth="830.0" />
+                  <TableView fx:id="tvClientes" layoutX="36.0" layoutY="43.0" onMouseClicked="#click_TablaClientes" prefHeight="178.0" prefWidth="750.0">
+                    <columns>
+                      <TableColumn fx:id="tcNombre" prefWidth="150.0" text="Nombre" />
+                        <TableColumn fx:id="tcApellidoPaterno" prefWidth="150.0" text="Apellido Paterno" />
+                        <TableColumn fx:id="tcApellidoMaterno" prefWidth="150.0" text="Apellido Materno" />
+                        <TableColumn fx:id="tcTelefono" prefWidth="150.0" text="Teléfono" />
+                        <TableColumn fx:id="tcCelular" prefWidth="150.0" text="Celular" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="txtFiltro" layoutX="35.0" layoutY="10.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="204.0" />
+                  <Button fx:id="btnBuscar" alignment="BOTTOM_RIGHT" layoutX="248.0" layoutY="2.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Buscar" />
+                  <Label layoutX="655.0" layoutY="237.0" text="Total:" />
+                  <Label fx:id="lblRegistros" layoutX="706.0" layoutY="236.0" text="0 Registro(s)">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="chkClientesEliminados" layoutX="115.0" layoutY="237.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#click_inactivos" text="Clientes eliminados" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </CheckBox>
+                  <Label fx:id="lblMensaje" layoutX="455.0" layoutY="14.0" prefHeight="17.0" prefWidth="333.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <ToolBar layoutY="29.0" prefHeight="50.0" prefWidth="850.0">
+         <items>
+            <Button fx:id="btnGuardar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="120.0" text="Guardar" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#editar" prefHeight="40.0" prefWidth="120.0" text="Editar" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+         </items>
+      </ToolBar>
+      <Label alignment="CENTER" prefHeight="22.0" prefWidth="850.0" text="Clientes" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
