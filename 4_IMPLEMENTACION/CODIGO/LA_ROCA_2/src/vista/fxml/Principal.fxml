@@ -1,95 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="650.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Principal">
-   <center>
-      <AnchorPane prefHeight="525.0" prefWidth="900.0" BorderPane.alignment="CENTER" />
-   </center>
-   <left>
-      <AnchorPane prefHeight="525.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-   </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Principal">
    <top>
-      <AnchorPane prefHeight="100.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="80.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <GridPane layoutX="-1.0" layoutY="-3.0" prefHeight="100.0" prefWidth="1000.0">
-               <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1503.0">
-                           <menus>
-                              <Menu mnemonicParsing="false" text="Base de datos">
-                                 <items>
-                                    <MenuItem fx:id="miRespaldo" mnemonicParsing="false" onAction="#respaldo" text="Hacer respaldo" />
-                                    <MenuItem mnemonicParsing="false" text="Hacer restauración" />
-                                 </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Empleados">
-                                 <items>
-                                    <MenuItem fx:id="miRegistrarEmpleado" mnemonicParsing="false" onAction="#registrarEmpleado" text="Registrar empleado" />
-                                 </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Reportes">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="Hacer Reporte" />
-                                 </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Ayuda">
-                                <items>
-                                    <MenuItem mnemonicParsing="false" text="Manual de usuario" />
-                                  <MenuItem mnemonicParsing="false" text="Acerca de Nosotros" />
-                                </items>
-                              </Menu>
-                           </menus>
-                        </MenuBar>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                     <children>
-                        <Button fx:id="btnProveedor" layoutX="80.0" mnemonicParsing="false" onAction="#proveedor" prefHeight="70.0" prefWidth="105.0">
-                           <graphic>
-                              <ImageView fitHeight="62.0" fitWidth="87.0">
-                                 <image>
-                                    <Image url="@../images/Iconos/icono-almacen.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="btnAlmacen" layoutX="346.0" layoutY="1.0" mnemonicParsing="false" onAction="#almacen" prefHeight="70.0" prefWidth="105.0">
-                           <graphic>
-                              <ImageView fitHeight="62.0" fitWidth="87.0">
-                                 <image>
-                                    <Image url="@../images/Iconos/servicio-mudanzas-miami-large.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="btnRegistro" layoutX="626.0" layoutY="25.0" mnemonicParsing="false" onAction="#registro" text="Registro" />
-                        <Button fx:id="btnReparacion" layoutX="835.0" mnemonicParsing="false" onAction="#reparacion" prefHeight="70.0" prefWidth="105.0">
-                           <graphic>
-                              <ImageView fitHeight="62.0" fitWidth="87.0">
-                                 <image>
-                                    <Image url="@../images/Iconos/tool-kit-icon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Separator layoutY="70.0" prefHeight="4.0" prefWidth="1504.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="94.0" minHeight="13.0" prefHeight="26.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="187.0" minHeight="11.0" prefHeight="74.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
+            <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="37.0" prefWidth="45.0">
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="42.0">
+                     <image>
+                        <Image url="@../images/Iconos/CerrarSesion.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="109.0" fitWidth="727.0" layoutX="171.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </top>
+   <left>
+      <VBox prefHeight="507.0" prefWidth="150.0" stylesheets="@application.css" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <ImageView fitHeight="335.0" fitWidth="515.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../images/logop.png" />
+         </image>
+      </ImageView>
+   </center>
 </BorderPane>

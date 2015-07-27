@@ -116,7 +116,7 @@ public class Almacen {
 		
 
 		public ObservableList<Almacen> getAlmacens(boolean activo) throws SQLException{
-			// TODO Auto-generated method stub
+	
 			ResultSet rs = null;
 			try {
 				String sql="";
@@ -163,7 +163,7 @@ public class Almacen {
 				String sql= "select fn_agregaralmacen (?,?,?,?,?,?,?,?,?)";
 				con.conectar();
 				PreparedStatement comando = con.getConexion().prepareStatement(sql);
-				comando.setInt(1,this.getL().getIdmarca().get());
+			//	comando.setInt(1,this.getL().getIdmarca().get());
 				comando.setString(2,this.getNombre());
 				comando.setString(3,this.getModelo());
 				comando.setBigDecimal(4, precio01);
@@ -176,7 +176,6 @@ public class Almacen {
 				comando.execute();
 				return true;
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 				return false;
 			}
@@ -213,7 +212,7 @@ public class Almacen {
 					String sql= "select fn_actualizaralmacen (?,?,?,?,?,?,?,?,?,?)";
 					con.conectar();
 					PreparedStatement comando = con.getConexion().prepareStatement(sql);
-					comando.setInt(1,this.getL().getIdmarca().get());
+			//		comando.setInt(1,this.getL().getIdmarca().get());
 					comando.setString(2,this.getNombre());
 					comando.setString(3,this.getModelo());
 					comando.setBigDecimal(4, precio01);

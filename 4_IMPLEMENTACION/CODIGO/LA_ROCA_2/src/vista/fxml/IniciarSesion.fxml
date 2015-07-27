@@ -33,9 +33,9 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <ImageView fitHeight="155.0" fitWidth="276.0" layoutX="50.0" layoutY="25.0">
+                        <ImageView fitHeight="155.0" fitWidth="276.0" layoutX="58.0" layoutY="25.0">
                            <image>
-                              <Image url="@../images/Iconos/aprilia-mana-850-dibujo-4.png" />
+                              <Image url="@../images/logol.png" />
                            </image>
                         </ImageView>
                      </children>

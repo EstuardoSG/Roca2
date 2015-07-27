@@ -3,7 +3,8 @@ package controlador;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import modelo.Check;
+import vista.ControladordeVentanas;
+import vista.IControladorVentanas;
 import modelo.Clientes;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,10 +24,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
-public class RegistrarCliente implements Initializable {
+public class RegistrarCliente implements Initializable, IControladorVentanas {
 	
 	private Clientes c;
-
+	ControladordeVentanas ventanas;
 	public int id;
 	public int getId() {
 		return id;
@@ -46,7 +47,7 @@ public class RegistrarCliente implements Initializable {
 	txtDomicilio, txtNumeroInterior, txtNumeroExterior, txtCalle, txtLocalidad, txtCiudad, txtEstado, txtCodigoPostal, 
 	txtNumerodeCliente, txtFiltro;
 	
-	@FXML Button btnGuardar, btnEditar, btnEliminar, btnBuscar;
+	@FXML Button btnGuardar, btnEditar, btnEliminar, btnBuscar, btnNuevo;
 	
 	@FXML CheckBox chkClienteFrecuente, chkClientesEliminados;
 	
@@ -63,7 +64,8 @@ public class RegistrarCliente implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
-			
+			btnEditar.setDisable(true);
+			btnEliminar.setDisable(true);
 			llenarTableView(true);
 			
 		} catch (Exception e) {
@@ -132,6 +134,9 @@ public class RegistrarCliente implements Initializable {
 			else
 				chkClienteFrecuente.setSelected(false);
 		}
+		btnGuardar.setDisable(true);
+		btnEditar.setDisable(false);
+		btnEliminar.setDisable(false);
 	}
 	public void limpiar(){
 		txtNombre.setText("");
@@ -328,5 +333,17 @@ public class RegistrarCliente implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@FXML public void nuevo(){
+		limpiar();
+		btnGuardar.setDisable(false);
+		btnEditar.setDisable(true);
+		btnEliminar.setDisable(true);
+	}
+	@Override
+	public void setVentanaPrincipal(ControladordeVentanas screenParent) {
+		 ventanas = screenParent;
+		
 	}
 }

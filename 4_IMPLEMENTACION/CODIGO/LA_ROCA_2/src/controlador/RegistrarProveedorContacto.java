@@ -7,6 +7,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import vista.ControladordeVentanas;
+import vista.IControladorVentanas;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -25,9 +27,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
-public class RegistrarProveedorContacto implements Initializable {
+public class RegistrarProveedorContacto implements Initializable, IControladorVentanas {
 	private Company p;
 	private ProveedorContacto c;
+	private ControladordeVentanas ventanas;
 	
 	private int idc;
 	private int ide;
@@ -332,5 +335,10 @@ public class RegistrarProveedorContacto implements Initializable {
 				paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			}
 		}
+	}
+	@Override
+	public void setVentanaPrincipal(ControladordeVentanas screenParent) {
+		 ventanas = screenParent;
+		
 	}
 }

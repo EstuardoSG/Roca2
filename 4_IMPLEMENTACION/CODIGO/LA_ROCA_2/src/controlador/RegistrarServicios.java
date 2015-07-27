@@ -3,6 +3,8 @@ package controlador;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import vista.ControladordeVentanas;
+import vista.IControladorVentanas;
 import modelo.Notificaciones;
 import modelo.Servicios;
 import javafx.beans.property.SimpleFloatProperty;
@@ -20,9 +22,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class RegistrarServicios implements Initializable{
+public class RegistrarServicios implements Initializable, IControladorVentanas{
 	//***************************************************************************************************
 	//VARIABLES, OBJETOS Y CONTROLES
+	private ControladordeVentanas ventanas;
 	private int identificador;
 	private Servicios serviciosModelo;
 	private ObservableList<Servicios> datosServicio;
@@ -188,6 +191,12 @@ public class RegistrarServicios implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		filtrarServicios();
+		
+	}
+	
+	@Override
+	public void setVentanaPrincipal(ControladordeVentanas screenParent) {
+		 ventanas = screenParent;
 		
 	}
 

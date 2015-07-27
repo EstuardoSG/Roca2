@@ -15,6 +15,8 @@
       </Label>
       <ToolBar layoutY="29.0" prefHeight="50.0" prefWidth="850.0">
          <items>
+            <Button fx:id="btnNuevo" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="120.0" text="Nuevo" />
+            <Separator orientation="VERTICAL" prefHeight="40.0" prefWidth="0.0" />
             <Button fx:id="btnGuardar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="120.0" text="Guardar">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -23,8 +25,8 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Separator orientation="VERTICAL" prefHeight="40.0" prefWidth="0.0" />
-            <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#editar" prefHeight="40.0" prefWidth="120.0" text="Editar">
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#editar" prefHeight="40.0" prefWidth="120.0" text="Actualizar">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -32,7 +34,8 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Separator orientation="VERTICAL" prefHeight="40.0" prefWidth="0.0" />
+            <Separator layoutX="402.0" layoutY="10.0" orientation="VERTICAL" prefHeight="40.0" prefWidth="0.0" />
             <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -41,7 +44,6 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Separator orientation="VERTICAL" prefHeight="40.0" prefWidth="0.0" />
          </items>
       </ToolBar>
       <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="79.0" prefHeight="59.0" prefWidth="830.0" text="Quién registra">
@@ -52,7 +54,7 @@
                   <ComboBox fx:id="cbEmpleado" layoutX="82.0" layoutY="3.0" prefHeight="25.0" prefWidth="264.0" />
                   <Label layoutX="441.0" layoutY="8.0" text="Marca:" />
                   <ComboBox fx:id="cbMarca" layoutX="502.0" layoutY="3.0" prefHeight="25.0" prefWidth="220.0" />
-                  <Button layoutX="737.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="34.0">
+                  <Button fx:id="btnMarca" layoutX="737.0" layoutY="3.0" mnemonicParsing="false" onAction="#marca" prefHeight="29.0" prefWidth="34.0">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -60,6 +62,8 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
+                  <Label fx:id="lbl1" layoutX="354.0" layoutY="10.0" />
+                  <Label fx:id="lbl2" layoutX="787.0" layoutY="11.0" />
                </children>
             </AnchorPane>
         </content>
@@ -71,13 +75,18 @@
                   <Label layoutX="7.0" layoutY="3.0" text="Modelo:" />
                   <TextField fx:id="txtModelo" layoutX="75.0" layoutY="1.0" />
                   <Label layoutX="7.0" layoutY="32.0" text="Motor:" />
-                  <TextField fx:id="txtMotor" layoutX="75.0" layoutY="28.0" />
+                  <TextField fx:id="txtMotor" layoutX="75.0" layoutY="28.0" promptText="000 c.c" />
                   <Label layoutX="300.0" layoutY="3.0" text="Color:" />
                   <TextField fx:id="txtColor" layoutX="370.0" layoutY="1.0" />
                   <Label layoutX="301.0" layoutY="32.0" text="Placas:" />
                   <CheckBox fx:id="chkPlacas" layoutX="370.0" layoutY="32.0" mnemonicParsing="false" />
                   <Label layoutX="572.0" layoutY="20.0" text="Fecha:" />
-                  <TextField fx:id="txtFecha" layoutX="629.0" layoutY="17.0" />
+                  <TextField fx:id="txtFecha" disable="true" layoutX="629.0" layoutY="17.0" />
+                  <Label fx:id="lbl3" layoutX="232.0" layoutY="5.0" />
+                  <Label fx:id="lbl4" layoutX="232.0" layoutY="32.0" />
+                  <Label fx:id="lbl5" layoutX="526.0" layoutY="3.0" />
+                  <Label fx:id="lbl6" layoutX="398.0" layoutY="34.0" />
+                  <Label fx:id="lbl7" layoutX="788.0" layoutY="21.0" />
                </children>
             </AnchorPane>
         </content>
@@ -87,7 +96,8 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="67.0" prefWidth="828.0">
                <children>
                   <Label layoutX="7.0" layoutY="22.0" text="Descripción de la motocicleta:" />
-                  <TextArea fx:id="txtaDescripciondelaMotocicleta" layoutX="176.0" prefHeight="60.0" prefWidth="497.0" />
+                  <TextArea fx:id="txtaDescripciondelaMotocicleta" layoutX="176.0" prefHeight="60.0" prefWidth="497.0" promptText="En caso de tener placas anotar" />
+                  <Label fx:id="lbl8" layoutX="685.0" layoutY="24.0" />
                </children>
             </AnchorPane>
         </content>
@@ -106,7 +116,7 @@
                         <TableColumn fx:id="tcEmpleado" prefWidth="150.0" text="Empleado" />
                     </columns>
                   </TableView>
-                  <TextField fx:id="txtFiltro" layoutX="40.0" layoutY="17.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="183.0" />
+                  <TextField fx:id="txtFiltro" layoutX="40.0" layoutY="17.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="183.0" promptText="Búsqueda por modelo" />
                   <Button fx:id="btnBuscar" alignment="BOTTOM_RIGHT" layoutX="233.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Buscar">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">

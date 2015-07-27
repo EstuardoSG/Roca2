@@ -19,11 +19,11 @@ public class MarcaCombo {
 	private ObservableList<MarcaCombo> elementos;
 	
 	
-	public StringProperty getNombremarca() {
-		return nombremarca;
+	public String getNombremarca() {
+		return nombremarca.get();
 	}
-	public IntegerProperty getIdmarca() {
-		return idmarca;
+	public Integer getIdmarca() {
+		return idmarca.get();
 	}
 	public void setIdmarca(IntegerProperty idmarca) {
 		this.idmarca = idmarca;

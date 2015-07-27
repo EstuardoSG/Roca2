@@ -87,7 +87,7 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <ToolBar layoutX="13.0" layoutY="30.0" prefHeight="57.0" prefWidth="825.0">
+      <ToolBar layoutY="30.0" prefHeight="57.0" prefWidth="850.0">
         <items>
           <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarEmpleado" prefHeight="48.0" prefWidth="152.0" text="Guardar" />
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />

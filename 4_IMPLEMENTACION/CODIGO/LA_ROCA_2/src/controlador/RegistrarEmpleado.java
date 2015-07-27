@@ -1,13 +1,11 @@
 package controlador;
 
-
-import java.beans.FeatureDescriptor;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
+import vista.ControladordeVentanas;
+import vista.IControladorVentanas;
 import modelo.Empleado;
 import modelo.Notificaciones;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -26,9 +24,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class RegistrarEmpleado implements Initializable {
+public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 	//***************************************************************************************************
 	//VARIABLES, OBJETOS Y CONTROLES
+	private ControladordeVentanas ventanas;
 	private ObservableList<Empleado> datosEmpleado;
 	private int identificador;
 	private Empleado e;
@@ -244,7 +243,6 @@ public class RegistrarEmpleado implements Initializable {
 				TableEmpleado.setItems(e.getEmpleadoInactivo());
 				datosEmpleado = e.getEmpleadoInactivo();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			String cantidadEmpleados = String.valueOf(datosEmpleado.size());
@@ -257,7 +255,6 @@ public class RegistrarEmpleado implements Initializable {
 				TableEmpleado.setItems(e.getEmpleado());
 				datosEmpleado = e.getEmpleado();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
@@ -309,5 +306,11 @@ public class RegistrarEmpleado implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		filtrarEmpleados();
+	}
+	
+	@Override
+	public void setVentanaPrincipal(ControladordeVentanas screenParent) {
+		 ventanas = screenParent;
+		
 	}
 }

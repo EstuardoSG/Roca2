@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import vista.ControladordeVentanas;
+import vista.IControladorVentanas;
 import modelo.Check;
 import modelo.Customer;
 import modelo.Motorcycle;
@@ -27,7 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
-public class CheckList implements Initializable {
+public class CheckList implements Initializable, IControladorVentanas {
 
 	private Check ch;
 	private Customer cus;
@@ -276,11 +278,17 @@ public class CheckList implements Initializable {
 	}
 		
 	@FXML public void clickCliente(){
-		try {
+	/*	try {
 			ventanas.modal("../vista/fxml/RegistrarCliente.fxml", "Clientes");
 			cbCliente.setItems(cus.getCustomer());
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
+	}
+	
+	@Override
+	public void setVentanaPrincipal(ControladordeVentanas screenParent) {
+		 ventanas = screenParent;
+		
 	}
 }

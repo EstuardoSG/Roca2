@@ -165,7 +165,6 @@ public class Check {
 			comando.execute();
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return false;
 		}
@@ -195,7 +194,6 @@ public class Check {
 			comando.execute();
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return false;
 		}

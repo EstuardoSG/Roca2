@@ -2,6 +2,7 @@ package controlador;
 
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleIntegerProperty;
@@ -21,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import modelo.Brand;
 import modelo.Marca;
 
 public class MarcaMotocicleta implements Initializable{
@@ -32,7 +34,9 @@ public class MarcaMotocicleta implements Initializable{
 	@FXML Label lblMensaje;
 	@FXML Button btnGuardar, eliminar, btnEditar, btnBuscar;
 	@FXML CheckBox ckbInactivos;
-	
+
+	private Brand br;
+	private RegistrarMotocicleta rm;
 	
 	private int filasXPagina;
 	private ObservableList<Marca> datos;
@@ -40,9 +44,9 @@ public class MarcaMotocicleta implements Initializable{
 	@FXML Pagination paginador;
 	
 	 public MarcaMotocicleta() {
-		// TODO Auto-generated constructor stub
 		f = new Marca();
-		
+		br = new Brand();
+		rm = new RegistrarMotocicleta();
 		filasXPagina  = 10;
 		datos = FXCollections.observableArrayList();
 		
@@ -107,7 +111,7 @@ public class MarcaMotocicleta implements Initializable{
 	 		
 	 	}
 	 
-	 @FXML public void click_insertar(){
+	 @FXML public void click_insertar() throws SQLException{
 			try{
 				if(txtMarca.getText().trim().isEmpty()){
 					lblMensaje.setText("Faltan datos por ingresar");
@@ -115,10 +119,10 @@ public class MarcaMotocicleta implements Initializable{
 				else
 					f= new Marca();
 					f.setNombre(new SimpleStringProperty(txtMarca.getText()));
-										
 					boolean res = f.insertar();
 					if (res){
 						lblMensaje.setText("Datos insertados");
+						llenarTableview(true);
 					}
 					else
 						lblMensaje.setText("Se ha producido un error en el servidor");					
@@ -185,7 +189,6 @@ public class MarcaMotocicleta implements Initializable{
 			
 		}	
 	} catch (Exception e) {
-		// TODO: handle exception
 	}
 }
 		

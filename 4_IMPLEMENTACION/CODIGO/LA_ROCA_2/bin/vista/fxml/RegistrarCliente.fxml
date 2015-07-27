@@ -97,10 +97,12 @@
          <items>
             <Button fx:id="btnGuardar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="120.0" text="Guardar" />
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
-            <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#editar" prefHeight="40.0" prefWidth="120.0" text="Editar" />
+            <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#editar" prefHeight="40.0" prefWidth="120.0" text="Actualizar" />
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
             <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar" />
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnNuevo" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="120.0" text="Nuevo" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="8.0" />
          </items>
       </ToolBar>
       <Label alignment="CENTER" prefHeight="22.0" prefWidth="850.0" text="Clientes" textAlignment="CENTER">

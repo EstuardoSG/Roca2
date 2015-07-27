@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import vista.ControladordeVentanas;
+import vista.IControladorVentanas;
 import modelo.Brand;
 import modelo.Employee;
 import modelo.Motocicleta;
@@ -27,8 +29,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
-public class RegistrarMotocicleta implements Initializable{
+public class RegistrarMotocicleta implements Initializable, IControladorVentanas{
 	
+	private ControladordeVentanas ventanas;
+	private ControladorVentana ventana;
 	private Motocicleta m;
 	private Employee em;
 	private Brand br;
@@ -46,10 +50,10 @@ public class RegistrarMotocicleta implements Initializable{
 	private FilteredList<Motocicleta> datosBusqueda;
 	@FXML Pagination paginador;
 	
-	@FXML Label lblRegistros, lblMensaje;
+	@FXML Label lblRegistros, lblMensaje, lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7, lbl8;
 	@FXML TextField txtModelo, txtMotor, txtColor, txtFiltro, txtFecha;
 	@FXML TextArea txtaDescripciondelaMotocicleta;
-	@FXML Button btnGuardar, btnEditar, btnEliminar, btnBuscar;
+	@FXML Button btnGuardar, btnEditar, btnEliminar, btnBuscar, btnNuevo, btnMarca;
 	@FXML ComboBox<Employee> cbEmpleado;
 	@FXML ComboBox<Brand>  cbMarca;
 	@FXML CheckBox chkPlacas, chkMotocicletasEliminadas;
@@ -68,6 +72,8 @@ public class RegistrarMotocicleta implements Initializable{
 				cbMarca.setItems(br.getBrand());
 				cbEmpleado.setItems(em.getEmployee());
 				llenarTableView(true);
+				btnEditar.setDisable(true);
+				btnEliminar.setDisable(true);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -108,6 +114,15 @@ public class RegistrarMotocicleta implements Initializable{
 	}
 	
 	@FXML public void click_TablaClientes(){
+		if(chkMotocicletasEliminadas.isSelected()){
+			btnGuardar.setDisable(true);
+			btnEliminar.setDisable(true);
+			btnEditar.setDisable(true);
+		}else{
+		btnGuardar.setDisable(true);
+		btnEliminar.setDisable(false);
+		btnEditar.setDisable(false);
+		}
 		if(tvMotocicletas.getSelectionModel().getSelectedItem()!=null){
 			m =  tvMotocicletas.getSelectionModel().getSelectedItem();
 			id = m.getIdmotocicleta();
@@ -118,18 +133,56 @@ public class RegistrarMotocicleta implements Initializable{
 			txtaDescripciondelaMotocicleta.setText(m.getDescripcionMotocicleta().toString());
 			 cbEmpleado.getSelectionModel().select(m.getEm());
 			 cbMarca.getSelectionModel().select(m.getBr());
+			 limpiarLbl();
 			if(m.getPlaca().equals(true))
 				chkPlacas.setSelected(true);
 			else
 				chkPlacas.setSelected(false);
+			
+	
+			
 		}
 	}
+	
+	public void limpiarLbl(){
+		lbl1.setText("");
+		lbl2.setText("");
+		lbl3.setText("");
+		lbl4.setText("");
+		lbl5.setText("");
+		lbl6.setText("");
+		lbl8.setText("");
+		lblMensaje.setText("");
+	}
 	@FXML public void guardar(){
+		limpiarLbl();
 		try {
-			if(txtModelo.getText().trim().isEmpty() ||
-					txtMotor.getText().trim().isEmpty() ||
-					txtColor.getText().trim().isEmpty() ||
-					txtaDescripciondelaMotocicleta.getText().trim().isEmpty()){
+			if(cbEmpleado.getSelectionModel().getSelectedItem() == null){
+				lbl1.setText("*");
+				lblMensaje.setText("Faltan datos por llenar");
+			}
+			if(cbMarca.getSelectionModel().getSelectedItem() == null){
+				lbl2.setText("*");
+				lblMensaje.setText("Faltan datos por llenar");
+			}
+			if(txtModelo.getText().trim().isEmpty()){
+				lbl3.setText("*");
+				lblMensaje.setText("Faltan datos por llenar");
+			}
+			if(txtMotor.getText().trim().isEmpty()){
+				lbl4.setText("*");
+				lblMensaje.setText("Faltan datos por llenar");
+			}
+			if(txtColor.getText().trim().isEmpty()) {
+				lbl5.setText("*");
+				lblMensaje.setText("Faltan datos por llenar");
+			}
+			if(chkPlacas.isSelected() == false){
+				lbl6.setText("*");
+				lblMensaje.setText("Faltan datos por llenar");
+			}
+			if(txtaDescripciondelaMotocicleta.getText().trim().isEmpty()){
+				lbl8.setText("*");
 				lblMensaje.setText("Faltan datos por llenar");
 			}
 			else{
@@ -205,22 +258,48 @@ public class RegistrarMotocicleta implements Initializable{
 		}
 	}
 	
+	@FXML public void nuevo(){
+		limpiar();
+		limpiarLbl();
+		btnGuardar.setDisable(false);
+		btnEliminar.setDisable(true);
+		btnEditar.setDisable(true);
+		chkMotocicletasEliminadas.setSelected(false);
+		llenarTableView(true);
+	}
+
+	@FXML public void marca(){
+		ventana = ControladorVentana.getInstancia();
+		ventana.modal("../vista/fxml/RegistrarMarca.fxml", "Registrar marca");
+	}
 	public void limpiar(){
 		txtModelo.setText("");
 		txtColor.setText("");
 		txtMotor.setText("");
 		txtFecha.setText("");
 		txtaDescripciondelaMotocicleta.setText("");
-		cbEmpleado.getSelectionModel().select(-1);
-		cbMarca.getSelectionModel().select(-1);
+		//.clearSelection no agarra si el valor fue llenado al darle click a la tabla
+		//cbEmpleado.getSelectionModel().clearSelection();
+		cbEmpleado.setValue(null);
+		cbMarca.setValue(null);
 		chkPlacas.setSelected(false);
 	}
 	
 	@FXML public void click_inactivos(){
-		if(chkMotocicletasEliminadas.isSelected())
+		if(chkMotocicletasEliminadas.isSelected()){
+			btnGuardar.setDisable(true);
+			btnEliminar.setDisable(true);
+			btnEditar.setDisable(true);
 			llenarTableView(false);
-		else
+			limpiarLbl();
+		}else{
 			llenarTableView(true);
+		lblMensaje.setText(datosBusqueda.size() + " registros encontrados en la Base de Datos.");
+		btnGuardar.setDisable(true);
+		btnEliminar.setDisable(false);
+		btnEditar.setDisable(false);
+		limpiarLbl();
+		}
 	}
 	@FXML public void buscarTexto(){
 		if(txtFiltro.getText().trim().isEmpty()){
@@ -252,4 +331,10 @@ public class RegistrarMotocicleta implements Initializable{
 				}
 			}
 		}
+	
+	@Override
+	public void setVentanaPrincipal(ControladordeVentanas screenParent) {
+		 ventanas = screenParent;
+		
+	}
 }

@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import vista.ControladordeVentanas;
+import vista.IControladorVentanas;
 import modelo.MarcaCombo;
 import modelo.Almacen;
 import javafx.beans.property.SimpleFloatProperty;
@@ -27,7 +29,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
-public class RegistrarAlmacen implements Initializable{
+public class RegistrarAlmacen implements Initializable, IControladorVentanas{
+	
+	private ControladordeVentanas ventanas;
 	private MarcaCombo l;
 	private Almacen f;	
 	@FXML ComboBox<MarcaCombo> cbMarca;
@@ -41,7 +45,7 @@ public class RegistrarAlmacen implements Initializable{
 	@FXML CheckBox ckbInactivos;
 	@FXML Button btnGuardar, eliminar, btnEditar, btnBuscar, btnMas;
 	
-	private ControladordeVentanas ventanas;
+	private ControladorVentana ventana;
 	
 	//variables de paginacion
 	private int filasXPagina;
@@ -51,7 +55,6 @@ public class RegistrarAlmacen implements Initializable{
 	
 	//constructor
 	 public RegistrarAlmacen() {
-		// TODO Auto-generated constructor stub
 		l = new MarcaCombo();
 		f = new Almacen();
 		filasXPagina  = 10;
@@ -171,8 +174,6 @@ public class RegistrarAlmacen implements Initializable{
 	 
 	 @Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
-			// TODO Auto-generated method stub
-		 ventanas = ControladordeVentanas.getInstancia();
 		 try{
 			cbMarca.setItems(l.getMarcaCombo());
 			//Enlazar columnas
@@ -243,7 +244,6 @@ public class RegistrarAlmacen implements Initializable{
 			
 		}	
 	} catch (Exception e) {
-		// TODO: handle exception
 	}
 }
 		
@@ -289,7 +289,12 @@ public class RegistrarAlmacen implements Initializable{
 		
 		//Método para incorporar otra marca.
 		@FXML public void click_mas(ActionEvent event){
-			ventanas.asignarCentro("../vista/fxml/RegistrarMarca.fxml");
+		
 		}
 		
+		@Override
+		public void setVentanaPrincipal(ControladordeVentanas screenParent) {
+			 ventanas = screenParent;
+			
+		}
 }

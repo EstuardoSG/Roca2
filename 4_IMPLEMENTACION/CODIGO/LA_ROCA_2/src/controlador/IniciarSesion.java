@@ -1,9 +1,12 @@
 package controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import vista.ControladordeVentanas;
+import vista.IControladorVentanas;
 import vista.MainRoca2;
 import modelo.Conexion;
 import modelo.Usuario;
@@ -27,13 +30,14 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Pair;
 
-public class IniciarSesion implements Initializable {
+public class IniciarSesion implements Initializable, IControladorVentanas {
 	
 	private Conexion con;
 	private Usuario modeloUsuario;
+	private ControladorVentana ventana;
 	private ControladordeVentanas ventanas;
 	
-	
+	private MainRoca2 main;
 
 	private GridPane grid = new GridPane();
 	private String usernameResult,passwordResult;
@@ -42,9 +46,9 @@ public class IniciarSesion implements Initializable {
 	private Callback myCallback;
 	private Stage stage;
 	
-	
-	
-	
+
+
+
 	@FXML TitledPane tbIniciarSesion;
 	@FXML Accordion acVista;
 	
@@ -68,10 +72,10 @@ public class IniciarSesion implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		acVista.setExpandedPane(tbIniciarSesion);
 	}
-	
+
 	
 
-	public void iniciarSesion(ActionEvent event){
+	@FXML public void  iniciarSesion() throws IOException{
 		if(txtUsuario.getText().isEmpty() && pwdContrasenia.getText().isEmpty()){
 			lblMensaje.setText("Faltan datos por ingresar");
 		}else{
@@ -85,18 +89,30 @@ public class IniciarSesion implements Initializable {
 			//Verificamos si existe en la Base de datos.
 			boolean resultado = modeloUsuario.Existe();
 			if(resultado){
-				ventanas = ControladordeVentanas.getInstancia();
-				ventanas.asignarEscena("../vista/fxml/Principal.fxml", "La Roca");
-				System.out.println("Existe el usuario, es:"+ modeloUsuario.getPrivilegio());	
+				if(modeloUsuario.getPrivilegio().equals("Administrador")){
+					Principal.start();
+			    	ventana = ControladorVentana.getInstancia();
+					ventana.asignarEscenaAdministrador("../vista/fxml/Principal.fxml", "Administrador");
+					System.out.println("Existe el usuario, es:"+ modeloUsuario.getPrivilegio());
+					
+				}else{
+					Principal.start();
+			    	ventana = ControladorVentana.getInstancia();
+					ventana.asignarEscenaEmpleado("../vista/fxml/Principal.fxml", "Empleado");
+					System.out.println("cargo empleado");
+					System.out.println("Existe el usuario, es:"+ modeloUsuario.getPrivilegio());
+
+				}
 			}
 			else{
 				lblMensaje.setText("Usuario no valido");
 				System.out.println("Usuario no valido");
 			}
 		}
+		
 	}
 	
-	public void conectar(ActionEvent event){
+	@FXML public void conectar(){
 		con = Conexion.getInstancia();
 		if(txtIP.getText().isEmpty()==false &
 				txtPuerto.getText().isEmpty()==false &
@@ -127,7 +143,7 @@ public class IniciarSesion implements Initializable {
 	
 	@FXML
 	public void click_Accion(){
-		stage=MainRoca2.getPrimaryStage();	
+	//	stage=MainRoca2.getPrimaryStage();	
 		dialogAcceso();
 		
 		if(ButtonData.OK_DONE != null){
@@ -139,9 +155,13 @@ public class IniciarSesion implements Initializable {
 				modeloUsuario.setContrasenia(password.getText());
 				boolean resultado = modeloUsuario.Existe();
 				if(resultado){
+					if(modeloUsuario.getPrivilegio().equals("Administrador")){
 					tpConfiguracion.setExpanded(true);
 					System.out.println("Existe el usuario, es:"+ modeloUsuario.getPrivilegio());	
 					lblMensaje.setText("");
+					}else{
+						lblMensaje.setText("Acceso Denegodo");
+					}
 				}
 				else{
 					lblMensaje.setText("Acceso denegado");
@@ -204,5 +224,12 @@ public class IniciarSesion implements Initializable {
 		    System.out.println("Username=" + usernamePassword.getKey() + ", Password=" + usernamePassword.getValue());
 		});
 	
+	}
+
+
+
+	@Override
+	public void setVentanaPrincipal(ControladordeVentanas screenParent) {
+		 ventanas = screenParent;
 	}
 }

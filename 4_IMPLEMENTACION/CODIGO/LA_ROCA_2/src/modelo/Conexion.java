@@ -3,6 +3,8 @@ package modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import controlador.Errores;
+
 public class Conexion {
 
 	private String bd;
@@ -15,6 +17,7 @@ public class Conexion {
 	private static Conexion instancia;
 	
 	private Connection con;
+	private Errores er;
 	
 	private Conexion(){
 		ip = "127.0.0.1";
@@ -24,6 +27,7 @@ public class Conexion {
 		contrasenia = "root";
 		servidor = "jdbc:postgresql://localhost:5432/";
 		con = null;
+		er = new Errores();
 	}
 	
 	public String getIp() {
@@ -101,7 +105,7 @@ public class Conexion {
 			System.out.println("Se ha establecido la conexión");
 			return "Conexión éxitosa";
 		}catch(Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return "No se establecio la conexión. Consulte su administrador";
 		}
 	}
@@ -117,7 +121,7 @@ public class Conexion {
 			System.out.println("Se ha desconectado del servidor");
 			return "Se ha desconectado del servidor";
 		}catch(Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return "La conexión esta siendo ocupada. No se puede desconectar.";
 		}
 	}
