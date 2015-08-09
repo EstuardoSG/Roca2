@@ -32,6 +32,10 @@ public class Almacen {
 	}
 
 	// #region Getters and Setters
+	public String toString() {
+		return nombre.get();
+	}
+	
 	public String getNombre() {
 		return nombre.get();
 	}

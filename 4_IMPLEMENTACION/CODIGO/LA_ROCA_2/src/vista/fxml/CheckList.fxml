@@ -10,9 +10,19 @@
    <children>
       <ToolBar layoutY="29.0" prefHeight="50.0" prefWidth="850.0">
          <items>
+            <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/nuevo.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
             <Button fx:id="btnGuardar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="120.0" text="Guardar">
                <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Iconos/diskette.png" />
                      </image>
@@ -21,7 +31,7 @@
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
             <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#editar" prefHeight="40.0" prefWidth="120.0" text="Editar">
                <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Iconos/edit.png" />
                      </image>
@@ -30,7 +40,7 @@
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
             <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
                <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Iconos/trash_can.png" />
                      </image>
@@ -52,7 +62,7 @@
                   <ComboBox fx:id="cbCliente" layoutX="53.0" prefHeight="25.0" prefWidth="300.0" />
                   <Button fx:id="btnAgregarC" layoutX="362.0" mnemonicParsing="false" onAction="#clickCliente" prefHeight="29.0" prefWidth="34.0">
                      <graphic>
-                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Iconos/add.png" />
                            </image>
@@ -62,7 +72,7 @@
                   <ComboBox fx:id="cbMotocicleta" layoutX="563.0" prefWidth="150.0" />
                   <Button layoutX="724.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="34.0">
                      <graphic>
-                        <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Iconos/add.png" />
                            </image>
@@ -100,7 +110,7 @@
                <children>
                   <Label layoutX="7.0" layoutY="24.0" text="Diagnóstico:" />
                   <TextArea fx:id="txtaDiagnostico" layoutX="84.0" layoutY="2.0" prefHeight="60.0" prefWidth="548.0" />
-                  <TextField fx:id="txtFecha" editable="false" layoutX="649.0" layoutY="20.0" promptText="AAAA-MM-DD HH:MM:SS" />
+                  <TextField fx:id="txtFecha" editable="false" layoutX="649.0" layoutY="20.0" />
                </children>
             </AnchorPane>
         </content>
@@ -109,16 +119,8 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="189.0" prefWidth="828.0">
                <children>
-                  <TextField fx:id="txtFiltro" layoutX="39.0" layoutY="10.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="224.0" />
-                  <Button fx:id="btnBuscar" alignment="BOTTOM_RIGHT" layoutX="273.0" layoutY="2.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Buscar">
-                     <graphic>
-                        <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/Iconos/zoom.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Pagination fx:id="paginador" layoutX="-1.0" layoutY="42.0" prefHeight="190.0" prefWidth="830.0" />
+                  <TextField fx:id="txtFiltro" layoutX="39.0" layoutY="10.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="172.0" />
+                  <Pagination fx:id="paginador" layoutX="38.0" layoutY="42.0" prefHeight="190.0" prefWidth="752.0" />
                   <TableView fx:id="tvCheckList" layoutX="39.0" layoutY="43.0" onMouseClicked="#click_TablaCheckList" prefHeight="148.0" prefWidth="750.0">
                     <columns>
                       <TableColumn fx:id="tcCliente" prefWidth="150.0" text="Cliente" />
@@ -127,7 +129,7 @@
                         <TableColumn fx:id="tcDiagnostico" prefWidth="250.0" text="Diagnóstico" />
                     </columns>
                   </TableView>
-                  <Label layoutX="655.0" layoutY="198.0" text="total:" />
+                  <Label layoutX="655.0" layoutY="198.0" text="Total:" />
                   <Label fx:id="lblRegistros" layoutX="702.0" layoutY="198.0" text="0 Registro(s)">
                      <font>
                         <Font size="13.0" />
@@ -135,6 +137,11 @@
                   </Label>
                   <CheckBox fx:id="chkListadeComprobacionesEliminadas" layoutX="52.0" layoutY="198.0" mnemonicParsing="false" onMouseClicked="#click_inactivos" text="Lista de comprobaciones eliminadas" />
                   <Label fx:id="lblMensaje" layoutX="432.0" layoutY="14.0" prefHeight="17.0" prefWidth="357.0" />
+                  <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="216.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/zoom.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
         </content>

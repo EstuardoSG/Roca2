@@ -49,7 +49,7 @@ public class RestaurarContacto implements Initializable, IControladorVentanas {
 	}
 
 	//@FXML ComboBox<Company> cbEmpresa;
-	@FXML TableColumn<RestaurarC, String> tcEmpresa, tcNombre, tcAp, tcAm, tcCelular;
+	@FXML TableColumn<RestaurarC, String> tcEmpresa, tcNombre, tcApellidoPaterno, tcApellidoMaterno, tcCelular;
 	@FXML TableView<RestaurarC> tvPC;
 	@FXML TextField txtBuscar;
 	@FXML Label lblMensaje, lblRegistros;
@@ -78,11 +78,6 @@ public class RestaurarContacto implements Initializable, IControladorVentanas {
 		//try{
 			//cbEmpresa.setItems(p.getCompany());
 			//Enlazar Columnas
-			tcEmpresa.setCellValueFactory(new PropertyValueFactory<RestaurarC, String>("p"));
-			tcNombre.setCellValueFactory(new PropertyValueFactory<RestaurarC, String>("nombre"));
-			tcAp.setCellValueFactory(new PropertyValueFactory<RestaurarC, String>("apellidoPaterno"));
-			tcAm.setCellValueFactory(new PropertyValueFactory<RestaurarC, String>("apellidoMaterno"));
-			tcCelular.setCellValueFactory(new PropertyValueFactory<RestaurarC, String>("celular"));
 			llenarTableView(true);
 		//}catch (SQLException e){
 			//e.printStackTrace();
@@ -106,6 +101,11 @@ public class RestaurarContacto implements Initializable, IControladorVentanas {
 	
 	//Método para llenar el tableView
 	public void llenarTableView(Boolean estatus){
+		tcEmpresa.setCellValueFactory(new PropertyValueFactory<RestaurarC, String>("p"));
+		tcNombre.setCellValueFactory(new PropertyValueFactory<RestaurarC, String>("nombre"));
+		tcApellidoPaterno.setCellValueFactory(new PropertyValueFactory<RestaurarC, String>("apellidoPaterno"));
+		tcApellidoMaterno.setCellValueFactory(new PropertyValueFactory<RestaurarC, String>("apellidoMaterno"));
+		tcCelular.setCellValueFactory(new PropertyValueFactory<RestaurarC, String>("celular"));
 		try{
 			datos= c.getRestaurarC(estatus);
 			datosB = new FilteredList<>(datos);
@@ -132,7 +132,7 @@ public class RestaurarContacto implements Initializable, IControladorVentanas {
 					lblMensaje.setText("Contacto restaurado.");
 				}
 				else {
-					lblMensaje.setText("Se ha presentado un errorcon el servido.");
+					lblMensaje.setText("Se ha presentado un error.");
 				}
 		}catch (Exception e){
 			e.printStackTrace();

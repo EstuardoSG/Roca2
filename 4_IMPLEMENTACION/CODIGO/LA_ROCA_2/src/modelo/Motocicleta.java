@@ -145,7 +145,6 @@ public class Motocicleta {
 			comando.execute();
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return false;
 		}
@@ -172,7 +171,6 @@ public class Motocicleta {
 			comando.execute();
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return false;
 		}

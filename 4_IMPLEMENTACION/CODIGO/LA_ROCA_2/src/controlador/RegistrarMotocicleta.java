@@ -44,7 +44,6 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 		this.id = id;
 	}
 
-
 	private int filasXPagina;
 	private ObservableList<Motocicleta> datos;
 	private FilteredList<Motocicleta> datosBusqueda;
@@ -138,9 +137,6 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 				chkPlacas.setSelected(true);
 			else
 				chkPlacas.setSelected(false);
-			
-	
-			
 		}
 	}
 	
@@ -194,15 +190,15 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 				m.setMotor(new SimpleStringProperty(txtMotor.getText()));
 				m.setDescripcionMotocicleta(new SimpleStringProperty(txtaDescripciondelaMotocicleta.getText()));
 				
-				if(m.guardar()){
+				}if(m.guardar()){
 					lblMensaje.setText("Datos insertados con éxito");
 					llenarTableView(true);
 				}
-				else
+				else{
 					lblMensaje.setText("Se producido un problema en el servidor.");
 				
-			}	
-		} catch (Exception e) {
+				}	
+			} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -273,11 +269,12 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 		ventana.modal("../vista/fxml/RegistrarMarca.fxml", "Registrar marca");
 	}
 	public void limpiar(){
-		txtModelo.setText("");
-		txtColor.setText("");
-		txtMotor.setText("");
-		txtFecha.setText("");
-		txtaDescripciondelaMotocicleta.setText("");
+		txtModelo.clear();
+		txtColor.clear();
+		txtMotor.clear();
+		txtFecha.clear();
+		txtaDescripciondelaMotocicleta.clear();
+		txtFiltro.clear();
 		//.clearSelection no agarra si el valor fue llenado al darle click a la tabla
 		//cbEmpleado.getSelectionModel().clearSelection();
 		cbEmpleado.setValue(null);

@@ -31,9 +31,9 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 	private ObservableList<Empleado> datosEmpleado;
 	private int identificador;
 	private Empleado e;
-	@FXML TextField txtNombre, txtNombre2, txtApellidoPaterno, txtApellidoMaterno, txtTelefono, txtTelefono2,
-	txtCelular, txtCelular2, txtDomicilio, txtNumeroInterior, txtNumeroExterior, txtCalle, txtLocalidad, txtCiudad, 
-	txtEstado, txtCodigoPostal, txtCorreo, txtUsuario, txtPrivilegio;
+	@FXML TextField txtNombre, txtNombre2, txtApellidoPaterno, txtApellidoMaterno, txtTelefono1, txtTelefono21,
+	txtCelular1, txtCelular21, txtDomicilio, txtNumeroInterior, txtNumeroExterior, txtCalle, txtLocalidad, txtCiudad, 
+	txtEstado, txtCodigoPostal, txtCorreo1, txtUsuario, txtPrivilegio;
 	@FXML PasswordField pwdContrasenia;
 	@FXML DatePicker dateFecha;
 	@FXML Button btnGuardar, btnEliminar,btnNuevoRegistroEmpleado,btnEliminarEmpleado,btnActualizarEmpleado;
@@ -41,7 +41,7 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 	@FXML CheckBox chbEmpleados;
 	
 	@FXML TableView<Empleado> TableEmpleado;
-	@FXML TableColumn<Empleado, String> tcNombre, tcApellidoPaterno, tcApellidoMaterno,tcCelular,tcCorreo,tcDireccion;
+	@FXML TableColumn<Empleado, String> tcNombre, tcApellidoPaterno, tcApellidoMaterno,tcCorreo,tcDireccion;
 	
 	Notificaciones notificacion = new Notificaciones();
 	
@@ -64,7 +64,7 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 				txtDomicilio.getText().isEmpty() || txtNumeroExterior.getText().isEmpty() || 
 				txtCalle.getText().isEmpty() || txtLocalidad.getText().isEmpty() ||
 				txtCiudad.getText().isEmpty() || txtEstado.getText().isEmpty() ||
-				txtCodigoPostal.getText().isEmpty() || txtCorreo.getText().isEmpty() ||
+				txtCodigoPostal.getText().isEmpty() || txtCorreo1.getText().isEmpty() ||
 				txtUsuario.getText().isEmpty() || txtPrivilegio.getText().isEmpty()
 				){
 			notificacion.faltanDatos();
@@ -74,10 +74,10 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 					e.setNombre2(new SimpleStringProperty(txtNombre2.getText()));
 					e.setApellidopaterno(new SimpleStringProperty(txtApellidoPaterno.getText()));
 					e.setApellidomaterno(new SimpleStringProperty(txtApellidoMaterno.getText()));
-					e.setTelefono1(new SimpleStringProperty(txtTelefono.getText()));
-					e.setTelefono2(new SimpleStringProperty(txtTelefono2.getText()));
-					e.setCelular1(new SimpleStringProperty(txtCelular.getText()));
-					e.setCelular2(new SimpleStringProperty(txtCelular2.getText()));
+					e.setTelefono1(new SimpleStringProperty(txtTelefono1.getText()));
+					e.setTelefono2(new SimpleStringProperty(txtTelefono21.getText()));
+					e.setCelular1(new SimpleStringProperty(txtCelular1.getText()));
+					e.setCelular2(new SimpleStringProperty(txtCelular21.getText()));
 					e.setDomicilio(new SimpleStringProperty(txtDomicilio.getText()));
 					e.setNumerointerior(new SimpleStringProperty(txtNumeroInterior.getText()));
 					e.setNumeroexterior(new SimpleStringProperty(txtNumeroExterior.getText()));
@@ -86,7 +86,7 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 					e.setCiudad(new SimpleStringProperty(txtCiudad.getText()));
 					e.setEstado(new SimpleStringProperty(txtEstado.getText()));
 					e.setCodigopostal(new SimpleStringProperty(txtCodigoPostal.getText()));
-					e.setCorreo(new SimpleStringProperty(txtCorreo.getText()));
+					e.setCorreo(new SimpleStringProperty(txtCorreo1.getText()));
 					e.setUsuario(new SimpleStringProperty(txtUsuario.getText()));
 					e.setContrasenia(new SimpleStringProperty(pwdContrasenia.getText()));
 					e.setPrivilegio(new SimpleStringProperty(txtPrivilegio.getText()));
@@ -138,10 +138,10 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 				e.setNombre2(new SimpleStringProperty(txtNombre2.getText()));
 				e.setApellidopaterno(new SimpleStringProperty(txtApellidoPaterno.getText()));
 				e.setApellidomaterno(new SimpleStringProperty(txtApellidoMaterno.getText()));
-				e.setTelefono1(new SimpleStringProperty(txtTelefono.getText()));
-				e.setTelefono2(new SimpleStringProperty(txtTelefono2.getText()));
-				e.setCelular1(new SimpleStringProperty(txtCelular.getText()));
-				e.setCelular2(new SimpleStringProperty(txtCelular2.getText()));
+				e.setTelefono1(new SimpleStringProperty(txtTelefono1.getText()));
+				e.setTelefono2(new SimpleStringProperty(txtTelefono21.getText()));
+				e.setCelular1(new SimpleStringProperty(txtCelular1.getText()));
+				e.setCelular2(new SimpleStringProperty(txtCelular21.getText()));
 				e.setDomicilio(new SimpleStringProperty(txtDomicilio.getText()));
 				e.setNumerointerior(new SimpleStringProperty(txtNumeroInterior.getText()));
 				e.setNumeroexterior(new SimpleStringProperty(txtNumeroExterior.getText()));
@@ -150,7 +150,7 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 				e.setCiudad(new SimpleStringProperty(txtCiudad.getText()));
 				e.setEstado(new SimpleStringProperty(txtEstado.getText()));
 				e.setCodigopostal(new SimpleStringProperty(txtCodigoPostal.getText()));
-				e.setCorreo(new SimpleStringProperty(txtCorreo.getText()));
+				e.setCorreo(new SimpleStringProperty(txtCorreo1.getText()));
 				e.setUsuario(new SimpleStringProperty(txtUsuario.getText()));
 				e.setContrasenia(new SimpleStringProperty(pwdContrasenia.getText()));
 				e.setPrivilegio(new SimpleStringProperty(txtPrivilegio.getText()));
@@ -213,10 +213,10 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 			txtNombre2.setText(e.getNombre2().toString());
 			txtApellidoPaterno.setText(e.getApellidopaterno().toString());
 			txtApellidoMaterno.setText(e.getApellidomaterno().toString());
-			txtTelefono.setText(e.getTelefono1().toString());
-			txtTelefono2.setText(e.getTelefono2().toString());
-			txtCelular.setText(e.getCelular1().toString());
-			txtCelular2.setText(e.getCelular2().toString());
+			txtTelefono1.setText(e.getTelefono1().toString());
+			txtTelefono21.setText(e.getTelefono2().toString());
+			txtCelular1.setText(e.getCelular1().toString());
+			txtCelular21.setText(e.getCelular2().toString());
 			txtDomicilio.setText(e.getDomicilio().toString());
 			txtNumeroInterior.setText(e.getNumerointerior().toString());
 			txtNumeroExterior.setText(e.getNumeroexterior().toString());
@@ -225,7 +225,7 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 			txtCiudad.setText(e.getCiudad().toString());
 			txtEstado.setText(e.getEstado().toString());
 			txtCodigoPostal.setText(e.getCodigopostal().toString());
-			txtCorreo.setText(e.getCorreo().toString());
+			txtCorreo1.setText(e.getCorreo().toString());
 			txtUsuario.setText(e.getUsuario().toString());
 			txtPrivilegio.setText(e.getPrivilegio().toString());
 			pwdContrasenia.setText(e.getContrasenia().toString());
@@ -281,10 +281,10 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 		txtNombre2.clear();
 		txtApellidoPaterno.clear();
 		txtApellidoMaterno.clear(); 
-		txtTelefono.clear(); 
-		txtTelefono2.clear();
-		txtCelular.clear(); 
-		txtCelular2.clear(); 
+		txtTelefono1.clear(); 
+		txtTelefono21.clear();
+		txtCelular1.clear(); 
+		txtCelular21.clear(); 
 		txtDomicilio.clear();
 		txtNumeroInterior.clear();
 		txtNumeroExterior.clear();
@@ -293,7 +293,7 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 		txtCiudad.clear();
 		txtEstado.clear(); 
 		txtCodigoPostal.clear(); 
-		txtCorreo.clear();
+		txtCorreo1.clear();
 		txtUsuario.clear(); 
 		txtPrivilegio.clear();
 		pwdContrasenia.clear();

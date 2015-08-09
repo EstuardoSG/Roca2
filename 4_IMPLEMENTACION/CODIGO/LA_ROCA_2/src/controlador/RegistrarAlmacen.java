@@ -40,10 +40,10 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 	@FXML TableColumn<Almacen, Float> tcPrecio1;
 	@FXML TableView<Almacen> tvAlmacen;
 	
-	@FXML TextField txtBuscador, txtNombre, txtModelo, txtPrecio1, txtPrecio2, txtIva, txtExistencia, txtStockmin, txtStockmax, txtId;
+	@FXML TextField txtBuscador, txtNombre, txtModelo, txtPrecio1, txtPrecio2, txtStockmin, txtStockmax, txtId;
 	@FXML Label lblMensaje;
 	@FXML CheckBox ckbInactivos;
-	@FXML Button btnGuardar, eliminar, btnEditar, btnBuscar, btnMas;
+	@FXML Button btnGuardar, btnEliminar, btnEditar, btnBuscar, btnMas;
 	
 	private ControladorVentana ventana;
 	
@@ -73,8 +73,6 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 			txtModelo.setText(f.getModelo().toString());
 			txtPrecio1.setText(f.getPrecio1().toString());
 			txtPrecio2.setText(f.getPrecio2().toString());
-			txtIva.setText(f.getIva().toString());
-			txtExistencia.setText(f.getExistencia().toString());
 			txtStockmin.setText(f.getStockminimo().toString());
 			txtStockmax.setText(f.getStockmaximo().toString());
 			//ComboBox
@@ -139,8 +137,6 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 					txtModelo.getText().trim().isEmpty() ||
 					txtPrecio1.getText().trim().isEmpty() ||
 					txtPrecio2.getText().trim().isEmpty() ||
-					txtIva.getText().trim().isEmpty() ||
-					txtExistencia.getText().trim().isEmpty() ||
 					txtStockmin.getText().trim().isEmpty() ||
 					txtStockmax.getText().trim().isEmpty() ||
 					cbMarca.getSelectionModel().getSelectedItem()==null) {
@@ -155,8 +151,6 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 					f.setModelo(new SimpleStringProperty(txtModelo.getText()));
 					f.setPrecio1(new SimpleFloatProperty(precio01));
 					f.setPrecio2(new SimpleFloatProperty(precio02));
-					f.setIva(new SimpleStringProperty(txtIva.getText()));
-					f.setExistencia(new SimpleIntegerProperty(Integer.valueOf(txtExistencia.getText())));
 					f.setStockminimo(new SimpleIntegerProperty(Integer.valueOf(txtStockmin.getText())));
 					f.setStockmaximo(new SimpleIntegerProperty(Integer.valueOf(txtStockmax.getText())));
 					boolean res = f.insertar();
@@ -178,7 +172,7 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 			cbMarca.setItems(l.getMarcaCombo());
 			//Enlazar columnas
 			//tenia l
-			tcMarca.setCellValueFactory(new PropertyValueFactory<Almacen, Integer>("nombremarca"));
+			tcMarca.setCellValueFactory(new PropertyValueFactory<Almacen, Integer>("l"));
 			tcNombre.setCellValueFactory(new PropertyValueFactory<Almacen, String>("nombre"));
 			tcModelo.setCellValueFactory(new PropertyValueFactory<Almacen, String>("modelo"));
 			tcPrecio1.setCellValueFactory(new PropertyValueFactory<Almacen, Float>("precio1"));
@@ -229,8 +223,6 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 			f.setModelo(new SimpleStringProperty(txtModelo.getText()));
 			f.setPrecio1(new SimpleFloatProperty(precio01));
 			f.setPrecio2(new SimpleFloatProperty(precio02));
-			f.setIva(new SimpleStringProperty(txtIva.getText()));
-			f.setExistencia(new SimpleIntegerProperty(Integer.valueOf(txtExistencia.getText())));
 			f.setStockminimo(new SimpleIntegerProperty(Integer.valueOf(txtStockmin.getText())));
 			f.setStockmaximo(new SimpleIntegerProperty(Integer.valueOf(txtStockmax.getText())));
 
@@ -263,8 +255,6 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 			txtModelo.clear();
 			txtPrecio1.clear();
 			txtPrecio2.clear();
-			txtIva.clear();
-			txtExistencia.clear();
 			txtStockmin.clear();
 			txtStockmax.clear();
 		}

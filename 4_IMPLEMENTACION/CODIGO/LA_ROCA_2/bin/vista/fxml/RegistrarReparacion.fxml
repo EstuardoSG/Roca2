@@ -1,67 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarReparacion">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarReparacion">
    <children>
-      <GridPane prefHeight="500.0" prefWidth="900.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="262.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="792.0" minWidth="10.0" prefWidth="638.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <AnchorPane prefHeight="500.0" prefWidth="265.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="6.0" prefHeight="25.0" prefWidth="832.0" text="Reparación" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font></Label>
+      <ToolBar layoutY="31.0" prefHeight="58.0" prefWidth="850.0">
+        <items>
+          <Button fx:id="btnNuevo" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/nuevo.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnGuardar" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Guardar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/diskette.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnActualizar" layoutX="167.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Editar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="2.0" />
+            <Button fx:id="btnEliminar" layoutX="324.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/trash_can.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="7.0" />
+        </items>
+      </ToolBar>
+      <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="91.0" prefHeight="58.0" prefWidth="825.0" text="Registro">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="222.0" prefWidth="823.0">
                <children>
-                  <Label layoutX="5.0" layoutY="25.0" text="Refacción Almacen:" />
-                  <Label layoutX="5.0" layoutY="53.0" text="CheckList:" />
-                  <Label layoutX="5.0" layoutY="81.0" text="Dejó Refacción:" />
-                  <Label layoutX="5.0" layoutY="109.0" text="Descripción:" />
-                  <Label layoutX="5.0" layoutY="214.0" text="Anticipo:" />
-                  <Label layoutX="5.0" layoutY="270.0" text="Descripción:" />
-                  <Label layoutX="2.0" layoutY="371.0" text="Fecha:" />
-                  <ComboBox layoutX="112.0" layoutY="21.0" prefWidth="150.0" />
-                  <ComboBox layoutX="112.0" layoutY="49.0" prefWidth="150.0" />
-                  <CheckBox layoutX="112.0" layoutY="81.0" mnemonicParsing="false" />
-                  <TextField layoutX="111.0" layoutY="210.0" />
-                  <TextField layoutX="108.0" layoutY="367.0" />
-                  <TextArea layoutX="110.0" layoutY="108.0" prefHeight="96.0" prefWidth="150.0" />
-                  <CheckBox layoutX="110.0" layoutY="242.0" mnemonicParsing="false" />
-                  <Label layoutX="2.0" layoutY="242.0" text="Dejó Llaves:" />
-                  <TextArea layoutX="108.0" layoutY="267.0" prefHeight="96.0" prefWidth="150.0" />
-                  <ToolBar layoutY="460.0" prefHeight="40.0" prefWidth="262.0">
-                    <items>
-                      <Button mnemonicParsing="false" text="Guardar" />
-                        <Button mnemonicParsing="false" text="Eliminar" />
-                    </items>
-                  </ToolBar>
+                  <ComboBox layoutX="71.0" layoutY="2.0" prefWidth="150.0" />
+                  <Label layoutX="3.0" layoutY="6.0" text="CheckList:" />
+                  <Label layoutX="263.0" layoutY="6.0" text="Anticipo:" />
+                  <TextField layoutX="361.0" layoutY="2.0" />
+                  <Label layoutX="560.0" layoutY="6.0" text="Fecha entrega: " />
+                  <TextField layoutX="641.0" layoutY="2.0" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="248.0" prefHeight="351.0" prefWidth="825.0" text="Tabla">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="500.0" prefWidth="638.0">
-                     <content>
-                        <TableView prefHeight="497.0" prefWidth="1020.0">
-                          <columns>
-                            <TableColumn prefWidth="117.0" text="Refacción Almacen" />
-                            <TableColumn prefWidth="100.0" text="CheckList" />
-                              <TableColumn prefWidth="96.0" text="Dejó Refacción" />
-                              <TableColumn prefWidth="167.0" text="Descripción de la refacción" />
-                              <TableColumn prefWidth="121.3333740234375" text="Anticipo" />
-                              <TableColumn prefWidth="168.6666259765625" text="Dejó Llaves" />
-                              <TableColumn prefWidth="100.0" text="Descripción" />
-                              <TableColumn prefWidth="150.0" text="Fecha:" />
-                          </columns>
-                        </TableView>
-                     </content>
-                  </ScrollPane>
+                  <Pagination layoutX="36.0" layoutY="64.0" prefHeight="258.0" prefWidth="751.0" />
+                  <TableView layoutX="37.0" layoutY="47.0" prefHeight="231.0" prefWidth="750.0">
+                    <columns>
+                      <TableColumn prefWidth="150.0" text="CheckList" />
+                        <TableColumn prefWidth="150.0" text="Dejó Refacción" />
+                        <TableColumn prefWidth="150.0" text="Descripción de la refacción" />
+                        <TableColumn prefWidth="150.0" text="Anticipo" />
+                        <TableColumn prefWidth="150.0" text="Fecha" />
+                    </columns>
+                  </TableView>
+                  <CheckBox layoutX="37.0" layoutY="297.0" mnemonicParsing="false" text="Registros eliminados" />
+                  <Label fx:id="lblMensajeReparaciones" layoutX="7.0" layoutY="6.0" prefHeight="17.0" prefWidth="211.0" />
+                  <TextField layoutX="38.0" layoutY="11.0" prefHeight="25.0" prefWidth="196.0" />
+                  <Label layoutX="466.0" layoutY="15.0" prefHeight="17.0" prefWidth="319.0" />
+                  <Label layoutX="555.0" layoutY="297.0" text="Total:" />
+                  <Label layoutX="598.0" layoutY="297.0" text="0 Registro(s)" />
+                  <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="237.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/zoom.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
-         </children>
-      </GridPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="151.0" prefHeight="95.0" prefWidth="825.0" text="Descripción">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextArea layoutX="395.0" layoutY="2.0" prefHeight="25.0" prefWidth="270.0" />
+                  <Label layoutX="263.0" layoutY="6.0" text="Descripción llaves" />
+                  <CheckBox layoutX="3.0" layoutY="6.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Dejó Llaves      " />
+                  <TextArea layoutX="395.0" layoutY="37.0" prefHeight="25.0" prefWidth="270.0" />
+                  <CheckBox layoutX="3.0" layoutY="40.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="15.0" prefWidth="101.0" text="Dejó Refacción" />
+                  <Label layoutX="263.0" layoutY="40.0" text="Descripción:" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
    </children>
 </AnchorPane>

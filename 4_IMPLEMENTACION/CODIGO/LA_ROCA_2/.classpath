@@ -6,6 +6,5 @@
 	<classpathentry kind="lib" path="postgresql-9.4-1201.jdbc4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/stuart/Documents/GitHub/Roca2/4_IMPLEMENTACION/CODIGO/LA_ROCA_2/extfx-0.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/stuart/Documents/GitHub/Roca2/4_IMPLEMENTACION/CODIGO/LA_ROCA_2/javafx-dialogs-0.0.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/stuart/Documents/GitHub/Roca2/4_IMPLEMENTACION/CODIGO/LA_ROCA_2/iText-5.0.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

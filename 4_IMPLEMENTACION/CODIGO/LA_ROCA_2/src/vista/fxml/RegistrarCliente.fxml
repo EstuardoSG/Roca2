@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
@@ -61,7 +62,7 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="302.0" prefHeight="297.0" prefWidth="830.0" text="Tabla">
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="302.0" prefHeight="297.0" prefWidth="830.0" text="Clientes registrados">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -75,34 +76,62 @@
                         <TableColumn fx:id="tcCelular" prefWidth="150.0" text="Celular" />
                     </columns>
                   </TableView>
-                  <TextField fx:id="txtFiltro" layoutX="35.0" layoutY="10.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="204.0" />
-                  <Button fx:id="btnBuscar" alignment="BOTTOM_RIGHT" layoutX="248.0" layoutY="2.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Buscar" />
+                  <TextField fx:id="txtFiltro" layoutX="35.0" layoutY="10.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="172.0" />
                   <Label layoutX="655.0" layoutY="237.0" text="Total:" />
                   <Label fx:id="lblRegistros" layoutX="706.0" layoutY="236.0" text="0 Registro(s)">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="chkClientesEliminados" layoutX="115.0" layoutY="237.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#click_inactivos" text="Clientes eliminados" textAlignment="CENTER">
-                     <font>
-                        <Font name="Arial" size="12.0" />
-                     </font>
-                  </CheckBox>
+                  <CheckBox fx:id="chkClientesEliminados" layoutX="75.0" layoutY="229.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#click_inactivos" text="Clientes eliminados" textAlignment="CENTER" />
                   <Label fx:id="lblMensaje" layoutX="455.0" layoutY="14.0" prefHeight="17.0" prefWidth="333.0" />
+                  <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="211.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/zoom.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
         </content>
       </TitledPane>
       <ToolBar layoutY="29.0" prefHeight="50.0" prefWidth="850.0">
          <items>
-            <Button fx:id="btnGuardar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="120.0" text="Guardar" />
-            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
-            <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#editar" prefHeight="40.0" prefWidth="120.0" text="Actualizar" />
-            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
-            <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar" />
-            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
-            <Button fx:id="btnNuevo" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="120.0" text="Nuevo" />
+            <Button fx:id="btnNuevo" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/nuevo.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="8.0" />
+            <Button fx:id="btnGuardar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="120.0" text="Guardar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/diskette.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#editar" prefHeight="40.0" prefWidth="120.0" text="Editar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/trash_can.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
          </items>
       </ToolBar>
       <Label alignment="CENTER" prefHeight="22.0" prefWidth="850.0" text="Clientes" textAlignment="CENTER">

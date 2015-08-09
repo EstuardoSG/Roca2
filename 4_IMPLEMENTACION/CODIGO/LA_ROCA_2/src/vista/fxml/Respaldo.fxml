@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -29,9 +30,23 @@
       <Label fx:id="lblMensaje" layoutX="14.0" layoutY="578.0" prefHeight="17.0" prefWidth="238.0" />
       <ToolBar layoutY="30.0" prefHeight="50.0" prefWidth="850.0">
          <items>
-            <Button fx:id="btnRespaldo" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#respaldar" prefHeight="40.0" prefWidth="120.0" text="Respaldar" />
+            <Button fx:id="btnRespaldo" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#respaldar" prefHeight="40.0" prefWidth="120.0" text="Respaldar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/respaldar.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Separator orientation="VERTICAL" prefHeight="17.0" prefWidth="3.0" />
-            <Button fx:id="btnRestaurar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#restaurar" prefHeight="40.0" prefWidth="120.0" text="Restaurar" />
+            <Button fx:id="btnRestaurar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#restaurar" prefHeight="40.0" prefWidth="120.0" text="Restaurar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/restaurar.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Separator orientation="VERTICAL" prefHeight="27.0" prefWidth="7.0" />
          </items>
       </ToolBar>

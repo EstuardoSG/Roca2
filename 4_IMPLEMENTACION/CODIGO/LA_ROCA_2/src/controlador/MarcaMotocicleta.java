@@ -32,7 +32,7 @@ public class MarcaMotocicleta implements Initializable{
 	
 	@FXML TextField txtMarca,txtBuscador, txtId;
 	@FXML Label lblMensaje;
-	@FXML Button btnGuardar, eliminar, btnEditar, btnBuscar;
+	@FXML Button btnGuardar, eliminar, btnEditar;
 	@FXML CheckBox ckbInactivos;
 
 	private Brand br;
@@ -79,7 +79,7 @@ public class MarcaMotocicleta implements Initializable{
 		}	
 
 	 
-	 @FXML public void click_buscarTexto(){
+	 @FXML public void buscarTexto(){
 	 		if(txtBuscador.getText().trim().isEmpty()){
 	 			//Llenar TableView
 	 			datosBusqueda= new FilteredList<>(datos);

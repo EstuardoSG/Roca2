@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -46,25 +48,12 @@ public class Principal implements Initializable {
 	  */
 
     private static TreeItem<String> tiRespaldo;
-    
     private static TreeItem<String> tiAlmacen;
-    
     private static TreeItem<String> tiProveedor;
-    private TreeItem<String> tiRegistrarProveedorContacto;
-    
+    private static TreeItem<String> tiCompra;
     private static TreeItem<String> tiRegistrar;
-    private TreeItem<String> tiRegistrarCliente;
-    private TreeItem<String> tiRegistrarMotocicleta;
-    private TreeItem<String> tiRegistrarEmpleado;
-     
     private static TreeItem<String> tiReparacion;
-    private TreeItem<String> tiCheckList;
-    private TreeItem<String> tiRegistrarReparacion;
-    
-    
     private static TreeItem<String> tiRestaurarContacto;
-     
-    private static TreeItem<String> tiRegistrarServicios;
     
     
 	 public static TreeView<String> tvMenu;
@@ -81,6 +70,13 @@ public class Principal implements Initializable {
     
     public static String ventanaAlmacen = "Almacen";
     public static String fxmlAlamcen = "../vista/fxml/Almacen.fxml";
+    
+    public static String ventanaCompra = "Compra";
+    public static String fxmlCompra = "../vista/fxml/Compra.fxml";
+    
+    public static String ventanaSR = "SR";
+    public static String fxmlSR = "../vista/fxml/ServiciosRealizados.fxml";
+    
     /*
      * 
      */
@@ -123,28 +119,36 @@ public class Principal implements Initializable {
 	 public static String ventanaRestaurarContacto = "RestaurarContacto";
 	 public static String fxmlRestaurarContacto = "../vista/fxml/PContacto.fxml";
 	 
+	 public static String ventanaRestaurarCliente = "RestaurarCliente";
+	 public static String fxmlRestaurarCliente = "../vista/fxml/PCliente.fxml";
+	 
+	 public static String ventanaRestaurarMotocicleta = "RestaurarMoticleta";
+	 public static String fxmlRestaurarMotocicleta = "../vista/fxml/PMotocicleta.fxml"; 
+	 
+	 public static String ventanaRestaurarEmpleado = "RestaurarEmpleado";
+	 public static String fxmlRestaurarEmpleado = "../vista/fxml/PEmpleado.fxml"; 
+	 
+	 public static String ventanaRestaurarChecklist = "RestaurarChecklist";
+	 public static String fxmlRestaurarChecklist = "../vista/fxml/PChecklist.fxml";
+	 
+	 public static String ventanaRestaurarAlmacen = "RestaurarAlmacen";
+	 public static String fxmlRestaurarAlmacen = "../vista/fxml/PAlmacen.fxml";
+	 
 	 public static String ventanaRegistrarServicio = "Registrar Servicio";
 	 public static String fxmlRegistrarServicio= "../vista/fxml/Servicios.fxml";
+	 
+	 public static String ventanaVP = "Ventas Partes";
+	 public static String fxmlVP= "../vista/fxml/VentaPartes.fxml";
 	 
 	public static void start() throws IOException {
 	 /*
 	  * Paso 3# Inicializar  los fxml para poder traer las ventanas.
 	  */
-    contenedor.loadScreen(Principal.ventanaRespaldo, Principal.fxmlRespaldo);
-    contenedor.loadScreen(Principal.ventanaAlmacen, Principal.fxmlAlamcen);
-    contenedor.loadScreen(Principal.ventanaContacto, Principal.fxmlContacto);
-    contenedor.loadScreen(Principal.ventanaRegistrarCliente, Principal.fxmlRegistrarCliente);
-    contenedor.loadScreen(Principal.ventanaRegistrarMotocicleta, Principal.fxmlRegistrarMotocicleta);
-    contenedor.loadScreen(Principal.ventanaRegistrarEmpleado, Principal.fxmlRegistrarEmpleado);
-    contenedor.loadScreen(Principal.ventanaCheckList, Principal.fxmlCheckList);
-    contenedor.loadScreen(Principal.ventanaRegistrarReparacion, Principal.fxmlRegistrarReparacion);
     contenedor.loadScreen(Principal.ventanaImagen, Principal.fxmlImaggen);
-    contenedor.loadScreen(Principal.ventanaRestaurarContacto, Principal.fxmlRestaurarContacto);
-    contenedor.loadScreen(Principal.ventanaRegistrarServicio, Principal.fxmlRegistrarServicio);
-    
      contenedor.setScreen(Principal.ventanaImagen);
 	}
 
+	
 	
 	static VBox miMenuEmpleado(){
 		VBox mnu = new VBox();
@@ -160,6 +164,7 @@ public class Principal implements Initializable {
      tiAlmacen = new TreeItem<String>("Almacén");
      tiProveedor = new TreeItem<String> ("Proveedor");
      tiProveedor.getChildren().add(new TreeItem<String>("Contacto"));
+     tiCompra = new TreeItem<String>("Compra");
      
      tiRegistrar = new TreeItem<String> ("Registrar");
      tiRegistrar.getChildren().add(new TreeItem<String>("Cliente"));
@@ -167,13 +172,16 @@ public class Principal implements Initializable {
      
      tiReparacion = new TreeItem<String> ("Reparación");
      tiReparacion.getChildren().add(new TreeItem<String>("CheckList"));
-     tiReparacion.getChildren().add(new TreeItem<String>("Reparacion"));
+    // tiReparacion.getChildren().add(new TreeItem<String>("Reparacion"));
      tiReparacion.getChildren().add(new TreeItem<String>("Servicios"));
+    // tiReparacion.getChildren().add(new TreeItem<String>("Realizados"));
+     tiReparacion.getChildren().add(new TreeItem<String>("Refacción"));
 
 		 /*
 		  * Paso 5# Agregamos el TreeItem Inicializado.
 		  */
      		padre.getChildren().add(tiAlmacen);
+     		padre.getChildren().add(tiCompra);
              padre.getChildren().add(tiRegistrar);
              padre.getChildren().add(tiReparacion);
              padre.getChildren().add(tiProveedor);
@@ -206,6 +214,10 @@ public class Principal implements Initializable {
                                     contenedor.loadScreen(Principal.ventanaAlmacen, Principal.fxmlAlamcen);
                                    contenedor.setScreen(Principal.ventanaAlmacen);        
                                    break;
+                                   case "Compra":
+                                       contenedor.loadScreen(Principal.ventanaCompra, Principal.fxmlCompra);
+                                      contenedor.setScreen(Principal.ventanaCompra);        
+                                      break;
                             }
                         case "Proveedor":
                        	 switch(pulsoSobre){
@@ -233,14 +245,22 @@ public class Principal implements Initializable {
                        		contenedor.loadScreen(Principal.ventanaCheckList, Principal.fxmlCheckList);
                             contenedor.setScreen(Principal.ventanaCheckList);
                             break;
-                       	 case "Reparacion":
+                       /*	 case "Reparacion":
                        		contenedor.loadScreen(Principal.ventanaRegistrarReparacion, Principal.fxmlRegistrarReparacion);
                        	 contenedor.setScreen(Principal.ventanaRegistrarReparacion);
-                       	 break;
+                       	 break;*/
                        	 case "Servicios":
                        		contenedor.loadScreen(Principal.ventanaRegistrarServicio, Principal.fxmlRegistrarServicio);
                        	 contenedor.setScreen(Principal.ventanaRegistrarServicio);
                        	 break;
+                      /*	 case "Realizados":
+                    		 contenedor.loadScreen(Principal.ventanaSR, Principal.fxmlSR);
+                           	 contenedor.setScreen(Principal.ventanaSR);
+                           	 break;*/
+                       	case "Refacción":
+                   		 contenedor.loadScreen(Principal.ventanaVP, Principal.fxmlVP);
+                          	 contenedor.setScreen(Principal.ventanaVP);
+                          	 break;
                        	 }
                        	ControladorVentana.contenedorDialog.setCenter(contenedor);
                         break;
@@ -270,8 +290,9 @@ public class Principal implements Initializable {
 	  /*
 	   * Paso 4# Aqui se Inicializa los TreeItem del TreeView Dandole un nombre el cual aparecerá en la vista final del TreeView
 	   */
-     tiRespaldo = new TreeItem<String>("Respaldo");
+     tiRespaldo = new TreeItem<String> ("Respaldo"/*, new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/respaldo.png")))*/);
      tiAlmacen = new TreeItem<String>("Almacén");
+     tiCompra = new TreeItem<String>("Compra");
      tiProveedor = new TreeItem<String> ("Proveedor");
      tiProveedor.getChildren().add(new TreeItem<String>("Contacto"));
      
@@ -282,15 +303,23 @@ public class Principal implements Initializable {
      
      tiReparacion = new TreeItem<String> ("Reparación");
      tiReparacion.getChildren().add(new TreeItem<String>("CheckList"));
-     tiReparacion.getChildren().add(new TreeItem<String>("Reparacion"));
+    // tiReparacion.getChildren().add(new TreeItem<String>("Reparacion"));
      tiReparacion.getChildren().add(new TreeItem<String>("Servicios"));
+   //  tiReparacion.getChildren().add(new TreeItem<String>("Realizados"));
+     tiReparacion.getChildren().add(new TreeItem<String>("Refacción"));
      
      tiRestaurarContacto = new TreeItem<String> ("Papelera");
      tiRestaurarContacto.getChildren().add(new TreeItem<String>("Contactos"));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Clientes"));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Motocicletas"));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Empleados"));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Lista de comprobación"));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Refacciones"));
 		 /*
 		  * Paso 5# Agregamos el TreeItem Inicializado.
 		  */
      		padre.getChildren().add(tiAlmacen);
+     		padre.getChildren().add(tiCompra);
              padre.getChildren().add(tiRegistrar);
              padre.getChildren().add(tiReparacion);
              padre.getChildren().add(tiProveedor);
@@ -323,12 +352,19 @@ public class Principal implements Initializable {
                                 *break;
                                 */
                                case "Almacén":
+                            	   /*
+                            		  * Paso 3# Inicializar  los fxml para poder traer las ventanas.
+                            		  */
                                contenedor.loadScreen(Principal.ventanaAlmacen, Principal.fxmlAlamcen);
                                contenedor.setScreen(Principal.ventanaAlmacen);
                                break;
                                case "Respaldo":
-                               contenedor.loadScreen(Principal.ventanaRespaldo, Principal.fxmlRespaldo);
+                            	   contenedor.loadScreen(Principal.ventanaRespaldo, Principal.fxmlRespaldo);
                                contenedor.setScreen(Principal.ventanaRespaldo);
+                               break;
+                               case "Compra":
+                            	   contenedor.loadScreen(Principal.ventanaCompra, Principal.fxmlCompra);
+                               contenedor.setScreen(Principal.ventanaCompra);
                                break;
                             }
                         case "Proveedor":
@@ -361,20 +397,48 @@ public class Principal implements Initializable {
                        		contenedor.loadScreen(Principal.ventanaCheckList, Principal.fxmlCheckList);
                             contenedor.setScreen(Principal.ventanaCheckList);
                             break;
-                       	 case "Reparacion":
+                       	/* case "Reparacion":
                        		contenedor.loadScreen(Principal.ventanaRegistrarReparacion, Principal.fxmlRegistrarReparacion);
                        	 contenedor.setScreen(Principal.ventanaRegistrarReparacion);
-                       	 break;
+                       	 break;*/
                     	 case "Servicios":
                     		 contenedor.loadScreen(Principal.ventanaRegistrarServicio, Principal.fxmlRegistrarServicio);
                            	 contenedor.setScreen(Principal.ventanaRegistrarServicio);
                            	 break;
+                    	/* case "Realizados":
+                    		 contenedor.loadScreen(Principal.ventanaSR, Principal.fxmlSR);
+                           	 contenedor.setScreen(Principal.ventanaSR);
+                           	 break;*/
+                    		case "Refacción":
+                          		 contenedor.loadScreen(Principal.ventanaVP, Principal.fxmlVP);
+                                 	 contenedor.setScreen(Principal.ventanaVP);
+                                 	 break;
                        	 }
                         case "Papelera":
                         	switch(pulsoSobre){
                         	case"Contactos":
                         		contenedor.loadScreen(Principal.ventanaRestaurarContacto, Principal.fxmlRestaurarContacto);
                         	contenedor.setScreen(Principal.ventanaRestaurarContacto);
+                        	break;
+                        	case"Clientes":
+                        		contenedor.loadScreen(Principal.ventanaRestaurarCliente, Principal.fxmlRestaurarCliente);
+                        	contenedor.setScreen(Principal.ventanaRestaurarCliente);
+                        	break;
+                        	case"Motocicletas":
+                        		contenedor.loadScreen(Principal.ventanaRestaurarMotocicleta, Principal.fxmlRestaurarMotocicleta);
+                        	contenedor.setScreen(Principal.ventanaRestaurarMotocicleta);
+                        	break;
+                        	case"Empleados":
+                        		contenedor.loadScreen(Principal.ventanaRestaurarEmpleado, Principal.fxmlRestaurarEmpleado);
+                        	contenedor.setScreen(Principal.ventanaRestaurarEmpleado);
+                        	break;
+                        	case"Lista de comprobación":
+                        		contenedor.loadScreen(Principal.ventanaRestaurarChecklist, Principal.fxmlRestaurarChecklist);
+                        	contenedor.setScreen(Principal.ventanaRestaurarChecklist);
+                        	break;
+                        	case"Refacciones":
+                        		contenedor.loadScreen(Principal.ventanaRestaurarAlmacen, Principal.fxmlRestaurarAlmacen);
+                        	contenedor.setScreen(Principal.ventanaRestaurarAlmacen);
                         	break;
                         	}
                        	 ControladorVentana.contenedorDialog.setCenter(contenedor);

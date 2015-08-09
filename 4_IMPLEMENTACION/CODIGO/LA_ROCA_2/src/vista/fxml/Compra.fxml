@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarCompra">
+   <children>
+      <Label alignment="CENTER" prefHeight="22.0" prefWidth="850.0" text="Compra" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
+      <ToolBar layoutY="29.0" prefHeight="50.0" prefWidth="850.0">
+         <items>
+            <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/nuevo.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="40.0" prefWidth="0.0" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="120.0" text="Guardar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/diskette.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" onMouseClicked="#click_TablaCompra" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/trash_can.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnRecibido" mnemonicParsing="false" onAction="#recibido" prefHeight="40.0" prefWidth="120.0" text="Recibido">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/entrega.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="40.0" prefWidth="0.0" />
+         </items>
+      </ToolBar>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="81.0" prefHeight="58.0" prefWidth="830.0" text="Datos">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id="cbEmpleado" layoutX="70.0" layoutY="2.0" prefWidth="190.0" />
+                  <ComboBox fx:id="cbProveedor" layoutX="532.0" layoutY="2.0" prefWidth="190.0" />
+                  <Label layoutX="7.0" layoutY="6.0" text="Empleado:" />
+                  <Label layoutX="438.0" layoutY="6.0" text="Proveedor:" />
+                  <Label fx:id="lbl1" layoutX="270.0" layoutY="6.0" />
+                  <Label fx:id="lbl2" layoutX="732.0" layoutY="6.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="141.0" prefHeight="83.0" prefWidth="830.0" text="Pedido">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="txtRefaccion" layoutX="70.0" layoutY="2.0" prefHeight="25.0" prefWidth="190.0" />
+                  <TextField fx:id="txtCantidad" layoutX="532.0" layoutY="2.0" prefWidth="190.0" />
+                  <Label layoutX="7.0" layoutY="6.0" text="Refacción:" />
+                  <Label layoutX="438.0" layoutY="6.0" text="Cantidad:" />
+                  <Label fx:id="lbl3" layoutX="270.0" layoutY="6.0" />
+                  <Label fx:id="lbl4" layoutX="732.0" layoutY="6.0" />
+                  <Label fx:id="lblFecha" layoutX="7.0" layoutY="33.0" text="Fecha:" />
+                  <TextField fx:id="txtFecha" editable="false" layoutX="70.0" layoutY="29.0" prefWidth="190.0" />
+                  <Button layoutX="438.0" layoutY="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="285.0" text="Detalle de la compra" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="226.0" prefHeight="373.0" prefWidth="830.0" text="Pedidos registrados">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="txtFiltro" layoutX="39.0" layoutY="8.0" prefWidth="172.0" />
+                  <TableView fx:id="tvCompra" layoutX="39.0" layoutY="43.0" onMouseClicked="#click_TablaCompra" prefHeight="237.0" prefWidth="750.0">
+                    <columns>
+                      <TableColumn fx:id="tcEmpleado" prefWidth="187.5" text="Empleado" />
+                      <TableColumn fx:id="tcProveedor" prefWidth="187.5" text="Proveedor" />
+                        <TableColumn fx:id="tcRefaccion" prefWidth="187.5" text="Refacción" />
+                        <TableColumn fx:id="tcCantidad" prefWidth="187.5" text="Cantidad" />
+                    </columns>
+                  </TableView>
+                  <CheckBox fx:id="chbPedidosRealizados" layoutX="39.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#click_pedidosRealizados" text="Pedidos Realizados" />
+                  <Label layoutX="567.0" layoutY="315.0" text="Total:" />
+                  <Label fx:id="lblRegistros" layoutX="607.0" layoutY="314.0" text="0 Registro(s)">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblMensaje" layoutX="409.0" layoutY="12.0" prefHeight="17.0" prefWidth="374.0" />
+                  <CheckBox fx:id="chbPedidosCancelados" layoutX="182.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#click_pedidosCancelados" text="Pedidos Cancelados" />
+                  <Pagination fx:id="paginador" layoutX="38.0" layoutY="38.0" prefHeight="286.0" prefWidth="750.0" />
+                  <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="214.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/zoom.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

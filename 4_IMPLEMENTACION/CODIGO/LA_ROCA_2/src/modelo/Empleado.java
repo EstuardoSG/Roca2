@@ -15,6 +15,7 @@ public class Empleado {
 	//***************************************************************************************************
 	//VARIABLES Y OBJETOS
 	private Conexion con;
+	private Empleado em;
 	private ObservableList<Empleado> informacion;
 	private IntegerProperty idempleado;
 	private StringProperty nombre1, nombre2, apellidopaterno, apellidomaterno,
@@ -367,5 +368,8 @@ public class Empleado {
 		this.idempleado = idempleado;
 	}
 	
+	public String  toString(){
+		return nombre1.getValue() + " " + apellidopaterno.getValue() + " " + apellidomaterno.getValue();
+	}
 
 }
