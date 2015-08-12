@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Principal">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Principal">
    <top>
       <AnchorPane prefHeight="80.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
@@ -28,7 +28,7 @@
       </AnchorPane>
    </top>
    <left>
-      <VBox prefHeight="507.0" prefWidth="150.0" stylesheets="@application.css" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="507.0" prefWidth="200.0" stylesheets="@application.css" BorderPane.alignment="CENTER" />
    </left>
    <center>
       <ImageView fitHeight="335.0" fitWidth="515.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">

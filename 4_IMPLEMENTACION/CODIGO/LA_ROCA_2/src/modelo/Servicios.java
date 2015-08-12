@@ -3,6 +3,9 @@ package modelo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import controlador.Errores;
+
 import java.math.BigDecimal;
 
 import javafx.beans.property.FloatProperty;
@@ -22,12 +25,14 @@ public class Servicios {
 	private FloatProperty precio1,precio2;
 	private ObservableList<Servicios> servicios;
 	private Conexion con;
+	private Errores er;
 	
 	public Servicios(){
 		idServicio = new SimpleIntegerProperty();
 		nombreServicio = new SimpleStringProperty();
 		precio1 = precio2 = new SimpleFloatProperty();
 		con = Conexion.getInstancia();
+		er = new Errores();
 	}
 	//***************************************************************************************************
 	//METODOS BOLEANOS
@@ -35,7 +40,7 @@ public class Servicios {
 		BigDecimal precio01 = BigDecimal.valueOf(this.getPrecio1());
 		BigDecimal precio02 = BigDecimal.valueOf(this.getPrecio2());
 		try {
-			String sql= "select fninsertarservicio(?,?,?)";
+			String sql= "select fn_insertarservicio(?,?,?)";
 			con.conectar();
 			PreparedStatement servicio = con.getConexion().prepareStatement(sql);
 			servicio.setString(1,this.getNombreServicio());
@@ -44,6 +49,7 @@ public class Servicios {
 			servicio.execute();
 			return true;
 		} catch (Exception e) {
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return false;
 		}
 		
@@ -53,7 +59,7 @@ public class Servicios {
 		BigDecimal precio01 = BigDecimal.valueOf(this.getPrecio1());
 		BigDecimal precio02 = BigDecimal.valueOf(this.getPrecio2());
 		try {
-			String sql= "select fnactualizarservicio(?,?,?,?)";
+			String sql= "select fn_actualizarservicio(?,?,?,?)";
 			con.conectar();
 			PreparedStatement servicio = con.getConexion().prepareStatement(sql);
 			servicio.setInt(1,this.getIdServicio());
@@ -63,6 +69,7 @@ public class Servicios {
 			servicio.execute();
 			return true;
 		} catch (Exception e) {
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return false;
 		}
 		
@@ -70,7 +77,7 @@ public class Servicios {
 	
 	public boolean eliminarServicio(){
 		try{
-			String sql = "select fneliminaservicio(?)";
+			String sql = "select fn_eliminaservicio(?)";
 			con.conectar();
 			PreparedStatement comando = con.getConexion().prepareStatement(sql);
 			comando.setInt(1, this.getIdServicio());
@@ -79,7 +86,8 @@ public class Servicios {
 			return true;
 			
 			
-		}catch(Exception ex){
+		}catch(Exception e){
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return  false;
 		}
 	}
@@ -105,7 +113,7 @@ public class Servicios {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 		finally{
 			rs.close();
@@ -114,36 +122,7 @@ public class Servicios {
 		return servicios;
 		
 	}
-	
-	public ObservableList<Servicios> getServiciosInactivos() throws SQLException{
-		ResultSet rs = null;
-		try {
-			String sql  ="select idservicio,nombreservicio,precio1,precio2 from servicios where activo = '0'";
-			con.conectar();
-			PreparedStatement comando = con.getConexion().prepareStatement(sql);
-			rs = comando.executeQuery();
-			servicios = FXCollections.observableArrayList();
-			while (rs.next()) {
-				Servicios s = new Servicios();
-				s.idServicio = new SimpleIntegerProperty(rs.getInt("idservicio"));
-				s.nombreServicio = new SimpleStringProperty(rs.getString("nombreservicio"));
-				s.precio1 = new SimpleFloatProperty(rs.getFloat("precio1"));
-				s.precio2 = new SimpleFloatProperty(rs.getFloat("precio2"));
-				servicios.add(s);
-				
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		finally{
-			rs.close();
-			con.desconectar();
-		}
-		return servicios;
-		
-	}
+
 	//***************************************************************************************************
 	//METODOS SET Y GET
 	public Integer getIdServicio() {
@@ -174,9 +153,5 @@ public class Servicios {
 		this.precio2 = precio2;
 	}
 
-
-	
-	
-	
 
 }

@@ -15,7 +15,9 @@ public class ControladorVentana {
 	/*
 	 * Atributos.
 	 */
+	
 	private IniciarSesion is;
+	private Principal pr;
 	private static ControladorVentana ventanas;
 	private Stage primaryStage,modalEscenario, escenarioAdministrador, escenarioEmpleado;
 	private Scene escena;
@@ -72,6 +74,7 @@ public class ControladorVentana {
 	
 	public void asignarEscenaEmpleado(String ruta, String titulo){
 		try{
+			
 			FXMLLoader interfaz = new FXMLLoader(getClass().getResource(ruta));
 			contenedorDialog = (BorderPane)interfaz.load();
 			contenedorDialog.setLeft(Principal.miMenuEmpleado());

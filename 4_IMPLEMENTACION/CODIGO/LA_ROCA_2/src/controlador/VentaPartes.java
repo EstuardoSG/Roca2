@@ -1,19 +1,15 @@
 package controlador;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.ResourceBundle;
 
 import modelo.Almacen;
 import modelo.DetalleRefaccion;
-import modelo.Motocicleta;
 import modelo.Repair;
 import modelo.VentaRefaccion;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -98,6 +94,7 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 	private VentaRefaccion vr;
 	private Repair re;
 	private DetalleRefaccion dp;
+	private Errores er;
 	private int idrefaccion;
 	private int idreparacion;
 	
@@ -124,6 +121,7 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 		al = new Almacen();
 		vr = new VentaRefaccion();
 		re = new Repair();
+		er = new Errores();
 		System.out.println(getClass().getResource("../vista/images/delete.png").getPath());
 		
 	}
@@ -137,8 +135,9 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 		try {
 			cbReparacion.setItems(re.getRepair());
 			elementos = al.getAlmacens(true);
-			insertarBoton();
+		
 			lvVentaR.setItems(elementos);
+			insertarBoton();
 			tcRefaccion.setCellValueFactory(
 					new PropertyValueFactory<DetalleRefaccion, String>("refaccion"));
 			tcCantidad.setCellValueFactory(
@@ -149,7 +148,7 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 					new PropertyValueFactory<DetalleRefaccion, Float>("subtotal"));
 			
 		} catch (Exception e) {
-			e.printStackTrace(); 
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -159,11 +158,6 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 	
 	
 	@FXML public void guardar(){
-	/*	System.out.println(getAlRefaccion());
-		System.out.println(getAlPrecio());
-		System.out.println(getAlIdrefaccionalmacen());
-		System.out.println(getAlIdreparacion());
-		*/
 		try {
 			if(cbReparacion.getSelectionModel().getSelectedItem() == null){
 				System.out.println("no hay datos");
@@ -176,7 +170,7 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 				
 				}	
 			} catch (Exception e) {
-			e.printStackTrace();
+				er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -195,8 +189,7 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 				vr.setIdrefaccionalmacen(getIdrefaccion());
 				re.setRep(cbReparacion.getSelectionModel().getSelectedItem());
 				if(vr.agregarDetalle()==true){
-					System.out.println("Se agrego el producto.");
-					actualizarDetalle();
+					System.out.println("Se agrego el producto.");			
 					DetalleRefaccion dr = new DetalleRefaccion();
 					dr.setCantidad(new SimpleIntegerProperty(Integer.parseInt(txtCantidad.getText())));
 					dr.setIdrefaccionalmacen(new SimpleIntegerProperty(getIdrefaccion()));
@@ -208,8 +201,9 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 				else
 					System.out.println("Ha ocurrido un error.");
 			}
+			actualizarDetalle();
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	@FXML public void eliminar(){
@@ -229,7 +223,7 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 				lvVentaR.setItems(elementos);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -247,7 +241,7 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 	
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -256,12 +250,11 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 		try {
 			
 			tvVentaR.setItems(vr.obtenerDetalle());
-			//Actualizar el total
-			///???????
-			txtTotal.setText(String.valueOf(vr.getTotal()));
+			insertarBoton();
+			txtTotal.setText("$" +String.valueOf(vr.getTotal()));
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	@SuppressWarnings("unchecked")
@@ -290,7 +283,7 @@ public class VentaPartes implements Initializable, IControladorVentanas {
         });
 		}
 		catch(Exception ex){
-			ex.printStackTrace();
+			er.printLog(ex.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -298,22 +291,27 @@ public class VentaPartes implements Initializable, IControladorVentanas {
 	// #region Clase privada
 	
 	private class ButtonCell extends TableCell<DetalleRefaccion, Boolean> {
-       
+	       
         Image eliminarImagen;
         ImageView iv;
         final Button cellButton;
         
         ButtonCell(){
-        	eliminarImagen = new Image(getClass().getResourceAsStream("../vista/images/delete.png"),10,10,false,false);
+        	eliminarImagen = new Image(getClass().getResourceAsStream("/vista/images/delete.png"),30,30,false,false);
         	iv = new ImageView(eliminarImagen);
         	cellButton = new Button("", new ImageView(eliminarImagen));
       	
             cellButton.setOnAction(new EventHandler<ActionEvent>(){
- 
+            	/*
+            	 * ELIMINAR EL PRODUCTO
+            	 */
+            	
 				@Override
 				public void handle(ActionEvent arg0) {
-					System.out.println("gola");
-					
+					DetalleRefaccion dr =(DetalleRefaccion)ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+					vr.eliminarDetalle(dr);
+					vr.getTotal();//Actualizar el total
+					actualizarDetalle(); //Actualizar el TableView
 				}
             });
         }

@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import controlador.Errores;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,6 +18,7 @@ public class RestaurarChecklist {
 	public Customer cus;
 	private Motorcycle mc;
 
+	private Errores er;
 	private Conexion con;
 	private ObservableList<RestaurarChecklist> informacion;
 	private StringProperty gasolina, luces, espejoizquierdo, espejoderecho, llantadelantera, 
@@ -103,6 +106,7 @@ public class RestaurarChecklist {
 		idchecklist = new SimpleIntegerProperty();
 		cus = new Customer();
 		mc = new Motorcycle();
+		er = new Errores();
 	}
 	
 	public ObservableList<RestaurarChecklist> getCheck(boolean estatus) throws SQLException{
@@ -132,7 +136,7 @@ public class RestaurarChecklist {
 				informacion.add(ch);
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 		finally{
 			rs.close();
@@ -151,7 +155,7 @@ public class RestaurarChecklist {
 			comando.execute();
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return false;
 		}
 		finally{

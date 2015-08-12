@@ -2,7 +2,7 @@ package controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import controlador.Errores;
 import vista.ControladordeVentanas;
 import vista.IControladorVentanas;
 import modelo.RestaurarC;
@@ -27,6 +27,7 @@ import javafx.scene.layout.BorderPane;
 
 public class CRestaurarCliente<Clientes> implements Initializable, IControladorVentanas {
 	
+	private Errores er;
 	private RestaurarCliente c;
 	ControladordeVentanas ventanas;
 	public int id;
@@ -53,6 +54,7 @@ public class CRestaurarCliente<Clientes> implements Initializable, IControladorV
 		
 	
 	public CRestaurarCliente(){
+		er = new Errores();
 		c = new RestaurarCliente();
 		datos = FXCollections.observableArrayList();
 		filasXPagina=10;
@@ -64,7 +66,7 @@ public class CRestaurarCliente<Clientes> implements Initializable, IControladorV
 			llenarTableView(true);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 		
 	}
@@ -97,7 +99,7 @@ public class CRestaurarCliente<Clientes> implements Initializable, IControladorV
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			lblRegistros.setText(datos.size() + " registros encontrados.");
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			lblMensaje.setText("Se ha producido un error al recuperar los datos.");
 		}
 			
@@ -134,7 +136,8 @@ public class CRestaurarCliente<Clientes> implements Initializable, IControladorV
 				paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 				lblMensaje.setText("Se encontraron " + datosBusqueda.size() + " coincidencias.");
  			}
- 			catch(Exception ex){
+ 			catch(Exception e){
+ 				er.printLog(e.getMessage(), this.getClass().toString());
  				//Enviar mensaje
  				lblMensaje.setText("No se encontraron resultados");
  				filasXPagina=0;
@@ -161,7 +164,7 @@ public class CRestaurarCliente<Clientes> implements Initializable, IControladorV
 					lblMensaje.setText("Se ha presentado un errorcon el servido.");
 				}
 		}catch (Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	

@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import controlador.Errores;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class RestaurarC {
+	private Errores er;
 	private Conexion con;
 	private ObservableList<RestaurarC> datos;
 	private StringProperty nombreEmpresa, domicilio, numeroInterior, numeroExterior, calle, localidad,
@@ -30,6 +33,7 @@ public class RestaurarC {
 		idProveedorContacto = idproveedor = new SimpleIntegerProperty();
 		p = new Company();
 		con = Conexion.getInstancia();
+		er = new Errores();
 	}
 	
 	// #region Getters and Setters
@@ -213,7 +217,7 @@ public class RestaurarC {
 					datos.add(c);
 				}
 			} catch (Exception e){
-				e.printStackTrace();
+				er.printLog(e.getMessage(), this.getClass().toString());
 			}
 			finally {
 				rs.close();
@@ -237,7 +241,7 @@ public class RestaurarC {
 				comando.execute();
 				return true;
 			} catch (Exception e) {
-				e.printStackTrace();
+				er.printLog(e.getMessage(), this.getClass().toString());
 				return false;
 			}
 			finally {

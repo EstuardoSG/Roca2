@@ -3,6 +3,8 @@ package controlador;
 import modelo.Company;
 import modelo.ProveedorContacto;
 
+import controlador.Errores;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -29,6 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
 public class RegistrarProveedorContacto implements Initializable, IControladorVentanas {
+	private Errores er;
 	private Company p;
 	private ProveedorContacto c;
 	private ControladordeVentanas ventanas;
@@ -54,8 +57,7 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 	@FXML TableView<ProveedorContacto> tvProveedor;
 	@FXML TextField txtNombre, txtAP, txtAM, txtCelular, txtCorreo, txtBuscar;
 	@FXML Label lblMensaje, lblRegistros;
-	@FXML Label lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7, lbl8, lbl9, lbl10, lbl11, lbl12, lbl13, lbl14,lbl15, lbl16;
-	@FXML CheckBox ckbEliminados;
+	@FXML Label lbl1, lbl2, lbl3, lbl4, lbl5, lbl6;
 	@FXML Button btnNuevo, btnGuardar, btnEditar, btnEliminar, btnProveedor;
 
 	// #region Variables_Paginacion
@@ -67,6 +69,7 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 	
 	// #region Constructor
 	public RegistrarProveedorContacto() {
+		er = new Errores();
 		p = new Company();
 		c = new ProveedorContacto();
 		filasXPagina = 10;
@@ -84,7 +87,7 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 			btnEliminar.setDisable(true);
 			btnEditar.setDisable(true);
 		}catch (SQLException e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		};
 	}
 	
@@ -117,22 +120,13 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			lblRegistros.setText(datos.size() + " registros encontrados.");
 		}catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			lblMensaje.setText("Se ha producido un error al recuperar los datos.");
 		}
 	}
 	
 	//Método para subir los datos del TableView a los Textfield
 	@FXML public void click_TableView(){
-		if(ckbEliminados.isSelected()){
-			btnGuardar.setDisable(true);
-			btnEliminar.setDisable(true);
-			btnEditar.setDisable(true);
-		}else{
-		btnGuardar.setDisable(true);
-		btnEliminar.setDisable(false);
-		btnEditar.setDisable(false);
-		}
 		if(tvProveedor.getSelectionModel().getSelectedItem()!=null){
 			c = tvProveedor.getSelectionModel().getSelectedItem();
 			//TextField
@@ -145,6 +139,9 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 			txtCorreo.setText(c.getCorreo());
 			//ComboBox
 			cbEmpresa.getSelectionModel().select(c.getP());
+			btnGuardar.setDisable(true);
+			btnEditar.setDisable(false);
+			btnEliminar.setDisable(false);
 		}
 	}
 	
@@ -153,22 +150,22 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 		limpiarlbl();
 		try{
 			if(cbEmpresa.getSelectionModel().getSelectedItem() == null){
-				lbl11.setText("*");
+				lbl1.setText("*");
 			}
 			if(txtNombre.getText().trim().isEmpty()){
-				lbl12.setText("*");
+				lbl2.setText("*");
 			}
 			if(txtAP.getText().trim().isEmpty()){
-				lbl13.setText("*");
+				lbl3.setText("*");
 			}
 			if(txtAM.getText().trim().isEmpty()){
-				lbl14.setText("*");
+				lbl4.setText("*");
 			}
 			if(txtCelular.getText().trim().isEmpty()){
-				lbl15.setText("*");
+				lbl5.setText("*");
 			}
 			if(txtCorreo.getText().trim().isEmpty()){
-				lbl16.setText("*");
+				lbl6.setText("*");
 			}else {
 				c = new ProveedorContacto();
 				c.setNombre(new SimpleStringProperty(txtNombre.getText()));
@@ -182,10 +179,10 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 				lblMensaje.setText("Datos insertados con éxito");
 				llenarTableView(true);
 			}else{
-					lblMensaje.setText("Se producio un problema en el servidor.");
+					lblMensaje.setText("Se producio un problema.");
 			}
 		} catch (Exception e){
-			
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -212,10 +209,10 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 					llenarTableView(true);
 				}
 				else
-					lblMensaje.setText("Se producio un problema en el servidor.");
+					lblMensaje.setText("Se producio un problema.");
 			}
 		} catch (Exception e){
-			
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -233,10 +230,10 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 					lblMensaje.setText("Registro dado de baja.");
 				}
 				else {
-					lblMensaje.setText("Se ha presentado un errorcon el servido.");
+					lblMensaje.setText("Se ha presentado un error.");
 				}
 		}catch (Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -246,7 +243,6 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 		btnGuardar.setDisable(false);
 		btnEliminar.setDisable(true);
 		btnEditar.setDisable(true);
-		ckbEliminados.setSelected(false);
 		llenarTableView(true);
 	}
 	
@@ -266,30 +262,9 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 		lbl4.setText("");
 		lbl5.setText("");
 		lbl6.setText("");
-		lbl7.setText("");
-		lbl8.setText("");
-		lbl9.setText("");
-		lbl10.setText("");
-		lbl11.setText("");
-		lbl12.setText("");
-		lbl13.setText("");
-		lbl14.setText("");
-		lbl15.setText("");
-		lbl16.setText("");
+		lblMensaje.setText("");
 	}
-	@FXML public void click_inactivos(){
-		if(ckbEliminados.isSelected()){
-			llenarTableView(false);
-			btnGuardar.setDisable(true);
-			btnEliminar.setDisable(true);
-			btnEditar.setDisable(true);
-		}else{
-			llenarTableView(true);
-			btnGuardar.setDisable(true);
-			btnEliminar.setDisable(false);
-			btnEditar.setDisable(false);
-		}
-	}
+
 	
 	@FXML public void buscarTexto(){
 		if(txtBuscar.getText().trim().isEmpty()){
@@ -311,6 +286,7 @@ public class RegistrarProveedorContacto implements Initializable, IControladorVe
 				paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 				lblMensaje.setText("Se encontraron " + datosB.size() + " coincidencias.");
 			} catch (Exception e){
+				er.printLog(e.getMessage(), this.getClass().toString());
 				lblMensaje.setText("No se encontraron resultados");
 				filasXPagina=0;
 				paginador.setPageCount(filasXPagina);

@@ -4,10 +4,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javax.print.attribute.standard.PDLOverrideSupported;
+
 import vista.ControladordeVentanas;
 import vista.IControladorVentanas;
 import modelo.Empleado;
-import modelo.Notificaciones;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -16,7 +17,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
@@ -30,24 +30,24 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 	private ControladordeVentanas ventanas;
 	private ObservableList<Empleado> datosEmpleado;
 	private int identificador;
+	private Errores er;
 	private Empleado e;
-	@FXML TextField txtNombre, txtNombre2, txtApellidoPaterno, txtApellidoMaterno, txtTelefono1, txtTelefono21,
-	txtCelular1, txtCelular21, txtDomicilio, txtNumeroInterior, txtNumeroExterior, txtCalle, txtLocalidad, txtCiudad, 
-	txtEstado, txtCodigoPostal, txtCorreo1, txtUsuario, txtPrivilegio;
+	@FXML TextField txtNombre, txtNombre2, txtApellidoPaterno, txtApellidoMaterno, txtTelefono, txtTelefono2,
+	txtCelular, txtCelular2, txtDomicilio, txtNumeroInterior, txtNumeroExterior, txtCalle, txtLocalidad, txtCiudad, 
+	txtEstado, txtCodigoPostal, txtCorreo, txtUsuario, txtPrivilegio;
 	@FXML PasswordField pwdContrasenia;
-	@FXML DatePicker dateFecha;
 	@FXML Button btnGuardar, btnEliminar,btnNuevoRegistroEmpleado,btnEliminarEmpleado,btnActualizarEmpleado;
-	@FXML Label lblFechaRegistro,lblMensajeEmpleado;
+	@FXML Label lblFechaRegistro,lblMensajeEmpleado,lblNotificacionesEmpleados;
 	@FXML CheckBox chbEmpleados;
 	
 	@FXML TableView<Empleado> TableEmpleado;
-	@FXML TableColumn<Empleado, String> tcNombre, tcApellidoPaterno, tcApellidoMaterno,tcCorreo,tcDireccion;
-	
-	Notificaciones notificacion = new Notificaciones();
+	@FXML TableColumn<Empleado, String> tcNombre, tcApellidoPaterno, tcApellidoMaterno,tcCelular,tcCorreo,tcDireccion;
+
 	
 	public RegistrarEmpleado(){
 		e = new Empleado();
 		datosEmpleado = FXCollections.observableArrayList();
+		er = new Errores();
 	}
 	//***************************************************************************************************
 	//CONTROLES-BOTONES
@@ -64,20 +64,21 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 				txtDomicilio.getText().isEmpty() || txtNumeroExterior.getText().isEmpty() || 
 				txtCalle.getText().isEmpty() || txtLocalidad.getText().isEmpty() ||
 				txtCiudad.getText().isEmpty() || txtEstado.getText().isEmpty() ||
-				txtCodigoPostal.getText().isEmpty() || txtCorreo1.getText().isEmpty() ||
-				txtUsuario.getText().isEmpty() || txtPrivilegio.getText().isEmpty()
+				txtCodigoPostal.getText().isEmpty() || txtCorreo.getText().isEmpty() ||
+				txtUsuario.getText().isEmpty() || txtPrivilegio.getText().isEmpty() ||
+				pwdContrasenia.getText().isEmpty()
 				){
-			notificacion.faltanDatos();
+				lblNotificacionesEmpleados.setText("Faltan datos por ingresar");
 		}else{
 			try{
 					e.setNombre1(new SimpleStringProperty(txtNombre.getText()));
 					e.setNombre2(new SimpleStringProperty(txtNombre2.getText()));
 					e.setApellidopaterno(new SimpleStringProperty(txtApellidoPaterno.getText()));
 					e.setApellidomaterno(new SimpleStringProperty(txtApellidoMaterno.getText()));
-					e.setTelefono1(new SimpleStringProperty(txtTelefono1.getText()));
-					e.setTelefono2(new SimpleStringProperty(txtTelefono21.getText()));
-					e.setCelular1(new SimpleStringProperty(txtCelular1.getText()));
-					e.setCelular2(new SimpleStringProperty(txtCelular21.getText()));
+					e.setTelefono1(new SimpleStringProperty(txtTelefono.getText()));
+					e.setTelefono2(new SimpleStringProperty(txtTelefono2.getText()));
+					e.setCelular1(new SimpleStringProperty(txtCelular.getText()));
+					e.setCelular2(new SimpleStringProperty(txtCelular2.getText()));
 					e.setDomicilio(new SimpleStringProperty(txtDomicilio.getText()));
 					e.setNumerointerior(new SimpleStringProperty(txtNumeroInterior.getText()));
 					e.setNumeroexterior(new SimpleStringProperty(txtNumeroExterior.getText()));
@@ -86,40 +87,21 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 					e.setCiudad(new SimpleStringProperty(txtCiudad.getText()));
 					e.setEstado(new SimpleStringProperty(txtEstado.getText()));
 					e.setCodigopostal(new SimpleStringProperty(txtCodigoPostal.getText()));
-					e.setCorreo(new SimpleStringProperty(txtCorreo1.getText()));
+					e.setCorreo(new SimpleStringProperty(txtCorreo.getText()));
 					e.setUsuario(new SimpleStringProperty(txtUsuario.getText()));
 					e.setContrasenia(new SimpleStringProperty(pwdContrasenia.getText()));
 					e.setPrivilegio(new SimpleStringProperty(txtPrivilegio.getText()));
-					//*********
 
-					if(dateFecha.getEditor().getText().isEmpty()){
-						e.setFechadesalida(new SimpleStringProperty("0000-00-00"));
-					}else{
-						e.setFechadesalida(new SimpleStringProperty(dateFecha.getValue().toString()));
-						
-					}
-						/*PORCION DE CÓDIGO REUTILIZABLE
-					String estatus;
-					if(chbEstatus.isSelected())
-						estatus="TRUE";
-					else
-						estatus="FALSE";
-					e.setEstatus(new SimpleBooleanProperty(Boolean.valueOf(estatus)));
-					*/
-				
 					boolean res = e.guardarEmpleado();
 					if (res){
-						dateFecha.getEditor().clear();
+						limpiarFormulario();
 						filtrarEmpleados();
-						notificacion.datosGuardados();
+						lblNotificacionesEmpleados.setText("Los datos han sido guardados correctamente");
 					}
 					else
-						notificacion.datosNoGuardados();
-	
-		
-			
-			}catch(Exception ex){
-				ex.printStackTrace();
+						lblNotificacionesEmpleados.setText("No se ha podido guardar el registro");
+			}catch(Exception e){
+				er.printLog(e.getMessage(), this.getClass().toString());
 			}
 		}
 	}
@@ -130,7 +112,7 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 		try{
 			
 			if (TableEmpleado.getSelectionModel().isEmpty()) {
-				notificacion.faltanDatos();
+				lblNotificacionesEmpleados.setText("Faltan datos por ingresar");
 			}else{
 			
 				e.setIdempleado(new SimpleIntegerProperty(identificador));
@@ -138,10 +120,10 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 				e.setNombre2(new SimpleStringProperty(txtNombre2.getText()));
 				e.setApellidopaterno(new SimpleStringProperty(txtApellidoPaterno.getText()));
 				e.setApellidomaterno(new SimpleStringProperty(txtApellidoMaterno.getText()));
-				e.setTelefono1(new SimpleStringProperty(txtTelefono1.getText()));
-				e.setTelefono2(new SimpleStringProperty(txtTelefono21.getText()));
-				e.setCelular1(new SimpleStringProperty(txtCelular1.getText()));
-				e.setCelular2(new SimpleStringProperty(txtCelular21.getText()));
+				e.setTelefono1(new SimpleStringProperty(txtTelefono.getText()));
+				e.setTelefono2(new SimpleStringProperty(txtTelefono2.getText()));
+				e.setCelular1(new SimpleStringProperty(txtCelular.getText()));
+				e.setCelular2(new SimpleStringProperty(txtCelular2.getText()));
 				e.setDomicilio(new SimpleStringProperty(txtDomicilio.getText()));
 				e.setNumerointerior(new SimpleStringProperty(txtNumeroInterior.getText()));
 				e.setNumeroexterior(new SimpleStringProperty(txtNumeroExterior.getText()));
@@ -150,28 +132,18 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 				e.setCiudad(new SimpleStringProperty(txtCiudad.getText()));
 				e.setEstado(new SimpleStringProperty(txtEstado.getText()));
 				e.setCodigopostal(new SimpleStringProperty(txtCodigoPostal.getText()));
-				e.setCorreo(new SimpleStringProperty(txtCorreo1.getText()));
+				e.setCorreo(new SimpleStringProperty(txtCorreo.getText()));
 				e.setUsuario(new SimpleStringProperty(txtUsuario.getText()));
 				e.setContrasenia(new SimpleStringProperty(pwdContrasenia.getText()));
 				e.setPrivilegio(new SimpleStringProperty(txtPrivilegio.getText()));
-				e.setFechadesalida(new SimpleStringProperty(dateFecha.getValue().toString()));
 
-				/*PORCION DE CÓDIGO REUTILIZABLE
-				String estatus;
-				if(chbEstatus.isSelected())
-					estatus="TRUE";
-				else
-					estatus="FALSE";
-				e.setEstatus(new SimpleBooleanProperty(Boolean.valueOf(estatus)));
-*/
 				boolean res = e.actualizarEmpleado();
 				if (res){
-					dateFecha.getEditor().clear();
 					filtrarEmpleados();
-					notificacion.datosGuardados();
+					lblNotificacionesEmpleados.setText("Los datos han sido actualizados correctamente");
 				}
 				else
-					notificacion.datosNoGuardados();
+					lblNotificacionesEmpleados.setText("Los datos no han sido actualizados");
 				
 				
 				
@@ -181,12 +153,10 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 			ex.printStackTrace();
 		}
 	}
-
-		
 		@FXML public void eliminarEmpleado(){
 			identificador = Integer.valueOf(e.getIdempleado());
 			if (TableEmpleado.getSelectionModel().isEmpty()) {
-				notificacion.seleccionarRegistro();
+				lblNotificacionesEmpleados.setText("Debe seleccionar un registro");
 				
 			}else{
 				e = new Empleado();
@@ -194,16 +164,17 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 				if (e.eEmpleado() == true ) {
 					limpiarFormulario();
 					filtrarEmpleados();
-					notificacion.datosEliminados();
+					if (chbEmpleados.isSelected()) {
+						lblNotificacionesEmpleados.setText("Operación no válida para registros eliminados");
+					}else{
+						lblNotificacionesEmpleados.setText("Los datos han sido eliminados correctamente");
+					}
 									
 				}else{
-					notificacion.falloEliminar();
+					lblNotificacionesEmpleados.setText("Ha ocurrido un fallo al eliminar");
 				}
 			}
 		}
-		
-		
-	
 	//***************************************************************************************************
 	//FORMULARIOS Y TABLAS
 	@FXML public void click_TablaEmpleados(){
@@ -213,10 +184,10 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 			txtNombre2.setText(e.getNombre2().toString());
 			txtApellidoPaterno.setText(e.getApellidopaterno().toString());
 			txtApellidoMaterno.setText(e.getApellidomaterno().toString());
-			txtTelefono1.setText(e.getTelefono1().toString());
-			txtTelefono21.setText(e.getTelefono2().toString());
-			txtCelular1.setText(e.getCelular1().toString());
-			txtCelular21.setText(e.getCelular2().toString());
+			txtTelefono.setText(e.getTelefono1().toString());
+			txtTelefono2.setText(e.getTelefono2().toString());
+			txtCelular.setText(e.getCelular1().toString());
+			txtCelular2.setText(e.getCelular2().toString());
 			txtDomicilio.setText(e.getDomicilio().toString());
 			txtNumeroInterior.setText(e.getNumerointerior().toString());
 			txtNumeroExterior.setText(e.getNumeroexterior().toString());
@@ -225,11 +196,10 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 			txtCiudad.setText(e.getCiudad().toString());
 			txtEstado.setText(e.getEstado().toString());
 			txtCodigoPostal.setText(e.getCodigopostal().toString());
-			txtCorreo1.setText(e.getCorreo().toString());
+			txtCorreo.setText(e.getCorreo().toString());
 			txtUsuario.setText(e.getUsuario().toString());
 			txtPrivilegio.setText(e.getPrivilegio().toString());
 			pwdContrasenia.setText(e.getContrasenia().toString());
-			dateFecha.setPromptText(e.getFechadesalida());
 			lblFechaRegistro.setText("Fecha de ingreso: "+e.getFechaingreso());
 		}
 
@@ -237,33 +207,18 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 	
 	
 	public void filtrarEmpleados(){
-		if (chbEmpleados.isSelected()) {
-			asignarDatosTabla();
-			try {
-				TableEmpleado.setItems(e.getEmpleadoInactivo());
-				datosEmpleado = e.getEmpleadoInactivo();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			String cantidadEmpleados = String.valueOf(datosEmpleado.size());
-			lblMensajeEmpleado.setText(cantidadEmpleados+" Registros encontrados");
-			limpiarFormulario();
-			btnEliminarEmpleado.setText("Restaurar empleado");
-		}else{
-			asignarDatosTabla();
-			try {
-				TableEmpleado.setItems(e.getEmpleado());
-				datosEmpleado = e.getEmpleado();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		
-			String cantidadEmpleados = String.valueOf(datosEmpleado.size());
-			lblMensajeEmpleado.setText(cantidadEmpleados+" Registros encontrados");
-			limpiarFormulario();
-			btnEliminarEmpleado.setText("Eliminar empleado");
+		asignarDatosTabla();
+		try {
+			TableEmpleado.setItems(e.getEmpleado());
+			datosEmpleado = e.getEmpleado();
+		} catch (SQLException e) {
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
-		
+	
+		String cantidadEmpleados = String.valueOf(datosEmpleado.size());
+		lblMensajeEmpleado.setText("Total de registros: "+cantidadEmpleados);
+		limpiarFormulario();
+			
 	}
 	//***************************************************************************************************
 	//OTROS 
@@ -281,10 +236,10 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 		txtNombre2.clear();
 		txtApellidoPaterno.clear();
 		txtApellidoMaterno.clear(); 
-		txtTelefono1.clear(); 
-		txtTelefono21.clear();
-		txtCelular1.clear(); 
-		txtCelular21.clear(); 
+		txtTelefono.clear(); 
+		txtTelefono2.clear();
+		txtCelular.clear(); 
+		txtCelular2.clear(); 
 		txtDomicilio.clear();
 		txtNumeroInterior.clear();
 		txtNumeroExterior.clear();
@@ -293,11 +248,10 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 		txtCiudad.clear();
 		txtEstado.clear(); 
 		txtCodigoPostal.clear(); 
-		txtCorreo1.clear();
+		txtCorreo.clear();
 		txtUsuario.clear(); 
 		txtPrivilegio.clear();
 		pwdContrasenia.clear();
-		dateFecha.setPromptText(null);
 	}
 	
 	//***************************************************************************************************

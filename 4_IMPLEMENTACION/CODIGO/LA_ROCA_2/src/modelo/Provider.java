@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import controlador.Errores;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,6 +15,7 @@ import javafx.collections.ObservableList;
 
 public class Provider {
 
+	private Errores er;
 	private Conexion con;
 	private StringProperty nombre;
 	private IntegerProperty idproveedor;
@@ -39,6 +42,7 @@ public class Provider {
 		con = Conexion.getInstancia();
 		nombre = new SimpleStringProperty();
 		idproveedor = new SimpleIntegerProperty();
+		er = new Errores();
 	}
 	
 	public ObservableList<Provider> getProvider() throws SQLException{
@@ -56,7 +60,7 @@ public class Provider {
 				elementos.add(pr); //Se agrega el objeto a la lista 
 			}		
 		} catch (Exception e) {
-			e.printStackTrace();//Se imprime la traza del error
+			er.printLog(e.getMessage(), this.getClass().toString());//Se imprime la traza del error
 		}
 		finally{
 			con.desconectar(); //Se cierra la conexión

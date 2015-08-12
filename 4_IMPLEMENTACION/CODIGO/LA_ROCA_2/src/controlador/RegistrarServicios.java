@@ -2,10 +2,9 @@ package controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+//import javafx.geometry.Pos;
 import vista.ControladordeVentanas;
 import vista.IControladorVentanas;
-import modelo.Notificaciones;
 import modelo.Servicios;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -14,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -25,24 +25,23 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class RegistrarServicios implements Initializable, IControladorVentanas{
 	//***************************************************************************************************
 	//VARIABLES, OBJETOS Y CONTROLES
-	private ControladordeVentanas ventanas;
+	private ControladordeVentanas ventanas; 
 	private int identificador;
 	private Servicios serviciosModelo;
+	private Errores er;
 	private ObservableList<Servicios> datosServicio;
 	@FXML private TextField txtNombreServicio,txtPrecio1Servicio,txtPrecio2Servicio;
-	@FXML private CheckBox chbFiltrarServicios;
 	@FXML private Button btnEstatusServicio,btnGuardarServicio,btnNuevoServicio,btnActualizarServicio;
-	@FXML private Label lblMensajeServicios;
+	@FXML private Label lblMensajeServicios,lblNotificacionesServicios;
 	@FXML TableView<Servicios> tableServicios;
 	@FXML TableColumn<Servicios, String> tcNombreServicio;
 	@FXML TableColumn<Servicios, Float> tcPrecio1Servicio,tcPrecio2Servicio;
 	
 	
-	Notificaciones notificacion = new Notificaciones();
-	
 	public RegistrarServicios(){
 		serviciosModelo = new Servicios();
 		datosServicio = FXCollections.observableArrayList();
+		er = new Errores();
 	}
  	
 	//***************************************************************************************************
@@ -57,10 +56,10 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 		tableServicios.getSelectionModel().clearSelection();
 		try {
 			if (txtNombreServicio.getText().isEmpty() || txtPrecio1Servicio.getText().isEmpty() || txtPrecio2Servicio.getText().isEmpty()) {
-				notificacion.faltanDatos();
+				lblNotificacionesServicios.setText("Faltan datos por ingresar");
 			}else{
 				Float precio01 = Float.valueOf(txtPrecio1Servicio.getText());
-				Float precio02 = Float.valueOf(txtPrecio1Servicio.getText());
+				Float precio02 = Float.valueOf(txtPrecio2Servicio.getText());
 				serviciosModelo = new Servicios();
 				serviciosModelo.setNombreServicio(new SimpleStringProperty(txtNombreServicio.getText()));
 				serviciosModelo.setPrecio1(new SimpleFloatProperty(precio01));
@@ -68,14 +67,14 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 				boolean res = serviciosModelo.guardarServicio();
 				if (res){
 					filtrarServicios();
-					notificacion.datosGuardados();
+					lblNotificacionesServicios.setText("Los datos han sido guardados correctamente");
 				}
 				else
-					notificacion.datosNoGuardados();
+					lblNotificacionesServicios.setText("Los datos no se han podido guardar");
 			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 		
 	}
@@ -85,27 +84,26 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 		identificador = Integer.valueOf(serviciosModelo.getIdServicio());
 		try {
 			if (txtNombreServicio.getText().isEmpty()) {
-				notificacion.faltanDatos();
+				lblNotificacionesServicios.setText("Faltan datos por ingresar");;
 			}else{
 				Float precio01 = Float.valueOf(txtPrecio1Servicio.getText());
-				Float precio02 = Float.valueOf(txtPrecio1Servicio.getText());
+				Float precio02 = Float.valueOf(txtPrecio2Servicio.getText());
 				serviciosModelo = new Servicios();
 				serviciosModelo.setIdServicio(new SimpleIntegerProperty (identificador));
 				serviciosModelo.setNombreServicio(new SimpleStringProperty(txtNombreServicio.getText()));
 				serviciosModelo.setPrecio1(new SimpleFloatProperty(precio01));
 				serviciosModelo.setPrecio2(new SimpleFloatProperty(precio02));
 				boolean res = serviciosModelo.actualizarServicio();	
-				System.out.println(serviciosModelo.getIdServicio());
 				if (res){
 					filtrarServicios();
-					notificacion.datosGuardados();
+					lblNotificacionesServicios.setText("Datos actualizados correctamente");
 				}
 				else
-					notificacion.datosNoGuardados();
+					lblNotificacionesServicios.setText("Datos no actualizados");
 			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 		
 	}
@@ -113,7 +111,7 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 	public void eliminarServicio(){
 		identificador = Integer.valueOf(serviciosModelo.getIdServicio());
 		if (tableServicios.getSelectionModel().isEmpty()) {
-			notificacion.seleccionarRegistro();
+			lblNotificacionesServicios.setText("Debe selecionar un registro");
 			
 		}else{
 			serviciosModelo = new Servicios();
@@ -122,10 +120,9 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 			if (serviciosModelo.eliminarServicio() == true ) {
 				limpiarFormulario();
 				filtrarServicios();
-				notificacion.datosEliminados();
-								
-			}else{
-				notificacion.falloEliminar();
+						lblNotificacionesServicios.setText("Operación no válida para registros eliminados");
+				}else{
+				lblNotificacionesServicios.setText("No se ha podido eliminar el registro");
 			}
 		}
 	}
@@ -135,38 +132,25 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 	@FXML public void  click_TablaServicios(){
 		 if (tableServicios.getSelectionModel().getSelectedItem()!= null) {
 			serviciosModelo = tableServicios.getSelectionModel().getSelectedItem();
+			//txtPrecio1Servicio.setAlignment(Pos.CENTER_RIGHT);
 			txtNombreServicio.setText(serviciosModelo.getNombreServicio().toString());
 			txtPrecio1Servicio.setText(serviciosModelo.getPrecio1().toString());
 			txtPrecio2Servicio.setText(serviciosModelo.getPrecio2().toString());
 		 }
-	 }
+	}
 	
 	public void filtrarServicios(){
-		if (chbFiltrarServicios.isSelected()) {
-			inicializarTabla();
-			try {
-				tableServicios.setItems(serviciosModelo.getServiciosInactivos());
-				datosServicio = serviciosModelo.getServiciosInactivos();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			String cantidadServicios = String.valueOf(datosServicio.size());
-			lblMensajeServicios.setText(cantidadServicios+" Registros encontrados");
-			limpiarFormulario();
-			btnEstatusServicio.setText("Restaurar servicio");
-		}else{
-			inicializarTabla();
-			try {
-				tableServicios.setItems(serviciosModelo.getServicios());
-				datosServicio = serviciosModelo.getServicios();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			String cantidadServicios = String.valueOf(datosServicio.size());
-			lblMensajeServicios.setText(cantidadServicios+" Registros encontrados");
-			limpiarFormulario();
-			btnEstatusServicio.setText("Eliminar servicio");
+		inicializarTabla();
+		try {
+			tableServicios.setItems(serviciosModelo.getServicios());
+			datosServicio = serviciosModelo.getServicios();
+		} catch (Exception e) {
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
+		String cantidadServicios = String.valueOf(datosServicio.size());
+		lblMensajeServicios.setText("Total de registros: "+cantidadServicios);
+		limpiarFormulario();
+		
 	}
 	
 	//***************************************************************************************************
@@ -189,7 +173,6 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 	//INICIALIZACION DE LA CLASE
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		filtrarServicios();
 		
 	}

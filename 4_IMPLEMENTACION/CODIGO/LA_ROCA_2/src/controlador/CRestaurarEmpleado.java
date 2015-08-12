@@ -3,7 +3,7 @@ package controlador;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
+import controlador.Errores; 
 import vista.ControladordeVentanas;
 import vista.IControladorVentanas;
 import modelo.Company;
@@ -32,7 +32,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
 public class CRestaurarEmpleado implements Initializable, IControladorVentanas {
-
+	
+	private Errores er;
 	private ControladordeVentanas ventanas;
 	private ObservableList<RestaurarEmpleado> datosEmpleado;
 	private int identificador;
@@ -52,8 +53,11 @@ public class CRestaurarEmpleado implements Initializable, IControladorVentanas {
 	Notificaciones notificacion = new Notificaciones();
 	
 	public CRestaurarEmpleado(){
+		er = new Errores();
 		re = new RestaurarEmpleado();
 		datosEmpleado = FXCollections.observableArrayList();
+
+		filasXPagina=10;
 	}
 	
 	private int idc;
@@ -106,7 +110,7 @@ public class CRestaurarEmpleado implements Initializable, IControladorVentanas {
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			lblRegistros.setText(datosEmpleado.size() + " registros encontrados.");
 		}catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			lblMensaje.setText("Se ha producido un error al recuperar los datos.");
 		}
 	}
@@ -128,7 +132,7 @@ public class CRestaurarEmpleado implements Initializable, IControladorVentanas {
 					lblMensaje.setText("Se ha presentado un error.");
 				}
 		}catch (Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -153,6 +157,7 @@ public class CRestaurarEmpleado implements Initializable, IControladorVentanas {
 				paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 				lblMensaje.setText("Se encontraron " + datosE.size() + " coincidencias.");
 			} catch (Exception e){
+				er.printLog(e.getMessage(), this.getClass().toString());
 				lblMensaje.setText("No se encontraron resultados");
 				filasXPagina=0;
 				paginador.setPageCount(filasXPagina);

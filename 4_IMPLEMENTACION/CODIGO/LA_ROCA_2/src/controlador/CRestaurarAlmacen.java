@@ -3,7 +3,7 @@ package controlador;
 import modelo.Almacen;
 import modelo.MarcaCombo;
 import modelo.RestaurarAlmacen;
-
+import controlador.Errores;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -30,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
 public class CRestaurarAlmacen implements Initializable, IControladorVentanas {
+	private Errores er;
 	private MarcaCombo mc;
 	private RestaurarAlmacen ra;
 	private ControladordeVentanas ventanas;
@@ -65,6 +66,7 @@ public class CRestaurarAlmacen implements Initializable, IControladorVentanas {
 	
 	// #region Constructor
 	public CRestaurarAlmacen() {
+		er = new Errores();
 		mc = new MarcaCombo();
 		ra = new RestaurarAlmacen();
 		filasXPagina = 10;
@@ -106,7 +108,7 @@ public class CRestaurarAlmacen implements Initializable, IControladorVentanas {
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			lblRegistros.setText(datos.size() + " registros encontrados.");
 		}catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			lblMensaje.setText("Se ha producido un error al recuperar los datos.");
 		}
 	}
@@ -128,7 +130,7 @@ public class CRestaurarAlmacen implements Initializable, IControladorVentanas {
 					lblMensaje.setText("Se ha presentado un error.");
 				}
 		}catch (Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -153,6 +155,7 @@ public class CRestaurarAlmacen implements Initializable, IControladorVentanas {
 				paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 				lblMensaje.setText("Se encontraron " + datosB.size() + " coincidencias.");
 			} catch (Exception e){
+				er.printLog(e.getMessage(), this.getClass().toString());
 				lblMensaje.setText("No se encontraron resultados");
 				filasXPagina=0;
 				paginador.setPageCount(filasXPagina);

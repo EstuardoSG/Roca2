@@ -43,12 +43,12 @@
                   <Pagination fx:id="paginador" layoutX="6.0" layoutY="58.0" prefHeight="433.0" prefWidth="818.0" />
                   <Label layoutX="599.0" layoutY="454.0" text="Total:" />
                   <Label fx:id="lblRegistros" layoutX="683.0" layoutY="454.0" text="0 Registro(s)" />
-                  <Label fx:id="lblMensaje" layoutX="490.0" layoutY="26.0" prefHeight="17.0" prefWidth="326.0" textFill="#e80909" />
-                  <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="164.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="138.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Iconos/zoom.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="lblMensaje" layoutX="-7.0" layoutY="471.0" prefHeight="17.0" prefWidth="326.0" textFill="RED" />
                </children>
             </AnchorPane>
         </content>

@@ -27,6 +27,7 @@ import javafx.scene.layout.BorderPane;
 public class RegistrarCliente implements Initializable, IControladorVentanas {
 	
 	private Clientes c;
+	private Errores er;
 	ControladordeVentanas ventanas;
 	public int id;
 	public int getId() {
@@ -57,6 +58,7 @@ public class RegistrarCliente implements Initializable, IControladorVentanas {
 	
 	public RegistrarCliente(){
 		c = new Clientes();
+		er = new Errores();
 		datos = FXCollections.observableArrayList();
 		filasXPagina=10;
 	}
@@ -69,7 +71,7 @@ public class RegistrarCliente implements Initializable, IControladorVentanas {
 			llenarTableView(true);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 		
 	}
@@ -102,7 +104,7 @@ public class RegistrarCliente implements Initializable, IControladorVentanas {
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			lblRegistros.setText(datos.size() + " registros encontrados.");
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			lblMensaje.setText("Se ha producido un error al recuperar los datos.");
 		}
 			
@@ -194,6 +196,7 @@ public class RegistrarCliente implements Initializable, IControladorVentanas {
  				filasXPagina=0;
  				paginador.setPageCount(filasXPagina); 				
 				paginador.setPageFactory((Integer pagina) -> createPage(pagina));
+				er.printLog(ex.getMessage(), this.getClass().toString());
  			}
  		}
  	}
@@ -252,7 +255,7 @@ public class RegistrarCliente implements Initializable, IControladorVentanas {
 				
 			}	
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -310,7 +313,7 @@ public class RegistrarCliente implements Initializable, IControladorVentanas {
 				
 			}	
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -331,7 +334,7 @@ public class RegistrarCliente implements Initializable, IControladorVentanas {
 				}
 					
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	

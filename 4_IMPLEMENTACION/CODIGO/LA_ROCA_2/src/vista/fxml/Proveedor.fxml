@@ -29,12 +29,12 @@
                   <TextField fx:id="txtCorreo" layoutX="640.0" layoutY="43.0" />
                   <Label layoutX="7.0" layoutY="10.0" text="Empresa:" />
                   <ComboBox fx:id="cbEmpresa" layoutX="83.0" layoutY="6.0" prefWidth="150.0" />
-                  <Label fx:id="lbl11" layoutX="243.0" layoutY="10.0" />
-                  <Label fx:id="lbl12" layoutX="243.0" layoutY="47.0" />
-                  <Label fx:id="lbl13" layoutX="548.0" layoutY="10.0" />
-                  <Label fx:id="lbl14" layoutX="548.0" layoutY="47.0" />
-                  <Label fx:id="lbl15" layoutX="799.0" layoutY="10.0" />
-                  <Label fx:id="lbl16" layoutX="799.0" layoutY="48.0" />
+                  <Label fx:id="lbl1" layoutX="271.0" layoutY="8.0" prefHeight="19.0" prefWidth="6.0" textFill="RED" />
+                  <Label fx:id="lbl2" layoutX="243.0" layoutY="47.0" textFill="RED" />
+                  <Label fx:id="lbl3" layoutX="548.0" layoutY="10.0" textFill="RED" />
+                  <Label fx:id="lbl4" layoutX="548.0" layoutY="47.0" textFill="RED" />
+                  <Label fx:id="lbl5" layoutX="799.0" layoutY="10.0" textFill="RED" />
+                  <Label fx:id="lbl6" layoutX="799.0" layoutY="48.0" textFill="RED" />
                   <Button fx:id="btnProveedor" layoutX="234.0" layoutY="2.0" mnemonicParsing="false" onAction="#proveedor" prefHeight="29.0" prefWidth="34.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -99,15 +99,14 @@
                     </columns>
                   </TableView>
                   <TextField fx:id="txtBuscar" layoutX="39.0" layoutY="8.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="172.0" />
-                  <CheckBox fx:id="ckbEliminados" layoutX="71.0" layoutY="336.0" mnemonicParsing="false" onAction="#click_inactivos" text="Proveedores eliminados" />
-                  <Label layoutX="617.0" layoutY="336.0" text="Total:" />
-                  <Label fx:id="lblRegistros" layoutX="688.0" layoutY="336.0" text="0 Registro(s)">
+                  <Label layoutX="605.0" layoutY="336.0" text="Total:" />
+                  <Label fx:id="lblRegistros" layoutX="670.0" layoutY="336.0" text="0 Registro(s)">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblMensaje" layoutX="373.0" layoutY="8.0" prefHeight="17.0" prefWidth="417.0" />
-                  <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="215.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Label fx:id="lblMensaje" layoutX="3.0" layoutY="336.0" prefHeight="17.0" prefWidth="284.0" textFill="RED" />
+                  <ImageView fitHeight="22.0" fitWidth="33.0" layoutX="189.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Iconos/zoom.png" />
                      </image>

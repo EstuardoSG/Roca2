@@ -37,7 +37,7 @@ public class Empleado {
 		try{
 			//aqui se puede sustituir el insertr  por la funcion 
 			
-			String sql= "select fninsertarempleado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql= "select fn_insertarempleado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			con.conectar();
 			PreparedStatement empleado = con.getConexion().prepareStatement(sql);
 			empleado.setString(1, this.getNombre1());
@@ -60,7 +60,8 @@ public class Empleado {
 			empleado.setString(18, this.getUsuario());
 			empleado.setString(19, this.getContrasenia());
 			empleado.setString(20, this.getPrivilegio());
-			empleado.setString(21, this.getFechadesalida());
+		//S	empleado.setString(21, this.getFechadesalida());
+			System.out.println(empleado.toString());
 			empleado.execute();
 			return  true;
 			
@@ -73,12 +74,11 @@ public class Empleado {
 	}
 	
 	public boolean actualizarEmpleado(){
-		System.out.println("TEST");
 
 		try{
 			//aqui se puede sustituir el insertr  por la funcion 
 			
-			String sql= "select fn_actualizarE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql= "select fn_actualizarempleado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			con.conectar();
 			PreparedStatement empleado = con.getConexion().prepareStatement(sql);
 			empleado.setInt(1,this.getIdempleado());
@@ -102,7 +102,7 @@ public class Empleado {
 			empleado.setString(19, this.getUsuario());
 			empleado.setString(20, this.getContrasenia());
 			empleado.setString(21, this.getPrivilegio());
-			empleado.setString(22, this.getFechadesalida());
+			//empleado.setString(22, this.getFechadesalida());
 			empleado.execute();
 			return  true;
 			
@@ -115,7 +115,7 @@ public class Empleado {
 	public boolean eEmpleado(){
 		
 		try{
-			String sql = "select fneliminarempleado(?)";
+			String sql = "select fn_eliminarempleado(?)";
 			con.conectar();
 			PreparedStatement comando = con.getConexion().prepareStatement(sql);
 			comando.setInt(1, this.getIdempleado());

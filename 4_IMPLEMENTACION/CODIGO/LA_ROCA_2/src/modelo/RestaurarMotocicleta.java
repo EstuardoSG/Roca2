@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import controlador.Errores;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -14,7 +16,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class RestaurarMotocicleta {
-
+	
+	private Errores er;
 	private Conexion con;
 	private ObservableList<RestaurarMotocicleta> informacion;
 	private StringProperty modelo, motor, color, descripcionMotocicleta, fecha;
@@ -89,6 +92,7 @@ public class RestaurarMotocicleta {
 		con = Conexion.getInstancia();
 		em = new Employee();
 		br = new Brand();
+		er = new Errores();
 	}
 	
 	public ObservableList<RestaurarMotocicleta> getMotocicleta(boolean estatus) throws SQLException{
@@ -115,7 +119,7 @@ public class RestaurarMotocicleta {
 				informacion.add(m);
 			}
 		}catch (Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 		finally{
 			rs.close();
@@ -133,7 +137,7 @@ public class RestaurarMotocicleta {
 			comando.execute();
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return false;
 		}
 		finally{

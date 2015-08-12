@@ -3,7 +3,7 @@ package controlador;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
+import controlador.Errores;
 import vista.ControladordeVentanas;
 import vista.IControladorVentanas;
 import modelo.Brand;
@@ -31,7 +31,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
 public class CRestaurarMotocicleta implements Initializable, IControladorVentanas{
-	
+
+	private Errores er;
 	private ControladordeVentanas ventanas;
 	private ControladorVentana ventana;
 	private RestaurarMotocicleta rm;
@@ -57,6 +58,7 @@ public class CRestaurarMotocicleta implements Initializable, IControladorVentana
 	@FXML TableColumn<RestaurarMotocicleta, String> tcMarca, tcModelo, tcColor, tcFecha, tcEmpleado;
 	
 	public CRestaurarMotocicleta(){
+		er = new Errores();
 		rm = new RestaurarMotocicleta();
 		em = new Employee();
 		br = new Brand();
@@ -99,7 +101,7 @@ public class CRestaurarMotocicleta implements Initializable, IControladorVentana
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			lblRegistros.setText(datos.size() + " registros encontrados.");
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			lblMensaje.setText("Se ha producido un error al recuperar los datos.");
 		}
 			
@@ -130,7 +132,7 @@ public class CRestaurarMotocicleta implements Initializable, IControladorVentana
 				}
 					
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -156,7 +158,8 @@ public class CRestaurarMotocicleta implements Initializable, IControladorVentana
 				paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 				lblMensaje.setText("Se encontraron " + datosBusqueda.size() + " coincidencias.");
 				}
-				catch(Exception ex){
+				catch(Exception e){
+					er.printLog(e.getMessage(), this.getClass().toString());
 					//Enviar mensaje
 					lblMensaje.setText("No se encontraron resultados");
 					filasXPagina=0;

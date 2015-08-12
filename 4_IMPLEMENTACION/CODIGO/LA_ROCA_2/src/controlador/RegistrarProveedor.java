@@ -1,8 +1,8 @@
 package controlador;
 
 import modelo.Company;
-import modelo.ProveedorContacto;
-
+import modelo.RegistrarProveedorr;
+import controlador.Errores;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -29,8 +29,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
 public class RegistrarProveedor implements Initializable {
+	private Errores er;
 	private Company p;
-	private ProveedorContacto c;
+	private RegistrarProveedorr c;
 	
 	private int idc;
 	private int ide;
@@ -48,26 +49,26 @@ public class RegistrarProveedor implements Initializable {
 	}
 
 	//@FXML ComboBox<Company> cbEmpresa;
-	@FXML TableColumn<ProveedorContacto, String> tcEmpresa, tcDomicilio, tcNumeroExterior, tcCalle, tcTelefono;
-	@FXML TableView<ProveedorContacto> tvProveedor;
+	@FXML TableColumn<RegistrarProveedorr, String> tcEmpresa, tcDomicilio, tcNumeroExterior, tcCalle, tcTelefono;
+	@FXML TableView<RegistrarProveedorr> tvProveedor;
 	@FXML TextField txtEmpresa, txtDomicilio, txtNumeroInterior, txtNumeroExterior, txtCalle, txtLocalidad, txtCiudad,
 	txtEstado, txtCodigoPostal, txtTelefono, txtBuscar;
 	@FXML Label lblMensaje;
 	@FXML Label lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7, lbl8, lbl9, lbl10;
-	@FXML CheckBox ckbInactivos;
-	@FXML Button btnGuardar, btnEditar, btnEliminar;
+	@FXML Button btnGuardar, btnEditar, btnEliminar, btnNuevo;
 
 	// #region Variables_Paginacion
 	private int filasXPagina;
-	private ObservableList<ProveedorContacto> datos;
-	private FilteredList<ProveedorContacto> datosB;
+	private ObservableList<RegistrarProveedorr> datos;
+	private FilteredList<RegistrarProveedorr> datosB;
 	@FXML Pagination paginador;
 	// #endregion
 	
 	// #region Constructor
 	public RegistrarProveedor() {
+		er = new Errores();
 		p = new Company();
-		c = new ProveedorContacto();
+		c = new RegistrarProveedorr();
 		filasXPagina = 10;
 		datos = FXCollections.observableArrayList();
 	}
@@ -104,11 +105,11 @@ public class RegistrarProveedor implements Initializable {
 	
 	//Método para llenar el tableView
 	public void llenarTableView(Boolean estatus){
-		tcEmpresa.setCellValueFactory(new PropertyValueFactory<ProveedorContacto, String>("nombreEmpresa"));
-		tcDomicilio.setCellValueFactory(new PropertyValueFactory<ProveedorContacto, String>("domicilio"));
-		tcNumeroExterior.setCellValueFactory(new PropertyValueFactory<ProveedorContacto, String>("numeroExterior"));
-		tcCalle.setCellValueFactory(new PropertyValueFactory<ProveedorContacto, String>("calle"));
-		tcTelefono.setCellValueFactory(new PropertyValueFactory<ProveedorContacto, String>("telefonoEmpresa"));
+		tcEmpresa.setCellValueFactory(new PropertyValueFactory<RegistrarProveedorr, String>("nombreEmpresa"));
+		tcDomicilio.setCellValueFactory(new PropertyValueFactory<RegistrarProveedorr, String>("domicilio"));
+		tcNumeroExterior.setCellValueFactory(new PropertyValueFactory<RegistrarProveedorr, String>("numeroExterior"));
+		tcCalle.setCellValueFactory(new PropertyValueFactory<RegistrarProveedorr, String>("calle"));
+		tcTelefono.setCellValueFactory(new PropertyValueFactory<RegistrarProveedorr, String>("telefonoEmpresa"));
 		try{
 			datos= c.getProveedorContacto(estatus);
 			datosB = new FilteredList<>(datos);
@@ -116,21 +117,12 @@ public class RegistrarProveedor implements Initializable {
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			//lblRegistros.setText(datos.size() + " registros encontrados.");
 		}catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
 	//Método para subir los datos del TableView a los Textfield
 	@FXML public void click_TableView(){
-		if(ckbInactivos.isSelected()){
-			btnGuardar.setDisable(true);
-			btnEliminar.setDisable(true);
-			btnEditar.setDisable(true);
-		}else{
-		btnGuardar.setDisable(true);
-		btnEliminar.setDisable(false);
-		btnEditar.setDisable(false);
-		}
 		if(tvProveedor.getSelectionModel().getSelectedItem()!=null){
 			c = tvProveedor.getSelectionModel().getSelectedItem();
 			//TextField
@@ -146,6 +138,9 @@ public class RegistrarProveedor implements Initializable {
 			txtEstado.setText(c.getEstado());
 			txtCodigoPostal.setText(c.getCodigoPostal());
 			txtTelefono.setText(c.getTelefonoEmpresa());
+			btnGuardar.setDisable(true);
+			btnEditar.setDisable(false);
+			btnEliminar.setDisable(false);
 		}
 	}
 	
@@ -193,7 +188,7 @@ public class RegistrarProveedor implements Initializable {
 				lbl10.setText("*");
 				lblMensaje.setText("Faltan datos por llenar");
 			}else{
-				c = new ProveedorContacto();
+				c = new RegistrarProveedorr();
 				c.setNombreEmpresa(new SimpleStringProperty(txtEmpresa.getText()));
 				c.setDomicilio(new SimpleStringProperty(txtDomicilio.getText()));
 				c.setNumeroInterior(new SimpleStringProperty(txtNumeroInterior.getText()));
@@ -214,7 +209,7 @@ public class RegistrarProveedor implements Initializable {
 			}
 			
 		} catch (Exception e){
-			
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -231,7 +226,7 @@ public class RegistrarProveedor implements Initializable {
 					txtCodigoPostal.getText().trim().isEmpty() ||
 					txtTelefono.getText().trim().isEmpty() );
 			else
-				c = new ProveedorContacto();
+				c = new RegistrarProveedorr();
 				c.setIdproveedor(new SimpleIntegerProperty(getIde()));
 				c.setNombreEmpresa(new SimpleStringProperty(txtEmpresa.getText()));
 				c.setDomicilio(new SimpleStringProperty(txtDomicilio.getText()));
@@ -251,7 +246,7 @@ public class RegistrarProveedor implements Initializable {
 				else
 					lblMensaje.setText("Se ha producido un problema.");
 		} catch (Exception e){
-			
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -262,7 +257,7 @@ public class RegistrarProveedor implements Initializable {
 				lblMensaje.setText("Debe seleccionar la empresa que desea eliminar");
 			else
 				if(c.eliminarp()==true){
-					c = new ProveedorContacto();
+					c = new RegistrarProveedorr();
 					c.setIdProveedorContacto(new SimpleIntegerProperty(getIdc()));
 					llenarTableView(true);
 					limpiar();
@@ -272,7 +267,7 @@ public class RegistrarProveedor implements Initializable {
 					lblMensaje.setText("Se ha presentado un error.");
 				}
 		}catch (Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -282,7 +277,6 @@ public class RegistrarProveedor implements Initializable {
 		btnGuardar.setDisable(false);
 		btnEliminar.setDisable(true);
 		btnEditar.setDisable(true);
-		ckbInactivos.setSelected(false);
 		llenarTableView(true);
 	}
 	
@@ -290,7 +284,7 @@ public class RegistrarProveedor implements Initializable {
 		txtEmpresa.clear();
 		txtDomicilio.clear();
 		txtNumeroInterior.clear();
-		txtNumeroInterior.clear();
+		txtNumeroExterior.clear();
 		txtCalle.clear();
 		txtLocalidad.clear();
 		txtCiudad.clear();
@@ -310,21 +304,9 @@ public class RegistrarProveedor implements Initializable {
 		lbl8.setText("");
 		lbl9.setText("");
 		lbl10.setText("");
+		lblMensaje.setText("");
 	}
 	
-	@FXML public void click_inactivos(){
-		if(ckbInactivos.isSelected()){
-			llenarTableView(false);
-			btnGuardar.setDisable(true);
-			btnEliminar.setDisable(true);
-			btnEditar.setDisable(true);
-		}else{
-			llenarTableView(true);
-			btnGuardar.setDisable(true);
-			btnEliminar.setDisable(false);
-			btnEditar.setDisable(false);
-		}
-	}
 	
 	@FXML public void buscarTexto(){
 		if(txtBuscar.getText().trim().isEmpty()){
@@ -336,7 +318,7 @@ public class RegistrarProveedor implements Initializable {
 		}
 		else{
 			try{
-				datosB.setPredicate(ProveedorContacto -> ProveedorContacto.getNombre().toLowerCase().
+				datosB.setPredicate(ProveedorContacto -> ProveedorContacto.getNombreEmpresa().toLowerCase().
 						contains(txtBuscar.getText().toLowerCase()));
 				if(datosB.size()<10)
 					filasXPagina = datosB.size();
@@ -346,6 +328,7 @@ public class RegistrarProveedor implements Initializable {
 				paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 				lblMensaje.setText("Se encontraron " + datosB.size() + " coincidencias.");
 			} catch (Exception e){
+				er.printLog(e.getMessage(), this.getClass().toString());
 				lblMensaje.setText("No se encontraron resultados");
 				filasXPagina=0;
 				paginador.setPageCount(filasXPagina);

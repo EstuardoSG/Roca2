@@ -2,6 +2,7 @@ package modelo;
 
 import java.sql.PreparedStatement;
 
+import controlador.Errores;
 import controlador.VentaPartes;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
@@ -13,6 +14,7 @@ import javafx.collections.ObservableList;
 
 public class DetalleRefaccion {
 
+	private Errores er;
 
 	private Conexion con;
 	private IntegerProperty cantidad, idrefaccionalmacen, idReparacion;
@@ -26,6 +28,7 @@ public class DetalleRefaccion {
 		refaccion = modelo= new SimpleStringProperty();
 		con = Conexion.getInstancia();
 		setIva(16);
+		er = new Errores();
 		
 	}
 	
@@ -103,8 +106,8 @@ public class DetalleRefaccion {
 			con.conectar();
 			PreparedStatement comando = con.getConexion().prepareStatement(sql);
 		   for (DetalleRefaccion dr : detalle){
-			comando.setInt(1, dr.getIdReparacion());
-			comando.setInt(2,dr.getIdrefaccionalmacen());
+			comando.setInt(2, dr.getIdReparacion());
+			comando.setInt(1,dr.getIdrefaccionalmacen());
 			comando.setFloat(3, dr.getPrecio());
 			comando.setFloat(4, dr.getIva());
 			comando.setInt(5, dr.getCantidad());
@@ -113,7 +116,7 @@ public class DetalleRefaccion {
 			}
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return false;
 		}
 		finally{

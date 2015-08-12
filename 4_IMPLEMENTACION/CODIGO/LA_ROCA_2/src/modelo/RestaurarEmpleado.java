@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import controlador.Errores;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,8 +14,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class RestaurarEmpleado {
-	//***************************************************************************************************
-	//VARIABLES Y OBJETOS
+	
+	private Errores er;
 	private Conexion con;
 	private ObservableList<RestaurarEmpleado> informacion;
 	private IntegerProperty idempleado;
@@ -26,6 +28,7 @@ public class RestaurarEmpleado {
 		numerointerior = numeroexterior = calle = localidad = ciudad = estado = codigopostal = correo = contrasenia =
 		privilegio = fechaingreso = fechadesalida = new SimpleStringProperty();
 		con = Conexion.getInstancia();
+		er = new Errores();
 	}
 	
 
@@ -175,7 +178,7 @@ public class RestaurarEmpleado {
 	public ObservableList<RestaurarEmpleado> getEmpleado() throws SQLException{
 		ResultSet rs = null;
 		try {
-			String sql  ="select idempleado,nombre1,nombre2,apellidopaterno,apellidomaterno,telefono1,telefono2,celular1,celular2,domicilio,numerointerior,numeroexterior,calle,localidad,ciudad,estado,codigopostal,correo,usuario,contrasenia,privilegio,fechaingreso,fechadesalida from empleados where estatus = '1'";
+			String sql  ="select idempleado,nombre1,nombre2,apellidopaterno,apellidomaterno,telefono1,telefono2,celular1,celular2,domicilio,numerointerior,numeroexterior,calle,localidad,ciudad,estado,codigopostal,correo,usuario,contrasenia,privilegio,fechaingreso,fechadesalida from empleados where estatus = '0'";
 			con.conectar();
 			PreparedStatement comando = con.getConexion().prepareStatement(sql);
 			rs= comando.executeQuery();
@@ -209,7 +212,7 @@ public class RestaurarEmpleado {
 				informacion.add(e);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 		finally{
 			rs.close();
@@ -221,13 +224,14 @@ public class RestaurarEmpleado {
 	public boolean restaurar(){
 		
 		try{
-			String sql = "select fn_rmotocicleta(?)";
+			String sql = "select fn_restaurarEmpleado(?)";
 			con.conectar();
 			PreparedStatement comando = con.getConexion().prepareStatement(sql);
 			comando.setInt(1, this.getIdempleado());
 			comando.execute();
 			return true;
-		}catch(Exception ex){
+		}catch(Exception e){
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return  false;
 		}
 	}

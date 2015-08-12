@@ -36,6 +36,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 	private Motocicleta m;
 	private Employee em;
 	private Brand br;
+	private Errores er;
 	public int id;
 	public int getId() {
 		return id;
@@ -63,6 +64,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 		m = new Motocicleta();
 		em = new Employee();
 		br = new Brand();
+		er = new Errores();
 		datos = FXCollections.observableArrayList();
 		filasXPagina=10;
 	}
@@ -74,7 +76,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 				btnEditar.setDisable(true);
 				btnEliminar.setDisable(true);
 			} catch (SQLException e) {
-				e.printStackTrace();
+				er.printLog(e.getMessage(), this.getClass().toString());
 			}
 	}
 
@@ -106,7 +108,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			lblRegistros.setText(datos.size() + " registros encontrados.");
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			lblMensaje.setText("Se ha producido un error al recuperar los datos.");
 		}
 			
@@ -199,7 +201,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 				
 				}	
 			} catch (Exception e) {
-			e.printStackTrace();
+				er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	@FXML public void editar(){
@@ -229,7 +231,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 				
 			}	
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	@FXML public void eliminar(){
@@ -250,7 +252,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 				}
 					
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -325,6 +327,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 					filasXPagina=0;
 					paginador.setPageCount(filasXPagina); 				
 				paginador.setPageFactory((Integer pagina) -> createPage(pagina));
+				er.printLog(ex.getMessage(), this.getClass().toString());
 				}
 			}
 		}

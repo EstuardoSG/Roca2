@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import controlador.Errores;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ProveedorContacto {
+	private Errores er;
 	private Conexion con;
 	private ObservableList<ProveedorContacto> datos;
 	private StringProperty nombreEmpresa, domicilio, numeroInterior, numeroExterior, calle, localidad,
@@ -29,6 +32,7 @@ public class ProveedorContacto {
 		idProveedorContacto = idproveedor = new SimpleIntegerProperty();
 		p = new Company();
 		con = Conexion.getInstancia();
+		er = new Errores();
 	}
 	
 	// #region Getters and Setters
@@ -181,11 +185,12 @@ public class ProveedorContacto {
 		public ObservableList<ProveedorContacto> getProveedorContacto(boolean estatus) throws SQLException{
 			ResultSet rs = null;
 			try {
-				String sql = "";
-				if(estatus)
-					sql = "select c.idproveedorcontacto, c.idproveedor, p.nombreempresa, p.domicilio, p.numerointerior, p.numeroexterior, p.calle, p.localidad, p.ciudad, p.estado, p.codigopostal, p.telefonoempresa,c.nombre, c.apellidopaterno, c.apellidomaterno, c.celular, c.correo, c.estatus, c.fechainicial, c.fechafinal from proveedorcontacto c join proveedor p on p.idproveedor = c.idproveedor where c.estatus = '1';";
-				else
-					sql = "select c.idproveedorcontacto, c.idproveedor, p.nombreempresa, p.domicilio, p.numerointerior, p.numeroexterior, p.calle, p.localidad, p.ciudad, p.estado, p.codigopostal, p.telefonoempresa,c.nombre, c.apellidopaterno, c.apellidomaterno, c.celular, c.correo, c.estatus, c.fechainicial, c.fechafinal from proveedorcontacto c join proveedor p on p.idproveedor = c.idproveedor where c.estatus = '0';";
+				String sql = "select c.idproveedorcontacto, c.idproveedor, p.nombreempresa, p.domicilio, p.numerointerior, p.numeroexterior, p.calle, p.localidad, p.ciudad, p.estado, p.codigopostal, p.telefonoempresa,c.nombre, c.apellidopaterno, c.apellidomaterno, c.celular, c.correo, c.estatus, c.fechainicial, c.fechafinal from proveedorcontacto c join proveedor p on p.idproveedor = c.idproveedor where c.estatus = '1';";
+
+				//if(estatus)
+					//sql = "select c.idproveedorcontacto, c.idproveedor, p.nombreempresa, p.domicilio, p.numerointerior, p.numeroexterior, p.calle, p.localidad, p.ciudad, p.estado, p.codigopostal, p.telefonoempresa,c.nombre, c.apellidopaterno, c.apellidomaterno, c.celular, c.correo, c.estatus, c.fechainicial, c.fechafinal from proveedorcontacto c join proveedor p on p.idproveedor = c.idproveedor where c.estatus = '1';";
+				//else
+					//sql = "select c.idproveedorcontacto, c.idproveedor, p.nombreempresa, p.domicilio, p.numerointerior, p.numeroexterior, p.calle, p.localidad, p.ciudad, p.estado, p.codigopostal, p.telefonoempresa,c.nombre, c.apellidopaterno, c.apellidomaterno, c.celular, c.correo, c.estatus, c.fechainicial, c.fechafinal from proveedorcontacto c join proveedor p on p.idproveedor = c.idproveedor where c.estatus = '0';";
 				con.conectar();
 				PreparedStatement comando =  con.getConexion().prepareStatement(sql);
 				rs = comando.executeQuery();
@@ -214,7 +219,7 @@ public class ProveedorContacto {
 					datos.add(c);
 				}
 			} catch (Exception e){
-				e.printStackTrace();
+				er.printLog(e.getMessage(), this.getClass().toString());
 			}
 			finally {
 				rs.close();
@@ -246,7 +251,7 @@ public class ProveedorContacto {
 			comando.execute();
 			return true;
 		} catch (Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return false;
 		}
 		finally{
@@ -265,7 +270,7 @@ public class ProveedorContacto {
 			comando.execute();
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return false;
 		}
 		finally {
@@ -294,7 +299,7 @@ public class ProveedorContacto {
 			comando.execute();
 			return true;
 		} catch (Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return false;
 		}
 		finally{
@@ -323,7 +328,7 @@ public class ProveedorContacto {
 				comando.execute();
 				return true;
 			} catch (Exception e){
-				e.printStackTrace();
+				er.printLog(e.getMessage(), this.getClass().toString());
 				return false;
 			}
 			finally{
@@ -342,7 +347,7 @@ public class ProveedorContacto {
 				comando.execute();
 				return true;
 			} catch (Exception e) {
-				e.printStackTrace();
+				er.printLog(e.getMessage(), this.getClass().toString());
 				return false;
 			}
 			finally {
@@ -367,7 +372,7 @@ public class ProveedorContacto {
 				comando.execute();
 				return true;
 			} catch (Exception e){
-				e.printStackTrace();
+				er.printLog(e.getMessage(), this.getClass().toString());
 				return false;
 			}
 			finally{

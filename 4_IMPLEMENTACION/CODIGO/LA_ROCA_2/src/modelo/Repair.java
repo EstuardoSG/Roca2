@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import controlador.Errores;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleFloatProperty;
@@ -21,7 +22,7 @@ public class Repair {
 	
 
 	private Repair rep;
-	
+	private Errores er;
 	
 	private ObservableList<Repair> elementos;
 	
@@ -29,6 +30,7 @@ public class Repair {
 		con = Conexion.getInstancia();
 		 idreparacion = new SimpleIntegerProperty();
 		nombre1 = new SimpleStringProperty();
+		er = new Errores();
 	}
 
 
@@ -72,7 +74,7 @@ public class Repair {
 				elementos.add(re); //Se agrega el objeto a la lista 
 			}		
 		} catch (Exception e) {
-			e.printStackTrace();//Se imprime la traza del error
+			er.printLog(e.getMessage(), this.getClass().toString());//Se imprime la traza del error
 		}
 		finally{
 			con.desconectar(); //Se cierra la conexión

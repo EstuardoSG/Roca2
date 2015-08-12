@@ -34,6 +34,7 @@ public class CheckList implements Initializable, IControladorVentanas {
 	private Check ch;
 	private Customer cus;
 	private Motorcycle mc;
+	private Errores er;
 	
 	private ControladordeVentanas ventanas;
 	
@@ -67,7 +68,7 @@ public class CheckList implements Initializable, IControladorVentanas {
 			cbMotocicleta.setItems(mc.getMotorCycle());
 			llenarTableView(true);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -75,6 +76,7 @@ public class CheckList implements Initializable, IControladorVentanas {
 		ch = new Check();
 		cus = new Customer();
 		mc = new Motorcycle();
+		er = new Errores();
 		datos = FXCollections.observableArrayList();
 		filasXPagina=10;
 	}
@@ -107,7 +109,7 @@ public class CheckList implements Initializable, IControladorVentanas {
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			lblRegistros.setText(datos.size() + " registros encontrados.");
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			lblMensaje.setText("Se ha producido un error al recuperar los datos.");
 		}
 			
@@ -165,7 +167,7 @@ public class CheckList implements Initializable, IControladorVentanas {
 				
 			}	
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	@FXML public void editar(){
@@ -201,7 +203,7 @@ public class CheckList implements Initializable, IControladorVentanas {
 				
 			}	
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	@FXML public void eliminar(){
@@ -221,7 +223,7 @@ public class CheckList implements Initializable, IControladorVentanas {
 				}
 					
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 
@@ -273,6 +275,7 @@ public class CheckList implements Initializable, IControladorVentanas {
 				filasXPagina=0;
 				paginador.setPageCount(filasXPagina); 				
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
+			er.printLog(ex.getMessage(), this.getClass().toString());
 			}
 		}
 	}

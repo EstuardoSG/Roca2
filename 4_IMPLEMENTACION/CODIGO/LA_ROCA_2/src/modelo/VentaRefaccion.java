@@ -1,5 +1,6 @@
 package modelo;
 
+import controlador.Errores;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,6 +11,8 @@ public class VentaRefaccion {
 
 	private Conexion con;
 	private Almacen almacen;
+	private Errores er;
+	
 	private Integer idrefaccionalmacen,  existencia;
 	private Float precio, total;
 	private String refaccion, modelo;
@@ -20,6 +23,7 @@ public class VentaRefaccion {
 		listaDetalleR = FXCollections.observableArrayList();
 		con = Conexion.getInstancia();
 		almacen = new Almacen();
+		er = new Errores();
 	}
 
 	public Almacen getAlmacen() {
@@ -102,7 +106,7 @@ public class VentaRefaccion {
 			}
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			return false;
 		}
 	}
@@ -112,6 +116,17 @@ public class VentaRefaccion {
 			total+=d.getSubtotal();
 		}
 		return total;
+	}
+	
+	public boolean eliminarDetalle(DetalleRefaccion dr){
+		if(dr !=null){
+			listaDetalleR.remove(dr);
+			return true;
+		}
+		else{
+			return false;
+		}
+		
 	}
 	
 	public ObservableList<DetalleRefaccion> obtenerDetalle(){

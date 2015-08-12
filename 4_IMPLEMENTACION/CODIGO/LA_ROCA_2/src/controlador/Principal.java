@@ -150,10 +150,10 @@ public class Principal implements Initializable {
 
 	
 	
-	static VBox miMenuEmpleado(){
+	  static VBox miMenuEmpleado(){
 		VBox mnu = new VBox();
-		mnu.setPrefWidth(150);
-            mnu.setPrefHeight(150);
+		mnu.setPrefWidth(200);
+            mnu.setPrefHeight(507);
             
 		 padre = new TreeItem<String> ("La Roca 2");
 		 padre.setExpanded(true);
@@ -281,9 +281,9 @@ public class Principal implements Initializable {
 	
 	static VBox miMenuAdministrador(){
 		VBox mn = new VBox();
-		mn.setPrefWidth(150);
-            mn.setPrefHeight(150);
-            
+		mn.setPrefWidth(200);
+            mn.setPrefHeight(507);
+  
 		 padre = new TreeItem<String> ("La Roca 2");
 		 padre.setExpanded(true);
              

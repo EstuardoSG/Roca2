@@ -3,7 +3,7 @@ package controlador;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
+import controlador.Errores;
 import vista.ControladordeVentanas;
 import vista.IControladorVentanas;
 import modelo.RestaurarChecklist;
@@ -32,6 +32,7 @@ import javafx.scene.layout.BorderPane;
 
 public class CRestaurarChecklist implements Initializable, IControladorVentanas {
 
+	private Errores er;
 	private RestaurarChecklist ch;
 	private Customer cus;
 	private Motorcycle mc;
@@ -63,6 +64,7 @@ public class CRestaurarChecklist implements Initializable, IControladorVentanas 
 	}
 	
 	public CRestaurarChecklist(){
+		er = new Errores();
 		ch = new RestaurarChecklist();
 		cus = new Customer();
 		mc = new Motorcycle();
@@ -98,7 +100,7 @@ public class CRestaurarChecklist implements Initializable, IControladorVentanas 
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			lblRegistros.setText(datos.size() + " registros encontrados.");
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 			lblMensaje.setText("Se ha producido un error al recuperar los datos.");
 		}
 			
@@ -128,7 +130,7 @@ public class CRestaurarChecklist implements Initializable, IControladorVentanas 
 				}
 					
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 
@@ -154,7 +156,8 @@ public class CRestaurarChecklist implements Initializable, IControladorVentanas 
 			paginador.setPageFactory((Integer pagina) -> createPage(pagina));
 			lblMensaje.setText("Se encontraron " + datosBusqueda.size() + " coincidencias.");
 			}
-			catch(Exception ex){
+			catch(Exception e){
+				er.printLog(e.getMessage(), this.getClass().toString());
 				//Enviar mensaje
 				lblMensaje.setText("No se encontraron resultados");
 				filasXPagina=0;
