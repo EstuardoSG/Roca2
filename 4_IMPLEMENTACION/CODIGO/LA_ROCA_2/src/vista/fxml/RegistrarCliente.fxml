@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarCliente">
+   <children>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="191.0" prefHeight="109.0" prefWidth="830.0" text="Datos de ubicación">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="110.0" prefWidth="828.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="7.0" text="Domicilio:" />
+                  <TextField fx:id="txtDomicilio" layoutX="106.0" layoutY="2.0" />
+                  <TextField fx:id="txtNumeroInterior" layoutX="106.0" layoutY="30.0" />
+                  <Label layoutX="7.0" layoutY="33.0" text="Número Interior:" />
+                  <Label layoutX="7.0" layoutY="60.0" text="Número Exterior:" />
+                  <TextField fx:id="txtNumeroExterior" layoutX="106.0" layoutY="58.0" />
+                  <Label layoutX="272.0" layoutY="9.0" text="Calle:" />
+                  <TextField fx:id="txtCalle" layoutX="387.0" layoutY="2.0" />
+                  <Label layoutX="272.0" layoutY="35.0" text="Localidad:" />
+                  <TextField fx:id="txtLocalidad" layoutX="387.0" layoutY="30.0" />
+                  <Label layoutX="272.0" layoutY="60.0" text="Ciudad:" />
+                  <TextField fx:id="txtCiudad" layoutX="387.0" layoutY="58.0" />
+                  <Label layoutX="565.0" layoutY="6.0" text="Estado:" />
+                  <TextField fx:id="txtEstado" layoutX="672.0" layoutY="2.0" />
+                  <TextField fx:id="txtCodigoPostal" layoutX="672.0" layoutY="30.0" />
+                  <TextField fx:id="txtNumerodeCliente" layoutX="672.0" layoutY="58.0" />
+                  <Label layoutX="565.0" layoutY="33.0" text="Código Postal:" />
+                  <Label layoutX="565.0" layoutY="60.0" text="Número de Cliente:" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="79.0" prefHeight="109.0" prefWidth="830.0" text="Datos generales">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="828.0">
+               <children>
+                  <TextField fx:id="txtNombre" layoutX="107.0" layoutY="2.0" />
+                  <Label layoutX="7.0" layoutY="6.0" prefHeight="0.0" prefWidth="47.0" text="Nombre:" />
+                  <Label layoutX="7.0" layoutY="34.0" text="Nombre 2:" />
+                  <TextField fx:id="txtNombre2" layoutX="107.0" layoutY="30.0" />
+                  <Label layoutX="7.0" layoutY="62.0" text="Apellido Paterno:" />
+                  <TextField fx:id="txtApellidoPaterno" layoutX="107.0" layoutY="58.0" />
+                  <Label layoutX="272.0" layoutY="6.0" text="Apellido Materno:" />
+                  <TextField fx:id="txtApellidoMaterno" layoutX="387.0" layoutY="2.0" />
+                  <Label layoutX="272.0" layoutY="34.0" text="Teléfono" />
+                  <TextField fx:id="txtTelefono" layoutX="387.0" layoutY="30.0" />
+                  <Label layoutX="272.0" layoutY="62.0" text="Teléfono 2:" />
+                  <TextField fx:id="txtTelefono2" layoutX="387.0" layoutY="58.0" />
+                  <Label layoutX="565.0" layoutY="6.0" text="Celular:" />
+                  <TextField fx:id="txtCelular" layoutX="672.0" layoutY="2.0" />
+                  <Label layoutX="565.0" layoutY="34.0" text="Celular 2:" />
+                  <TextField fx:id="txtCelular2" layoutX="672.0" layoutY="30.0" />
+                  <CheckBox fx:id="chkClienteFrecuente" layoutX="672.0" layoutY="61.0" mnemonicParsing="false" />
+                  <Label layoutX="565.0" layoutY="62.0" text="Cliente frecuente:" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="302.0" prefHeight="297.0" prefWidth="830.0" text="Clientes registrados">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Pagination fx:id="paginador" layoutX="-1.0" layoutY="45.0" prefHeight="217.0" prefWidth="830.0" />
+                  <TableView fx:id="tvClientes" layoutX="36.0" layoutY="43.0" onMouseClicked="#click_TablaClientes" prefHeight="178.0" prefWidth="750.0">
+                    <columns>
+                      <TableColumn fx:id="tcNombre" prefWidth="150.0" text="Nombre" />
+                        <TableColumn fx:id="tcApellidoPaterno" prefWidth="150.0" text="Apellido Paterno" />
+                        <TableColumn fx:id="tcApellidoMaterno" prefWidth="150.0" text="Apellido Materno" />
+                        <TableColumn fx:id="tcTelefono" prefWidth="150.0" text="Teléfono" />
+                        <TableColumn fx:id="tcCelular" prefWidth="150.0" text="Celular" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="txtFiltro" layoutX="35.0" layoutY="10.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="172.0" />
+                  <Label layoutX="655.0" layoutY="237.0" text="Total:" />
+                  <Label fx:id="lblRegistros" layoutX="706.0" layoutY="236.0" text="0 Registro(s)">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="chkClientesEliminados" layoutX="75.0" layoutY="229.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#click_inactivos" text="Clientes eliminados" textAlignment="CENTER" />
+                  <Label fx:id="lblMensaje" layoutX="455.0" layoutY="14.0" prefHeight="17.0" prefWidth="333.0" />
+                  <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="211.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/zoom.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <ToolBar layoutY="29.0" prefHeight="50.0" prefWidth="850.0">
+         <items>
+            <Button fx:id="btnNuevo" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/nuevo.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="8.0" />
+            <Button fx:id="btnGuardar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="120.0" text="Guardar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/diskette.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#editar" prefHeight="40.0" prefWidth="120.0" text="Editar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/trash_can.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+         </items>
+      </ToolBar>
+      <Label alignment="CENTER" prefHeight="22.0" prefWidth="850.0" text="Clientes" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
