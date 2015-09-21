@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentaPartes">
+   <children>
+      <Label alignment="CENTER" prefHeight="22.0" prefWidth="850.0" text="Venta de refacciones">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
+      <ToolBar layoutY="29.0" prefHeight="50.0" prefWidth="850.0">
+         <items>
+            <Button fx:id="btnNuevo" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/nuevo.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnGuardar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="120.0" text="Guardar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/diskette.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/trash_can.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+         </items>
+      </ToolBar>
+      <TitledPane animated="false" collapsible="false" layoutY="81.0" prefHeight="518.0" prefWidth="215.0" text="Refacciones">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="txtBuscador" layoutX="32.0" layoutY="2.0" onAction="#buscador" />
+                  <ListView fx:id="lvVentaR" layoutX="7.0" layoutY="30.0" onMouseClicked="#seleccionar" prefHeight="460.0" prefWidth="200.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="220.0" layoutY="81.0" prefHeight="518.0" prefWidth="630.0" text="Reparación">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id="cbReparacion" layoutX="91.0" layoutY="2.0" prefWidth="150.0" />
+                  <TextField fx:id="txtIVA" editable="false" layoutX="404.0" layoutY="2.0" />
+                  <TextField fx:id="txtPrecio" editable="false" layoutX="404.0" layoutY="31.0" />
+                  <TextField fx:id="txtCantidad" layoutX="404.0" layoutY="59.0" />
+                  <Button fx:id="btnAgregar" layoutX="567.0" layoutY="72.0" mnemonicParsing="false" onAction="#agregar" prefHeight="40.0" prefWidth="40.0">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Iconos/checkmark.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <TableView fx:id="tvVentaR" layoutX="14.0" layoutY="119.0" prefHeight="330.0" prefWidth="600.0">
+                    <columns>
+                      <TableColumn fx:id="tcRefaccion" prefWidth="120.0" text="Refacción" />
+                      <TableColumn fx:id="tcPrecio" prefWidth="120.0" text="Precio" />
+                        <TableColumn fx:id="tcSubtotal" prefWidth="120.0" text="Subtotal" />
+                        <TableColumn fx:id="tcCantidad" prefWidth="120.0" text="Cantidad" />
+                        <TableColumn fx:id="tcEliminar" prefWidth="120.0" text="Eliminar" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="335.0" layoutY="6.0" text="I.V.A:" />
+                  <Label layoutX="335.0" layoutY="35.0" text="Precio:" />
+                  <Label layoutX="335.0" layoutY="63.0" text="Cantidad:" />
+                  <Label layoutX="11.0" layoutY="6.0" text="Reparación:" />
+                  <Label layoutX="412.0" layoutY="459.0" text="Total:" />
+                  <TextField fx:id="txtTotal" layoutX="465.0" layoutY="455.0" />
+                  <Label layoutX="11.0" layoutY="33.0" text="Refacción:" />
+                  <TextField fx:id="txtRefaccion" editable="false" layoutX="92.0" layoutY="31.0" />
+                  <Label layoutX="11.0" layoutY="64.0" text="Existencia:" />
+                  <TextField fx:id="txtExistencia" editable="false" layoutX="92.0" layoutY="60.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>
