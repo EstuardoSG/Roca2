@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CheckList">
+   <children>
+      <ToolBar layoutY="29.0" prefHeight="50.0" prefWidth="850.0">
+         <items>
+            <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/nuevo.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnGuardar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#guardar" prefHeight="40.0" prefWidth="120.0" text="Guardar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/diskette.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#editar" prefHeight="40.0" prefWidth="120.0" text="Editar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/trash_can.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+         </items>
+      </ToolBar>
+      <Label alignment="CENTER" prefHeight="22.0" prefWidth="850.0" text="Lista de comprobación">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font>
+      </Label>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="81.0" prefHeight="55.0" prefWidth="830.0" text="Datos del cliente">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="69.0" prefWidth="828.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="4.0" text="Cliente:" />
+                  <ComboBox fx:id="cbCliente" layoutX="53.0" prefHeight="25.0" prefWidth="300.0" />
+                  <Button fx:id="btnAgregarC" layoutX="362.0" mnemonicParsing="false" onAction="#clickCliente" prefHeight="29.0" prefWidth="34.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Iconos/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Label layoutX="490.0" layoutY="4.0" text="Motocicleta:" />
+                  <ComboBox fx:id="cbMotocicleta" layoutX="563.0" prefWidth="150.0" />
+                  <Button layoutX="724.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="34.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/Iconos/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="138.0" prefHeight="112.0" prefWidth="830.0" text="Lista de comprobación">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="98.0" prefWidth="828.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="6.0" text="Gasolina:" />
+                  <TextField fx:id="txtGasolina" layoutX="114.0" layoutY="2.0" />
+                  <Label layoutX="7.0" layoutY="34.0" text="Luces:" />
+                  <TextField fx:id="txtLuces" layoutX="114.0" layoutY="30.0" />
+                  <Label layoutX="7.0" layoutY="64.0" text="Espejo Izquierdo:" />
+                  <TextField fx:id="txtEspejoIzquierdo" layoutX="114.0" layoutY="58.0" />
+                  <Label layoutX="278.0" layoutY="6.0" text="Espejo Derecho:" />
+                  <TextField fx:id="txtEspejoDerecho" layoutX="400.0" layoutY="2.0" />
+                  <Label layoutX="278.0" layoutY="34.0" text="Llanta Delantera:" />
+                  <TextField fx:id="txtLlantaDelantera" layoutX="400.0" layoutY="30.0" />
+                  <Label layoutX="278.0" layoutY="64.0" text="Llanta Trasera:" />
+                  <TextField fx:id="txtLlantaTrasera" layoutX="400.0" layoutY="58.0" />
+                  <Label layoutX="557.0" layoutY="34.0" text="Fallas:" />
+                  <TextArea fx:id="txtaFallas" layoutX="589.0" layoutY="2.0" prefHeight="81.0" prefWidth="235.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="252.0" prefHeight="90.0" prefWidth="830.0" text="Diagnóstico">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="24.0" text="Diagnóstico:" />
+                  <TextArea fx:id="txtaDiagnostico" layoutX="84.0" layoutY="2.0" prefHeight="60.0" prefWidth="548.0" />
+                  <TextField fx:id="txtFecha" editable="false" layoutX="649.0" layoutY="20.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="344.0" prefHeight="255.0" prefWidth="830.0" text="Tabla">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="189.0" prefWidth="828.0">
+               <children>
+                  <TextField fx:id="txtFiltro" layoutX="39.0" layoutY="10.0" onKeyPressed="#buscarTexto" prefHeight="25.0" prefWidth="172.0" />
+                  <Pagination fx:id="paginador" layoutX="38.0" layoutY="42.0" prefHeight="190.0" prefWidth="752.0" />
+                  <TableView fx:id="tvCheckList" layoutX="39.0" layoutY="43.0" onMouseClicked="#click_TablaCheckList" prefHeight="148.0" prefWidth="750.0">
+                    <columns>
+                      <TableColumn fx:id="tcCliente" prefWidth="150.0" text="Cliente" />
+                      <TableColumn fx:id="tcMotocicleta" prefWidth="100.0" text="Motocicleta" />
+                        <TableColumn fx:id="tcFallas" prefWidth="250.0" text="Falla(s)" />
+                        <TableColumn fx:id="tcDiagnostico" prefWidth="250.0" text="Diagnóstico" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="655.0" layoutY="198.0" text="Total:" />
+                  <Label fx:id="lblRegistros" layoutX="702.0" layoutY="198.0" text="0 Registro(s)">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="chkListadeComprobacionesEliminadas" layoutX="52.0" layoutY="198.0" mnemonicParsing="false" onMouseClicked="#click_inactivos" text="Lista de comprobaciones eliminadas" />
+                  <Label fx:id="lblMensaje" layoutX="432.0" layoutY="14.0" prefHeight="17.0" prefWidth="357.0" />
+                  <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="216.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/zoom.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>
