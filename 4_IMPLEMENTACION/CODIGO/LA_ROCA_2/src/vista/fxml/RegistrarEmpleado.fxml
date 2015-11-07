@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,12 +9,12 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarEmpleado">
    <children>
-      <Label alignment="CENTER" contentDisplay="TOP" layoutY="-1.0" prefHeight="31.0" prefWidth="850.0" text="Registro de empleados">
+      <Label alignment="CENTER" contentDisplay="TOP" layoutY="-1.0" prefHeight="22.0" prefWidth="850.0" text="Registro de empleados">
          <font>
-            <Font name="Arial" size="20.0" />
+            <Font name="Arial Black" size="20.0" />
          </font>
       </Label>
-      <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="94.0" prefHeight="132.0" prefWidth="825.0" text="Datos generales">
+      <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="80.0" prefHeight="132.0" prefWidth="825.0" text="Datos generales">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="153.0" prefWidth="278.0">
                <children>
@@ -39,7 +40,7 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="233.0" prefHeight="138.0" prefWidth="825.0" text="Datos de ubicación">
+      <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="214.0" prefHeight="138.0" prefWidth="825.0" text="Datos de ubicación">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="536.0">
                <children>
@@ -63,7 +64,7 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="377.0" prefHeight="71.0" prefWidth="825.0" text="Perfil de usuario">
+      <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="354.0" prefHeight="71.0" prefWidth="825.0" text="Perfil de usuario">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="59.0" prefWidth="823.0">
                <children>
@@ -77,30 +78,67 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <ToolBar layoutY="30.0" prefHeight="57.0" prefWidth="850.0">
+      <ToolBar layoutY="28.0" prefHeight="50.0" prefWidth="850.0">
         <items>
-            <Button fx:id="btnNuevoRegistroEmpleado" mnemonicParsing="false" onAction="#registrarNuevoEmpleado" prefHeight="48.0" prefWidth="152.0" text="Nuevo registro" />
+            <Button fx:id="btnNuevoRegistroEmpleado" mnemonicParsing="false" onAction="#registrarNuevoEmpleado" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/nuevo.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
-          <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarEmpleado" prefHeight="48.0" prefWidth="152.0" text="Guardar" />
+          <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarEmpleado" prefHeight="40.0" prefWidth="120.0" text="Guardar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/diskette.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
-            <Button fx:id="btnActualizarEmpleado" mnemonicParsing="false" onAction="#actualizarEmpleado" prefHeight="48.0" prefWidth="152.0" text="Actualizar" />
+            <Button fx:id="btnActualizarEmpleado" mnemonicParsing="false" onAction="#actualizarEmpleado" prefHeight="40.0" prefWidth="120.0" text="Editar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
-            <Button fx:id="btnEliminarEmpleado" mnemonicParsing="false" onAction="#eliminarEmpleado" prefHeight="48.0" prefWidth="152.0" text="Eliminar" />
+            <Button fx:id="btnEliminarEmpleado" mnemonicParsing="false" onAction="#eliminarEmpleado" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/trash_can.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="1.0" />
             <Label text="(*)Datos obligatorios" />
         </items>
       </ToolBar>
-      <TableView fx:id="TableEmpleado" layoutX="14.0" layoutY="471.0" onMouseClicked="#click_TablaEmpleados" prefHeight="100.0" prefWidth="825.0">
-        <columns>
-          <TableColumn fx:id="tcNombre" prefWidth="150.0" text="Nombre" />
-          <TableColumn fx:id="tcApellidoPaterno" prefWidth="150.0" text="Apellido Paterno" />
-            <TableColumn fx:id="tcApellidoMaterno" prefWidth="150.0" text="Apellido Materno" />
-            <TableColumn fx:id="tcCorreo" prefWidth="180.0" text="Correo" />
-            <TableColumn fx:id="tcDireccion" prefWidth="191.0" text="Dirección" />
-        </columns>
-      </TableView>
-      <Label fx:id="lblMensajeEmpleado" layoutX="14.0" layoutY="578.0" prefHeight="17.0" prefWidth="183.0" />
-      <Label fx:id="lblFechaRegistro" layoutX="664.0" layoutY="578.0" prefHeight="17.0" prefWidth="172.0" />
+      <Label fx:id="lblMensajeEmpleado" layoutX="659.0" layoutY="570.0" prefHeight="17.0" prefWidth="183.0" />
       <Label fx:id="lblNotificacionesEmpleados" layoutX="14.0" layoutY="448.0" />
+      <TitledPane animated="false" collapsible="false" layoutX="13.0" layoutY="427.0" prefHeight="138.0" prefWidth="825.0" text="Tabla">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="123.0" prefWidth="823.0">
+               <children>
+                  <TableView fx:id="TableEmpleado" onMouseClicked="#click_TablaEmpleados" prefHeight="113.0" prefWidth="825.0">
+                     <columns>
+                        <TableColumn fx:id="tcNombre" prefWidth="150.0" text="Nombre" />
+                        <TableColumn fx:id="tcApellidoPaterno" prefWidth="150.0" text="Apellido Paterno" />
+                        <TableColumn fx:id="tcApellidoMaterno" prefWidth="150.0" text="Apellido Materno" />
+                        <TableColumn fx:id="tcCorreo" prefWidth="180.0" text="Correo" />
+                        <TableColumn fx:id="tcDireccion" prefWidth="193.0" text="Dirección" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Label fx:id="lblFechaRegistro" layoutX="665.0" layoutY="578.0" prefHeight="17.0" prefWidth="172.0" />
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,12 +9,12 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarServicios">
    <children>
-      <Label alignment="CENTER" contentDisplay="BOTTOM" layoutY="-1.0" prefHeight="33.0" prefWidth="850.0" text="Registro de servicios" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="BOTTOM" layoutY="-1.0" prefHeight="22.0" prefWidth="850.0" text="Registro de servicios" textAlignment="CENTER">
          <font>
-            <Font name="Arial Bold" size="20.0" />
+            <Font name="Arial Black" size="20.0" />
          </font>
       </Label>
-      <TitledPane animated="false" collapsible="false" layoutX="12.0" layoutY="101.0" prefHeight="89.0" prefWidth="826.0" text="Información del servicio">
+      <TitledPane animated="false" collapsible="false" layoutX="12.0" layoutY="79.0" prefHeight="89.0" prefWidth="826.0" text="Información del servicio">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="118.0" prefWidth="824.0">
                <children>
@@ -23,15 +24,14 @@
                   <Label layoutX="306.0" layoutY="14.0" text="Precio1" />
                   <Label layoutX="533.0" layoutY="14.0" text="Precio2" />
                   <TextField fx:id="txtPrecio2Servicio" layoutX="584.0" layoutY="10.0" />
-                  <Label layoutX="14.0" layoutY="41.0" text="*Todos los campos son obligatorios" />
                </children>
             </AnchorPane>
         </content>
       </TitledPane>
-      <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="202.0" prefHeight="384.0" prefWidth="826.0" text="Servicios disponibles">
+      <TitledPane animated="false" collapsible="false" layoutX="12.0" layoutY="170.0" prefHeight="395.0" prefWidth="826.0" text="Servicios disponibles">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"> <children>
-                  <TableView fx:id="tableServicios" layoutX="19.0" layoutY="31.0" onMouseClicked="#click_TablaServicios" prefHeight="298.0" prefWidth="786.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="367.0" prefWidth="824.0"> <children>
+                  <TableView fx:id="tableServicios" layoutX="19.0" layoutY="14.0" onMouseClicked="#click_TablaServicios" prefHeight="349.0" prefWidth="786.0">
                     <columns>
                       <TableColumn fx:id="tcNombreServicio" prefWidth="523.0" text="Nombre" />
                       <TableColumn fx:id="tcPrecio1Servicio" minWidth="0.0" prefWidth="149.0" text="Precio 1" />
@@ -44,15 +44,43 @@
             </AnchorPane>
         </content>
       </TitledPane>
-      <ToolBar layoutX="12.0" layoutY="34.0" prefHeight="48.0" prefWidth="826.0">
+      <ToolBar layoutY="28.0" prefHeight="50.0" prefWidth="850.0">
          <items>
-            <Button fx:id="btnNuevoServicio" mnemonicParsing="false" onAction="#nuevoServicio" prefHeight="48.0" prefWidth="153.0" text="Nuevo servicio" />
-            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
-            <Button fx:id="btnGuardarServicio" mnemonicParsing="false" onAction="#guardarServicio" prefHeight="48.0" prefWidth="152.0" text="Guardar" />
-            <Separator orientation="VERTICAL" prefHeight="45.0" prefWidth="4.0" />
-            <Button fx:id="btnActualizarServicio" mnemonicParsing="false" onAction="#actualizarServicio" prefHeight="48.0" prefWidth="152.0" text="Actualizar" />
-            <Separator orientation="VERTICAL" prefHeight="45.0" prefWidth="2.0" />
-            <Button fx:id="btnEstatusServicio" mnemonicParsing="false" onAction="#eliminarServicio" prefHeight="48.0" prefWidth="152.0" text="Eliminar" />
+            <Button fx:id="btnNuevoServicio" mnemonicParsing="false" onAction="#nuevoServicio" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/nuevo.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="21.0" prefWidth="5.0" />
+            <Button fx:id="btnGuardarServicio" mnemonicParsing="false" onAction="#guardarServicio" prefHeight="40.0" prefWidth="120.0" text="Guardar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/diskette.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnActualizarServicio" mnemonicParsing="false" onAction="#actualizarServicio" prefHeight="40.0" prefWidth="120.0" text="Editar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="8.0" prefWidth="7.0" />
+            <Button fx:id="btnEstatusServicio" mnemonicParsing="false" onAction="#eliminarServicio" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/trash_can.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
          </items>
       </ToolBar>

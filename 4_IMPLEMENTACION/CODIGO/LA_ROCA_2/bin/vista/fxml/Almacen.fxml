@@ -30,20 +30,20 @@
                   </ImageView>
                </graphic></Button>
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
-            <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#click_eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
-               <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Iconos/trash_can.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
             <Button fx:id="btnEditar" alignment="BOTTOM_RIGHT" layoutX="73.0" layoutY="13.0" mnemonicParsing="false" onAction="#click_actualizar" prefHeight="40.0" prefWidth="120.0" text="Editar">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Iconos/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button fx:id="btnEliminar" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#click_eliminar" prefHeight="40.0" prefWidth="120.0" text="Eliminar">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Iconos/trash_can.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -54,15 +54,6 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="123.0" prefWidth="830.0">
                <children>
-                  <TextField fx:id="txtNombre" layoutX="74.0" layoutY="28.0" />
-                  <TextField fx:id="txtModelo" layoutX="74.0" layoutY="54.0" />
-                  <TextField fx:id="txtPrecio1" layoutX="366.0" layoutY="2.0" />
-                  <TextField fx:id="txtPrecio2" layoutX="366.0" layoutY="28.0" />
-                  <Label layoutX="7.0" layoutY="6.0" text="Marca" />
-                  <Label layoutX="7.0" layoutY="32.0" text="Nombre:" />
-                  <Label layoutX="7.0" layoutY="59.0" text="Modelo:" />
-                  <Label layoutX="290.0" layoutY="6.0" text="Precio 1:" />
-                  <Label layoutX="290.0" layoutY="32.0" text="Precio 2:" />
                   <ComboBox fx:id="cbMarca" layoutX="74.0" layoutY="2.0" prefHeight="25.0" prefWidth="149.0" />
                   <Button fx:id="btnMas" layoutX="223.0" mnemonicParsing="false" onAction="#click_mas" prefHeight="29.0" prefWidth="34.0">
                      <graphic>
@@ -72,10 +63,19 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
+                  <TextField fx:id="txtNombre" layoutX="74.0" layoutY="28.0" />
+                  <TextField fx:id="txtModelo" layoutX="74.0" layoutY="54.0" />
+                  <TextField fx:id="txtPrecio1" layoutX="366.0" layoutY="2.0" />
+                  <TextField fx:id="txtPrecio2" layoutX="366.0" layoutY="28.0" />
+                  <Label layoutX="7.0" layoutY="6.0" text="Marca" />
+                  <Label layoutX="7.0" layoutY="32.0" text="Nombre:" />
+                  <Label layoutX="7.0" layoutY="59.0" text="Modelo:" />
+                  <Label layoutX="290.0" layoutY="6.0" text="Precio 1:" />
+                  <Label layoutX="290.0" layoutY="32.0" text="Precio 2:" />
                   <Label layoutX="565.0" layoutY="6.0" text="Stock Máximo:" />
                   <Label layoutX="283.0" layoutY="58.0" text="Stock Mínimo:" />
-                  <TextField fx:id="txtStockmax" layoutX="647.0" layoutY="2.0" />
                   <TextField fx:id="txtStockmin" layoutX="366.0" layoutY="54.0" />
+                  <TextField fx:id="txtStockmax" layoutX="647.0" layoutY="2.0" />
                </children>
             </AnchorPane>
         </content>

@@ -145,7 +145,6 @@ public class IniciarSesion implements Initializable, IControladorVentanas {
 	public void click_Accion(){
 	//	stage=MainRoca2.getPrimaryStage();	
 		dialogAcceso();
-		
 		if(ButtonData.OK_DONE != null){
 			if(username.getText().isEmpty()==false & password.getText().isEmpty()==false){
 				if(modeloUsuario == null){
@@ -169,6 +168,8 @@ public class IniciarSesion implements Initializable, IControladorVentanas {
 				}
 			}
 		}
+		username.setText("");
+		password.setText("");
 	}
 		
 	

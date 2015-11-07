@@ -44,7 +44,6 @@ public class CRestaurarEmpleado implements Initializable, IControladorVentanas {
 	@FXML TextField txtBuscar;
 	@FXML Button btnRestaurar;
 	@FXML Label lblRegistros,lblMensaje;
-	
 	@FXML TableView<RestaurarEmpleado> tvPEmpleado;
 	@FXML TableColumn<RestaurarEmpleado, String> tcNombre, tcApellidoPaterno, tcApellidoMaterno,tcCelular,tcTelefono;
 	
@@ -79,6 +78,7 @@ public class CRestaurarEmpleado implements Initializable, IControladorVentanas {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 			llenarTableView(true);
+			btnRestaurar.setDisable(true);
 	}
 	
 	// #region metodos_paginacion
@@ -172,6 +172,7 @@ public class CRestaurarEmpleado implements Initializable, IControladorVentanas {
 			//TextField
 			idc = re.getIdempleado();
 			txtBuscar.setText(re.getNombre1());
+			btnRestaurar.setDisable(false);
 			//ComboBox
 		}
 	}

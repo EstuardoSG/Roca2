@@ -9,6 +9,7 @@ import vista.IControladorVentanas;
 import modelo.Brand;
 import modelo.Employee;
 import modelo.Motocicleta;
+import modelo.Reportes;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -31,6 +32,7 @@ import javafx.scene.layout.BorderPane;
 
 public class RegistrarMotocicleta implements Initializable, IControladorVentanas{
 	
+	private Reportes re;
 	private ControladordeVentanas ventanas;
 	private ControladorVentana ventana;
 	private Motocicleta m;
@@ -53,10 +55,10 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 	@FXML Label lblRegistros, lblMensaje, lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7, lbl8;
 	@FXML TextField txtModelo, txtMotor, txtColor, txtFiltro, txtFecha;
 	@FXML TextArea txtaDescripciondelaMotocicleta;
-	@FXML Button btnGuardar, btnEditar, btnEliminar, btnBuscar, btnNuevo, btnMarca;
+	@FXML Button btnGuardar, btnEditar, btnEliminar, btnBuscar, btnNuevo, btnMarca, btnReporte;
 	@FXML ComboBox<Employee> cbEmpleado;
 	@FXML ComboBox<Brand>  cbMarca;
-	@FXML CheckBox chkPlacas, chkMotocicletasEliminadas;
+	@FXML CheckBox chkPlacas, chkMotocicletasEliminadas, chkActivos, chkEliminados;
 	@FXML TableView<Motocicleta> tvMotocicletas;
 	@FXML TableColumn<Motocicleta, String> tcMarca, tcModelo, tcColor, tcFecha, tcEmpleado;
 	
@@ -67,6 +69,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 		er = new Errores();
 		datos = FXCollections.observableArrayList();
 		filasXPagina=10;
+		re = new Reportes();
 	}
 	public void initialize(URL location, ResourceBundle resources) {
 			try {
@@ -331,6 +334,22 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 				}
 			}
 		}
+	
+	@FXML public void reporte(){
+		if(chkActivos.isSelected()){
+			re.cargarReporte("src/vista/reportes/MotocicletasActivo.jrxml");
+			re.mostrarReporte();
+		}
+		if(chkEliminados.isSelected()){
+			re.cargarReporte("src/vista/reportes/MotocicletasInactivo.jrxml");
+			re.mostrarReporte();
+		}
+		else{
+			lblMensaje.setText("Selecciona una opción");
+		}
+		chkEliminados.setSelected(false);
+		chkActivos.setSelected(false);
+	}
 	
 	@Override
 	public void setVentanaPrincipal(ControladordeVentanas screenParent) {

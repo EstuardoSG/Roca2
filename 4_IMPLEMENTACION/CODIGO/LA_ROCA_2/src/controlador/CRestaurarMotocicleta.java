@@ -68,6 +68,7 @@ public class CRestaurarMotocicleta implements Initializable, IControladorVentana
 	public void initialize(URL location, ResourceBundle resources) {
 			//try {
 				llenarTableView(true);
+				btnRestaurar.setDisable(true);
 			//} catch (SQLException e) {
 				//e.printStackTrace();
 			//}
@@ -112,6 +113,7 @@ public class CRestaurarMotocicleta implements Initializable, IControladorVentana
 			rm =  tvPMotocicleta.getSelectionModel().getSelectedItem();
 			id = rm.getIdmotocicleta();
 			txtBuscar.setText(rm.getModelo().toString());
+			btnRestaurar.setDisable(false);
 		}
 	}
 	

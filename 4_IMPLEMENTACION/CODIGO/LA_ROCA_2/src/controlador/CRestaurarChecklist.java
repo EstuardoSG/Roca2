@@ -61,6 +61,7 @@ public class CRestaurarChecklist implements Initializable, IControladorVentanas 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 			llenarTableView(true);
+			btnRestaurar.setDisable(true);
 	}
 	
 	public CRestaurarChecklist(){
@@ -111,6 +112,7 @@ public class CRestaurarChecklist implements Initializable, IControladorVentanas 
 			ch =  tvPChecklist.getSelectionModel().getSelectedItem();
 			id = ch.getIdchecklist();
 			txtBuscar.setText(ch.getCus().toString());
+			btnRestaurar.setDisable(false);
 		}
 	}
 

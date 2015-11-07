@@ -9,6 +9,7 @@ import vista.IControladorVentanas;
 import modelo.Check;
 import modelo.Customer;
 import modelo.Motorcycle;
+import modelo.Reportes;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -35,7 +36,7 @@ public class CheckList implements Initializable, IControladorVentanas {
 	private Customer cus;
 	private Motorcycle mc;
 	private Errores er;
-	
+	private Reportes re;
 	private ControladordeVentanas ventanas;
 	
 	public int id;
@@ -54,10 +55,10 @@ public class CheckList implements Initializable, IControladorVentanas {
 	@FXML Label lblRegistros, lblMensaje;
 	@FXML TextField txtGasolina, txtLuces, txtEspejoIzquierdo, txtEspejoDerecho, txtLlantaDelantera, txtLlantaTrasera, txtFiltro, txtFecha;
 	@FXML TextArea txtaFallas, txtaDiagnostico;
-	@FXML Button btnGuardar, btnEditar, btnEliminar, btnBuscar, btnAgregarC;
+	@FXML Button btnGuardar, btnEditar, btnEliminar, btnBuscar, btnAgregarC, btnReporte;
 	@FXML ComboBox<Customer> cbCliente;
 	@FXML ComboBox<Motorcycle> cbMotocicleta;
-	@FXML CheckBox chkListadeComprobacionesEliminadas;
+	@FXML CheckBox chkListadeComprobacionesEliminadas, chkActivo, chkEliminados;
 	@FXML TableView<Check> tvCheckList;
 	@FXML TableColumn<Check, String> tcCliente, tcMotocicleta, tcFallas, tcDiagnostico;
 	
@@ -79,6 +80,7 @@ public class CheckList implements Initializable, IControladorVentanas {
 		er = new Errores();
 		datos = FXCollections.observableArrayList();
 		filasXPagina=10;
+		re = new Reportes();
 	}
 	
 	private Node createPage(int pageIndex) {
@@ -289,6 +291,21 @@ public class CheckList implements Initializable, IControladorVentanas {
 		}*/
 	}
 	
+	@FXML public void reporte(){
+		if(chkActivo.isSelected()){
+			re.cargarReporte("src/vista/reportes/CheckListActivo.jrxml");
+			re.mostrarReporte();
+		}
+		if(chkEliminados.isSelected()){
+			re.cargarReporte("src/vista/reportes/CheckListInactivo.jrxml");
+			re.mostrarReporte();
+		}
+		else{
+			lblMensaje.setText("Selecciona una opción");
+		}
+		chkEliminados.setSelected(false);
+		chkActivo.setSelected(false);
+	}
 	@Override
 	public void setVentanaPrincipal(ControladordeVentanas screenParent) {
 		 ventanas = screenParent;

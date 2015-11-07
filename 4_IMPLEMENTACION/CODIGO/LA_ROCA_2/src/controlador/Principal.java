@@ -54,7 +54,7 @@ public class Principal implements Initializable {
     private static TreeItem<String> tiRegistrar;
     private static TreeItem<String> tiReparacion;
     private static TreeItem<String> tiRestaurarContacto;
-    
+    private static TreeItem<String> tiVentaPartes;
     
 	 public static TreeView<String> tvMenu;
 
@@ -163,6 +163,7 @@ public class Principal implements Initializable {
 	   */
      tiAlmacen = new TreeItem<String>("Almacén");
      tiProveedor = new TreeItem<String> ("Proveedor");
+     tiVentaPartes = new TreeItem<String>("Venta");
      tiProveedor.getChildren().add(new TreeItem<String>("Contacto"));
      tiCompra = new TreeItem<String>("Compra");
      
@@ -185,6 +186,7 @@ public class Principal implements Initializable {
              padre.getChildren().add(tiRegistrar);
              padre.getChildren().add(tiReparacion);
              padre.getChildren().add(tiProveedor);
+             padre.getChildren().add(tiVentaPartes);
 		    
 	     tvMenu = new TreeView<String> (padre);        
 	 
@@ -218,6 +220,10 @@ public class Principal implements Initializable {
                                        contenedor.loadScreen(Principal.ventanaCompra, Principal.fxmlCompra);
                                       contenedor.setScreen(Principal.ventanaCompra);        
                                       break;
+                                   case "Venta":
+                                	   contenedor.loadScreen(Principal.ventanaVP, Principal.fxmlVP);
+                                	   contenedor.setScreen(Principal.ventanaVP);
+                                	   break;
                             }
                         case "Proveedor":
                        	 switch(pulsoSobre){
@@ -296,6 +302,8 @@ public class Principal implements Initializable {
      tiProveedor = new TreeItem<String> ("Proveedor");
      tiProveedor.getChildren().add(new TreeItem<String>("Contacto"));
      
+     tiVentaPartes = new TreeItem<String>("Venta");
+     
      tiRegistrar = new TreeItem<String> ("Registrar");
      tiRegistrar.getChildren().add(new TreeItem<String>("Cliente"));
      tiRegistrar.getChildren().add(new TreeItem<String> ("Motocicleta"));
@@ -325,6 +333,8 @@ public class Principal implements Initializable {
              padre.getChildren().add(tiProveedor);
              padre.getChildren().add(tiRespaldo);
              padre.getChildren().add(tiRestaurarContacto);
+             padre.getChildren().add(tiVentaPartes);
+    		 
 		 
 		    
 	     tvMenu = new TreeView<String> (padre);        
@@ -366,6 +376,10 @@ public class Principal implements Initializable {
                             	   contenedor.loadScreen(Principal.ventanaCompra, Principal.fxmlCompra);
                                contenedor.setScreen(Principal.ventanaCompra);
                                break;
+                               case "Venta":
+                            	   contenedor.loadScreen(Principal.ventanaVP, Principal.fxmlVP);
+                            	   contenedor.setScreen(Principal.ventanaVP);
+                              break;
                             }
                         case "Proveedor":
                        	 switch(pulsoSobre){

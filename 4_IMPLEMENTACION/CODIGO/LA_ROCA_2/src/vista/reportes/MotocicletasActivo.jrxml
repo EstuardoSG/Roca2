@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-11-06T18:20:13 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Motocicletas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="578c9893-1fae-445e-961c-f7e1a40fc7d7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="bWFyY2EgQVMgLDI0MSwxMDgsYWI3MGJlMDMtYzE1My00YTAzLWFmY2UtNTczNmJkZmI5YWY0O21v&#xA;dG9jaWNsZXRhIEFTICw0MywxNjEsMTg5YjU5NDEtNzEyNS00MWE5LWI1MWEtMzUxNTFlNDE1MjM5Ow=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Adapter-Roca2"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<queryString>
+		<![CDATA[SELECT motocicleta.modelo,
+	motocicleta.motor,
+	motocicleta.color,
+	motocicleta.placa,
+	motocicleta.fechahoraregistro,
+	motocicleta.activo,
+	marca.nombre
+FROM motocicleta
+	INNER JOIN marca ON 
+	 motocicleta.idmarca = marca.idmarca
+	 where motocicleta.activo = '1']]>
+	</queryString>
+	<field name="modelo" class="java.lang.String"/>
+	<field name="motor" class="java.lang.String"/>
+	<field name="color" class="java.lang.String"/>
+	<field name="placa" class="java.lang.Boolean"/>
+	<field name="fechahoraregistro" class="java.sql.Timestamp"/>
+	<field name="nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="133" y="10" width="295" height="55" uuid="43fcc428-b81f-43ff-80a2-5a65d36364a3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="26" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[LA ROCA 2]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement x="194" y="0" width="173" height="18" uuid="f12f9a9c-8c76-4d9a-bd0e-dbe0b8abfdbb"/>
+				<textElement>
+					<font fontName="Arial" size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Motocicletas activas]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="460" y="0" width="115" height="17" uuid="8d2d20cf-950e-4c6d-8c6d-0e900527d23a"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="60" height="20" uuid="ee73bf24-bc6d-47e4-b014-c9024934b72f"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="10" width="70" height="20" uuid="87cc4a15-daa9-4344-aeb9-94a63c1a8814"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="10" width="60" height="20" uuid="10cd7843-73ea-44e8-8240-da2185d8cd61"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="10" width="60" height="20" uuid="5885bb2e-7ede-4575-a92c-43dd3024f739"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Color]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="10" width="100" height="20" uuid="beff4d83-365e-42f6-8ab1-3536e20b7843"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Registro]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="60" height="20" uuid="4ea5bb15-1fa8-41e9-b116-a781ee4779c8"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="242" y="1" width="70" height="20" uuid="9390a8d2-4bef-47c2-a081-9ef746646f95"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{motor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="3" width="60" height="20" uuid="1320a2a2-4e3d-4474-b8a2-233bc09cc969"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="3" width="60" height="20" uuid="124917d7-e982-4c0b-9b60-c2ca85a01337"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="3" width="100" height="16" uuid="1508189a-4658-4ae6-8c29-f7f803c89810"/>
+				<textFieldExpression><![CDATA[$F{fechahoraregistro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="430" y="7" width="100" height="17" uuid="8ad08c2c-cda7-40f9-9e8e-5bbdd82df66d"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Motos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="524" y="7" width="124" height="17" uuid="e3d763d9-f80a-4123-bf57-ca6f06aeac7b"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="17" width="100" height="14" uuid="42f09232-0720-4851-becb-007007cf4146"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Elaborado por CEJA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="475" y="17" width="100" height="14" uuid="b853c244-0be5-4c11-9d1b-9f12f4a3884f"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="430" y="17" width="45" height="14" uuid="d22c9ffe-1993-4abe-849d-bb5cc90f0e05"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="444" y="2" width="100" height="15" uuid="08babb4d-2708-47aa-88da-053b998b565f"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Total de Registros:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="536" y="2" width="108" height="18" uuid="36c0fc2c-71ea-4f51-b615-f6925002d151"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

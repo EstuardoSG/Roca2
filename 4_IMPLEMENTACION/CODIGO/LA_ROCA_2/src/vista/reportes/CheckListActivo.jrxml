@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-11-06T18:48:07 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Check" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="23013ac9-937c-48ae-a778-4058522ae31e">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="bW90b2NpY2xldGEgQVMgLDIxOCwwLGVhNjMzNTQ2LWRlOGMtNDViYy1iOGI1LTMwNjFiZjc4ZDVk&#xA;ZDtjaGVja2xpc3QgQVMgLDAsMTAwLDZhNTM1NWQxLThhNTMtNGVlZi1hZjllLWUyMDNlYmJjOWNk&#xA;ZjtjbGllbnRlIEFTICwzOTIsMTIxLGJiNjUxYmE1LWI4NmItNGE2NS05Mzg1LWIxODdjNzkzODk4&#xA;NjttYXJjYSBBUyAsMzgsMCw0YzJmNmNiOC1hZjdlLTQ1MDgtYTI4My1iODJhNTNlNGUyOWY7"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Adapter-Roca2"/>
+	<queryString>
+		<![CDATA[SELECT marca.nombre,
+	checklist.activo,
+	checklist.fechahoraregistro,
+	cliente.nombre1,
+	cliente.nombre2,
+	cliente.apellidopaterno,
+	cliente.apellidomaterno,
+	motocicleta.modelo,
+	motocicleta.motor,
+	motocicleta.color
+FROM checklist
+	INNER JOIN cliente ON 
+	 checklist.idcliente = cliente.idcliente 
+	INNER JOIN motocicleta ON 
+	 checklist.idmotocicleta = motocicleta.idmotocicleta 
+	INNER JOIN marca ON 
+	 motocicleta.idmarca = marca.idmarca 
+	 where checklist.activo = '1']]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="activo" class="java.lang.Boolean"/>
+	<field name="fechahoraregistro" class="java.sql.Timestamp"/>
+	<field name="nombre1" class="java.lang.String"/>
+	<field name="nombre2" class="java.lang.String"/>
+	<field name="apellidopaterno" class="java.lang.String"/>
+	<field name="apellidomaterno" class="java.lang.String"/>
+	<field name="modelo" class="java.lang.String"/>
+	<field name="motor" class="java.lang.String"/>
+	<field name="color" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="270" y="10" width="295" height="55" uuid="5946b165-94a1-4ebf-a288-7b0acde9cd25"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="26" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[LA ROCA 2]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="338" y="0" width="165" height="18" uuid="08b54328-11b5-4871-a120-0baa983e95e8"/>
+				<textElement>
+					<font fontName="Arial" size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de CheckList activos]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="690" y="0" width="115" height="17" uuid="d51d98cb-9a2b-4cf7-86ee-e2e22da72c87"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="720" y="0" width="100" height="20" uuid="a6b06659-1f88-4e3b-afaf-7d42345a95be"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de registro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="20" uuid="86c9664d-67e0-42c1-b6d1-35c640f3ca5e"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="545" y="0" width="47" height="20" uuid="9fdc0305-6158-4dfb-9682-bb8a612cb8a6"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="50" height="20" uuid="2e922b3c-a12e-4bd7-b92f-1f785e53ccf2"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="90" height="20" uuid="d096d3dd-1041-4a9a-b109-0b00e296e216"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido Materno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="640" y="0" width="40" height="20" uuid="75fad824-4da2-4eef-9e69-4684ccf1f2dc"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Color]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="0" width="60" height="20" uuid="e054bfe8-fe47-4c79-b1d6-8c824ca9a792"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="0" width="50" height="20" uuid="374676e3-457a-4d33-9b1c-6b583ec009a1"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="90" height="20" uuid="bc687e14-8ef1-401a-9e7d-c016f72364c5"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido Paterno]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="170" y="0" width="90" height="20" uuid="933d620d-d8ae-4df1-a55e-18c4cb44a7cb"/>
+				<textFieldExpression><![CDATA[$F{apellidopaterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="60" height="20" uuid="71c440a0-cf87-4365-98d0-3dd4af7f22b0"/>
+				<textFieldExpression><![CDATA[$F{nombre1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="640" y="0" width="50" height="20" uuid="144b0be0-0542-40db-9ec0-899ba4c00b59"/>
+				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="0" width="60" height="20" uuid="3e5a2a2d-0d95-48ed-948a-db74acdb5e71"/>
+				<textFieldExpression><![CDATA[$F{nombre2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="60" height="20" uuid="3149ae54-e54c-4cd9-b9ab-6773ddefdf47"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="90" height="20" uuid="14fb65a3-2fee-47f5-92e6-f27a836c3632"/>
+				<textFieldExpression><![CDATA[$F{apellidomaterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="60" height="20" uuid="f0e7cfd1-6e2b-49e0-a62a-7299a823f8fb"/>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="550" y="0" width="57" height="20" uuid="475926ef-5cf9-47eb-9017-7c571bec0433"/>
+				<textFieldExpression><![CDATA[$F{motor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="720" y="0" width="100" height="20" uuid="bd3f5791-fc94-48b1-bf64-d7b589412241"/>
+				<textFieldExpression><![CDATA[$F{fechahoraregistro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="580" y="5" width="115" height="17" uuid="f7e33e4c-31cb-4f40-b4dc-1e859c8225dd"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de CheckList:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="698" y="5" width="124" height="17" uuid="e1667496-668d-4814-a064-2a2b65f28f55"/>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="720" y="10" width="100" height="14" uuid="e8969e0c-0d34-4393-927f-dd152c7562cc"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="351" y="10" width="100" height="14" uuid="659c4288-1b66-4d8c-99c4-6e01d0ed1a8c">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Elaborado por CEJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="675" y="10" width="45" height="14" uuid="b3da9584-488e-4e23-b9e0-1b33ef68b022"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="714" y="10" width="108" height="18" uuid="fb780a14-164e-4c33-8e9c-80b721b9396e"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="607" y="10" width="100" height="15" uuid="808eec33-f891-4877-bd1f-83907d30b207"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Total de Registros:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

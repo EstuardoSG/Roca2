@@ -18,6 +18,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 //import javafx.scene.control.ComboBox;
@@ -55,6 +56,7 @@ public class CRestaurarAlmacen implements Initializable, IControladorVentanas {
 	@FXML TableView<RestaurarAlmacen> tvPAlmacen;
 	@FXML TextField txtBuscar;
 	@FXML Label lblMensaje, lblRegistros;
+	@FXML Button btnRestaurar;
 
 
 	// #region Variables_Paginacion
@@ -77,6 +79,7 @@ public class CRestaurarAlmacen implements Initializable, IControladorVentanas {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 			llenarTableView(true);
+			btnRestaurar.setDisable(true);
 	}
 	
 	// #region metodos_paginacion
@@ -170,6 +173,7 @@ public class CRestaurarAlmacen implements Initializable, IControladorVentanas {
 			//TextField
 			idc = ra.getIdrefaccionalmacen();
 			txtBuscar.setText(ra.getNombre());
+			btnRestaurar.setDisable(false);
 			//ComboBox
 		}
 	}

@@ -4,21 +4,19 @@ import modelo.Company;
 import modelo.RestaurarC;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import controlador.Errores;
 import vista.ControladordeVentanas;
 import vista.IControladorVentanas;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 //import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
@@ -55,6 +53,7 @@ public class RestaurarContacto implements Initializable, IControladorVentanas {
 	@FXML TextField txtBuscar;
 	@FXML Label lblMensaje, lblRegistros;
 	@FXML CheckBox ckbEliminados;
+	@FXML Button btnRestaurar;
 	//@FXML ComboBox<Company> cbEmpresa;
 
 
@@ -81,6 +80,7 @@ public class RestaurarContacto implements Initializable, IControladorVentanas {
 			//cbEmpresa.setItems(p.getCompany());
 			//Enlazar Columnas
 			llenarTableView(true);
+			btnRestaurar.setDisable(true);
 		//}catch (SQLException e){
 			//e.printStackTrace();
 		//};
@@ -178,6 +178,7 @@ public class RestaurarContacto implements Initializable, IControladorVentanas {
 			idc = c.getIdProveedorContacto();
 			ide = c. getIdproveedor();
 			txtBuscar.setText(c.getNombre());
+			btnRestaurar.setDisable(false);
 			//ComboBox
 		}
 	}

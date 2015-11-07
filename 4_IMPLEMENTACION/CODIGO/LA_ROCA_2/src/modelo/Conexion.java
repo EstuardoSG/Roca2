@@ -24,7 +24,7 @@ public class Conexion {
 		puerto = "5432";
 		bd = "Roca2";
 		usuario = "postgres";
-		contrasenia = "root";
+		contrasenia = "12345";
 		servidor = "jdbc:postgresql://localhost:5432/";
 		con = null;
 		er = new Errores();

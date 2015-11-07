@@ -2,8 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="extfx-0.3.jar"/>
-	<classpathentry kind="lib" path="javafx-dialogs-0.0.4.jar"/>
-	<classpathentry kind="lib" path="postgresql-9.4-1201.jdbc4.jar"/>
+	<classpathentry kind="lib" path="jar/porstgres/postgresql-9.4-1201.jdbc4.jar"/>
+	<classpathentry kind="lib" path="jar/javafx/javafx-dialogs-0.0.4.jar"/>
+	<classpathentry kind="lib" path="jar/extfx-0.3.jar"/>
+	<classpathentry kind="lib" path="jar/jasper/commons-beanutils-1.8.2.jar"/>
+	<classpathentry kind="lib" path="jar/jasper/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="jar/jasper/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="jar/jasper/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="jar/jasper/groovy-all-1.8.6.jar"/>
+	<classpathentry kind="lib" path="jar/jasper/itext-2.1.7.jar"/>
+	<classpathentry kind="lib" path="jar/jasper/jasperreports-4.8.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -136,12 +136,15 @@
                      </font>
                   </Label>
                   <CheckBox fx:id="chkListadeComprobacionesEliminadas" layoutX="52.0" layoutY="198.0" mnemonicParsing="false" onMouseClicked="#click_inactivos" text="Lista de comprobaciones eliminadas" />
-                  <Label fx:id="lblMensaje" layoutX="432.0" layoutY="14.0" prefHeight="17.0" prefWidth="357.0" />
+                  <Label fx:id="lblMensaje" layoutX="247.0" layoutY="13.0" prefHeight="17.0" prefWidth="357.0" />
                   <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="216.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Iconos/zoom.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="btnReporte" layoutX="618.0" layoutY="10.0" mnemonicParsing="false" onAction="#reporte" text="Reporte" />
+                  <CheckBox fx:id="chkActivo" layoutX="711.0" layoutY="2.0" mnemonicParsing="false" text="Activo" />
+                  <CheckBox fx:id="chkEliminados" layoutX="712.0" layoutY="22.0" mnemonicParsing="false" text="Eliminados" />
                </children>
             </AnchorPane>
         </content>

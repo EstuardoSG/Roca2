@@ -64,7 +64,7 @@ public class CRestaurarCliente<Clientes> implements Initializable, IControladorV
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			llenarTableView(true);
-			
+			btnRestaurar.setDisable(true);
 		} catch (Exception e) {
 			er.printLog(e.getMessage(), this.getClass().toString());
 		}
@@ -109,6 +109,7 @@ public class CRestaurarCliente<Clientes> implements Initializable, IControladorV
 			c = tvPCliente.getSelectionModel().getSelectedItem();
 			id = c.getIdcliente();
 			txtBuscar.setText(c.getNombre1().toString());
+			btnRestaurar.setDisable(false);
 		}
 	}
 
