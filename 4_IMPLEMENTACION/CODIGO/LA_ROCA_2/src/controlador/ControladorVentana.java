@@ -2,8 +2,12 @@ package controlador;
 
 
 
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -15,7 +19,7 @@ public class ControladorVentana {
 	/*
 	 * Atributos.
 	 */
-	
+	private Errores er;
 	private IniciarSesion is;
 	private Principal pr;
 	private static ControladorVentana ventanas;
@@ -29,15 +33,20 @@ public class ControladorVentana {
 	 * Constructor privado.
 	 */
 	
-	private ControladorVentana(){
-		is = new IniciarSesion();
+	ControladorVentana(){
+		er = new Errores();
+		try {
+			pr = new Principal();
+		} catch (IOException e) {
+			er.printLog(e.getMessage(), this.getClass().toString());
+		}
 	}
 	
 	/*
 	 * Recuperar la Instancia de la clase.
 	 */
 	
-	public static ControladorVentana getInstancia(){
+	public static  ControladorVentana getInstancia(){
 		if(ventanas == null){
 			ventanas = new ControladorVentana();
 		}
@@ -58,8 +67,8 @@ public class ControladorVentana {
 		try{
 			FXMLLoader interfaz = new FXMLLoader(getClass().getResource(ruta));
 			contenedorDialog = (BorderPane)interfaz.load();
-			contenedorDialog.setLeft(Principal.miMenuAdministrador());
-		    contenedorDialog.setCenter(Principal.contenedor);
+			contenedorDialog.setLeft(pr.miMenuAdministrador());
+		    contenedorDialog.setCenter(pr.contenedor);
 			 escenarioAdministrador = MainRoca2.getPrimaryStage();
 			escenarioAdministrador.setTitle(titulo);
 			escena = new Scene(contenedorDialog);
@@ -68,7 +77,7 @@ public class ControladorVentana {
 			escenarioAdministrador.show();
 			
 		}catch(Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -77,8 +86,8 @@ public class ControladorVentana {
 			
 			FXMLLoader interfaz = new FXMLLoader(getClass().getResource(ruta));
 			contenedorDialog = (BorderPane)interfaz.load();
-			contenedorDialog.setLeft(Principal.miMenuEmpleado());
-		    contenedorDialog.setCenter(Principal.contenedor);
+			contenedorDialog.setLeft(pr.miMenuEmpleado());
+		    contenedorDialog.setCenter(pr.contenedor);
 		    escenarioEmpleado= MainRoca2.getPrimaryStage();
 		    escenarioEmpleado.setTitle(titulo);
 			escena = new Scene(contenedorDialog);
@@ -87,7 +96,7 @@ public class ControladorVentana {
 			escenarioEmpleado.show();
 			
 		}catch(Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -103,7 +112,7 @@ public class ControladorVentana {
 			dialogEscenario.show();
 			
 		}catch(Exception e){
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 	
@@ -120,7 +129,7 @@ public class ControladorVentana {
 			modalEscenario.centerOnScreen();
 			modalEscenario.show();
 		} catch (Exception e) {
-			e.printStackTrace();
+			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 	}
 }

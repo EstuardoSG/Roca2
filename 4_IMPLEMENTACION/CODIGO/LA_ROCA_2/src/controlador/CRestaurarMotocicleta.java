@@ -1,17 +1,14 @@
 package controlador;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import controlador.Errores;
 import vista.ControladordeVentanas;
 import vista.IControladorVentanas;
 import modelo.Brand;
-import modelo.Employee;
-import modelo.Motocicleta;
+import modelo.Empleado;
 import modelo.RestaurarMotocicleta;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -19,13 +16,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
@@ -36,7 +30,7 @@ public class CRestaurarMotocicleta implements Initializable, IControladorVentana
 	private ControladordeVentanas ventanas;
 	private ControladorVentana ventana;
 	private RestaurarMotocicleta rm;
-	private Employee em;
+	private Empleado em;
 	private Brand br;
 	public int id;
 	public int getId() {
@@ -60,7 +54,7 @@ public class CRestaurarMotocicleta implements Initializable, IControladorVentana
 	public CRestaurarMotocicleta(){
 		er = new Errores();
 		rm = new RestaurarMotocicleta();
-		em = new Employee();
+		em = new Empleado();
 		br = new Brand();
 		datos = FXCollections.observableArrayList();
 		filasXPagina=10;

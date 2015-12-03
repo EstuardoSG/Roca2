@@ -182,7 +182,7 @@ public class Empleado {
 	public ObservableList<Empleado> getEmpleado() throws SQLException{
 		ResultSet rs = null;
 		try {
-			String sql  ="select idempleado,nombre1,nombre2,apellidopaterno,apellidomaterno,telefono1,telefono2,celular1,celular2,domicilio,numerointerior,numeroexterior,calle,localidad,ciudad,estado,codigopostal,correo,usuario,contrasenia,privilegio,fechaingreso,fechadesalida from empleados where estatus = '1'";
+			String sql  ="select idempleado,nombre1,nombre2,apellidopaterno,apellidomaterno,telefono1,telefono2,celular1,celular2,domicilio,numerointerior,numeroexterior,calle,localidad,ciudad,estado,codigopostal,correo,usuario,contrasenia,privilegio,fechaingreso,fechadesalida from empleados where estatus = '1'  and privilegio = 'Empleado'";
 			con.conectar();
 			PreparedStatement comando = con.getConexion().prepareStatement(sql);
 			rs= comando.executeQuery();

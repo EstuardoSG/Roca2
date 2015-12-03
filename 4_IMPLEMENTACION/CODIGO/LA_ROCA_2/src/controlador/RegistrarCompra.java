@@ -8,7 +8,6 @@ import vista.ControladordeVentanas;
 import vista.IControladorVentanas;
 import modelo.Compra;
 import modelo.Empleado;
-import modelo.Employee;
 import modelo.Provider;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -194,7 +193,8 @@ public void llenarTableViewEstatus(Boolean estatus){
 	}
 	
 	@FXML public void nuevo(){
-		
+		chbPedidosCancelados.setSelected(false);
+		chbPedidosRealizados.setSelected(false);
 	}
 	@FXML public void guardar(){
 		limpiarLbl();
@@ -283,6 +283,7 @@ public void llenarTableViewEstatus(Boolean estatus){
 			btnEliminar.setDisable(true);
 			llenarTableViewEstatus(false);
 			limpiarLbl();
+			chbPedidosCancelados.setSelected(false);
 		}else{
 			llenarTableViewActual(true);
 		btnGuardar.setDisable(true);
@@ -297,6 +298,7 @@ public void llenarTableViewEstatus(Boolean estatus){
 				btnEliminar.setDisable(true);
 				llenarTableViewActivo(false);
 				limpiarLbl();
+				chbPedidosRealizados.setSelected(false);
 			}else{
 				llenarTableViewActual(true);
 			btnGuardar.setDisable(true);

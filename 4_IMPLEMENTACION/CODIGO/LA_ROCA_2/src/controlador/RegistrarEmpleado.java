@@ -52,13 +52,17 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 	//***************************************************************************************************
 	//CONTROLES-BOTONES
 	
-	public void registrarNuevoEmpleado(){
+	@FXML public void registrarNuevoEmpleado(){
 		TableEmpleado.getSelectionModel().clearSelection();
 		limpiarFormulario();
+		btnGuardar.setDisable(false);
+		btnActualizarEmpleado.setDisable(true);
+		btnEliminarEmpleado.setDisable(true);
+		asignarDatosTabla();
 
 	}
 
-	public void guardarEmpleado(){
+	@FXML public void guardarEmpleado(){
 		if(txtNombre.getText().isEmpty()  || 
 				txtApellidoPaterno.getText().isEmpty() || txtApellidoMaterno.getText().isEmpty() ||
 				txtDomicilio.getText().isEmpty() || txtNumeroExterior.getText().isEmpty() || 
@@ -106,7 +110,7 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 		}
 	}
 	
-	public void actualizarEmpleado(){
+	@FXML public void actualizarEmpleado(){
 		
 		identificador = Integer.valueOf(e.getIdempleado());
 		try{
@@ -150,7 +154,7 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 			}
 		
 		}catch(Exception ex){
-			ex.printStackTrace();
+			er.printLog(ex.getMessage(), this.getClass().toString());
 		}
 	}
 		@FXML public void eliminarEmpleado(){
@@ -202,6 +206,9 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 			pwdContrasenia.setText(e.getContrasenia().toString());
 			lblFechaRegistro.setText("Fecha de ingreso: "+e.getFechaingreso());
 		}
+		btnActualizarEmpleado.setDisable(false);
+		btnEliminarEmpleado.setDisable(false);
+		btnGuardar.setDisable(true);
 
 	}
 	
@@ -260,6 +267,8 @@ public class RegistrarEmpleado implements Initializable, IControladorVentanas {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		filtrarEmpleados();
+		btnActualizarEmpleado.setDisable(true);
+		btnEliminarEmpleado.setDisable(true);
 	}
 	
 	@Override

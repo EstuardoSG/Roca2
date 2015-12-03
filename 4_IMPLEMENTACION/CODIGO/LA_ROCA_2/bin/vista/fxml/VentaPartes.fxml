@@ -44,12 +44,12 @@
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
          </items>
       </ToolBar>
-      <TitledPane animated="false" collapsible="false" layoutY="81.0" prefHeight="518.0" prefWidth="215.0" text="Refacciones">
+      <TitledPane animated="false" collapsible="false" layoutY="81.0" prefHeight="259.0" prefWidth="215.0" text="Refacciones">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="213.0">
                <children>
-                  <TextField fx:id="txtBuscador" layoutX="32.0" layoutY="2.0" onAction="#buscador" />
-                  <ListView fx:id="lvVentaR" layoutX="7.0" layoutY="30.0" onMouseClicked="#seleccionar" prefHeight="460.0" prefWidth="200.0" />
+                  <TextField fx:id="txtBuscadorRefacciones" layoutX="7.0" layoutY="2.0" onKeyPressed="#buscadorRefacciones" />
+                  <ListView fx:id="lvVentaR" layoutX="7.0" layoutY="30.0" onMouseClicked="#seleccionarRefaccion" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </AnchorPane>
         </content>
@@ -58,11 +58,15 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ComboBox fx:id="cbReparacion" layoutX="91.0" layoutY="2.0" prefWidth="150.0" />
-                  <TextField fx:id="txtIVA" editable="false" layoutX="404.0" layoutY="2.0" />
-                  <TextField fx:id="txtPrecio" editable="false" layoutX="404.0" layoutY="31.0" />
-                  <TextField fx:id="txtCantidad" layoutX="404.0" layoutY="59.0" />
-                  <Button fx:id="btnAgregar" layoutX="567.0" layoutY="72.0" mnemonicParsing="false" onAction="#agregar" prefHeight="40.0" prefWidth="40.0">
+                  <Button fx:id="btnBuscar" layoutX="292.0" layoutY="2.0" mnemonicParsing="false" onAction="#buscar" prefHeight="25.0" prefWidth="35.0" text="..." />
+                  <ComboBox fx:id="cbReparacion" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="198.0" />
+                  <TextField fx:id="txtRefaccion" editable="false" layoutX="140.0" layoutY="28.0" />
+                  <TextField fx:id="txtExistencia" editable="false" layoutX="140.0" layoutY="54.0" />
+                  <TextField fx:id="txtPrecio" editable="false" layoutX="404.0" layoutY="2.0" />
+                  <TextField fx:id="txtIVA" editable="false" layoutX="404.0" layoutY="29.0" />
+                  <TextField fx:id="txtCantidad" layoutX="404.0" layoutY="56.0" />
+                  <CheckBox fx:id="chkPrecio" layoutX="556.0" layoutY="6.0" mnemonicParsing="false" text="precio 2" />
+                  <Button fx:id="btnAgregar" layoutX="560.0" layoutY="35.0" mnemonicParsing="false" onAction="#agregar" prefHeight="40.0" prefWidth="40.0">
                      <graphic>
                         <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -70,28 +74,40 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <TableView fx:id="tvVentaR" layoutX="14.0" layoutY="119.0" prefHeight="330.0" prefWidth="600.0">
+                  <TableView fx:id="tvVentaR" layoutX="14.0" layoutY="85.0" prefHeight="364.0" prefWidth="600.0">
                     <columns>
-                      <TableColumn fx:id="tcRefaccion" prefWidth="120.0" text="Refacción" />
+                      <TableColumn fx:id="tcRefaccion" prefWidth="120.0" text="Refacción/Servicio" />
                       <TableColumn fx:id="tcPrecio" prefWidth="120.0" text="Precio" />
                         <TableColumn fx:id="tcSubtotal" prefWidth="120.0" text="Subtotal" />
                         <TableColumn fx:id="tcCantidad" prefWidth="120.0" text="Cantidad" />
                         <TableColumn fx:id="tcEliminar" prefWidth="120.0" text="Eliminar" />
                     </columns>
                   </TableView>
-                  <Label layoutX="335.0" layoutY="6.0" text="I.V.A:" />
-                  <Label layoutX="335.0" layoutY="35.0" text="Precio:" />
-                  <Label layoutX="335.0" layoutY="63.0" text="Cantidad:" />
-                  <Label layoutX="11.0" layoutY="6.0" text="Reparación:" />
-                  <Label layoutX="412.0" layoutY="459.0" text="Total:" />
-                  <TextField fx:id="txtTotal" layoutX="465.0" layoutY="455.0" />
-                  <Label layoutX="11.0" layoutY="33.0" text="Refacción:" />
-                  <TextField fx:id="txtRefaccion" editable="false" layoutX="92.0" layoutY="31.0" />
-                  <Label layoutX="11.0" layoutY="64.0" text="Existencia:" />
-                  <TextField fx:id="txtExistencia" editable="false" layoutX="92.0" layoutY="60.0" />
+                  <Label layoutX="335.0" layoutY="33.0" text="I.V.A:" />
+                  <Label layoutX="335.0" layoutY="6.0" text="Precio:" />
+                  <Label layoutX="335.0" layoutY="58.0" text="Cantidad:" />
+                  <Label layoutX="11.0" layoutY="6.0" text="Cliente:" />
+                  <Label layoutX="14.0" layoutY="459.0" text="Total:" />
+                  <TextField fx:id="txtTotal" editable="false" layoutX="46.0" layoutY="455.0" />
+                  <TextField fx:id="txtMonto" layoutX="262.0" layoutY="455.0" onKeyReleased="#habilitarGuardar" />
+                  <TextField fx:id="txtCambio" editable="false" layoutX="466.0" layoutY="455.0" />
+                  <Label layoutX="11.0" layoutY="33.0" text="Refacción/Servicio:" />
+                  <Label layoutX="11.0" layoutY="58.0" text="Existencia:" />
+                  <Label layoutX="220.0" layoutY="459.0" text="Monto:" />
+                  <Label layoutX="418.0" layoutY="459.0" text="Cambio:" />
                </children>
             </AnchorPane>
         </content>
+      </TitledPane>
+      <TitledPane animated="false" collapsible="false" layoutY="340.0" prefHeight="259.0" prefWidth="215.0" text="Servicios">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="213.0">
+               <children>
+                  <TextField fx:id="txtBuscadorServicios" layoutX="7.0" layoutY="2.0" onAction="#buscadorServicios" onKeyPressed="#buscadorServicios" />
+                  <ListView fx:id="lvVentaS" layoutX="7.0" layoutY="30.0" onMouseClicked="#seleccionarServicio" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </AnchorPane>
+         </content>
       </TitledPane>
    </children>
 </AnchorPane>

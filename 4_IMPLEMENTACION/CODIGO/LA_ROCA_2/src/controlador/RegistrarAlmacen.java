@@ -43,7 +43,7 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 	@FXML TextField txtBuscador, txtNombre, txtModelo, txtPrecio1, txtPrecio2, txtStockmin, txtStockmax, txtId;
 	@FXML Label lblMensaje;
 	@FXML CheckBox ckbInactivos;
-	@FXML Button btnGuardar, btnEliminar, btnEditar, btnBuscar, btnMas;
+	@FXML Button btnGuardar, btnEliminar, btnEditar, btnBuscar, btnMas, btnNuevo;
 	
 	private ControladorVentana ventana;
 	
@@ -61,10 +61,41 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 		datos = FXCollections.observableArrayList();
 		
 	}
+	 
+	 @Override
+		public void initialize(URL arg0, ResourceBundle arg1) {
+		 try{
+			cbMarca.setItems(l.getMarcaCombo());
+			//Enlazar columnas
+			//tenia l
+			tcMarca.setCellValueFactory(new PropertyValueFactory<Almacen, Integer>("l"));
+			tcNombre.setCellValueFactory(new PropertyValueFactory<Almacen, String>("nombre"));
+			tcModelo.setCellValueFactory(new PropertyValueFactory<Almacen, String>("modelo"));
+			tcPrecio1.setCellValueFactory(new PropertyValueFactory<Almacen, Float>("precio1"));
+			tcIva.setCellValueFactory(new PropertyValueFactory<Almacen, String>("iva"));
+			//Llenar TableView
+			llenarTableView(true);
+			btnEditar.setDisable(true);
+			btnEliminar.setDisable(true);
+	 } catch (SQLException e) {
+			e.printStackTrace();
+		};
+	}
+	 
 	
 	 
 	 //metodo para subir los datos del tableview a los textfield
 	 @FXML public void  click_TableView(){
+		 if(ckbInactivos.isSelected()){
+				btnGuardar.setDisable(true);
+				btnEliminar.setDisable(true);
+				btnEditar.setDisable(true);
+			}else{
+			btnGuardar.setDisable(true);
+			btnEliminar.setDisable(false);
+			btnEditar.setDisable(false);
+			}
+		 
 		 if (tvAlmacen.getSelectionModel().getSelectedItem()!= null) {
 			f = tvAlmacen.getSelectionModel().getSelectedItem();
 			//Textfield
@@ -76,12 +107,12 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 			txtStockmin.setText(f.getStockminimo().toString());
 			txtStockmax.setText(f.getStockmaximo().toString());
 			//ComboBox
-			 cbMarca.getSelectionModel().select(f.getL());
+			cbMarca.getSelectionModel().select(f.getL());
+		 }
 	 }
-}
 	 	//metodo paginacion
 	 
-		 private Node createPage(int pageIndex) {
+		private Node createPage(int pageIndex) {
 				if(filasXPagina>0){
 				   int fromIndex = pageIndex * filasXPagina;
 				   int toIndex = Math.min(fromIndex + filasXPagina, datosBusqueda.size());
@@ -164,25 +195,7 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 			ex.printStackTrace();
 			lblMensaje.setText("Se ha producido un error en el servidor");
 		}
-}
-	 
-	 @Override
-		public void initialize(URL arg0, ResourceBundle arg1) {
-		 try{
-			cbMarca.setItems(l.getMarcaCombo());
-			//Enlazar columnas
-			//tenia l
-			tcMarca.setCellValueFactory(new PropertyValueFactory<Almacen, Integer>("l"));
-			tcNombre.setCellValueFactory(new PropertyValueFactory<Almacen, String>("nombre"));
-			tcModelo.setCellValueFactory(new PropertyValueFactory<Almacen, String>("modelo"));
-			tcPrecio1.setCellValueFactory(new PropertyValueFactory<Almacen, Float>("precio1"));
-			tcIva.setCellValueFactory(new PropertyValueFactory<Almacen, String>("iva"));
-			//Llenar TableView
-			llenarTableView(true);
-	 } catch (SQLException e) {
-			e.printStackTrace();
-		};
-	}
+	 }
 	 
 	 //metodo para eliminar el registro seleccionado del tableview
 	 @FXML public void click_eliminar(){
@@ -234,17 +247,37 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 			else
 				lblMensaje.setText("Se ha producido un problema en el servidor.");
 			
-		}	
-	} catch (Exception e) {
-	}
-}
+			}	
+				} catch (Exception e) {
+			}
+		}
+		
+		@FXML public void nuevo(){
+			btnGuardar.setDisable(false);
+			btnEditar.setDisable(true);
+			btnEliminar.setDisable(true);
+			limpiar();
+			ckbInactivos.setSelected(false);
+			llenarTableView(true);
+		}
 		
 		//Método para mostrar los registros dados de baja.
 		@FXML public void click_inactivos(){
-			if(ckbInactivos.isSelected())
+			if(ckbInactivos.isSelected()){
 				llenarTableView(false);
+				btnEditar.setDisable(true);
+				btnEliminar.setDisable(true);
+				btnGuardar.setDisable(true);
+				limpiar();
+			}
 			else
+			{
 				llenarTableView(true);
+				btnEditar.setDisable(true);
+				btnEliminar.setDisable(true);
+				btnGuardar.setDisable(false);
+				limpiar();
+			}
 		}
 		
 		public void limpiar(){
@@ -257,6 +290,8 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 			txtPrecio2.clear();
 			txtStockmin.clear();
 			txtStockmax.clear();
+			cbMarca.setValue(null);
+			
 		}
 		
 		
@@ -279,12 +314,12 @@ public class RegistrarAlmacen implements Initializable, IControladorVentanas{
 		
 		//Método para incorporar otra marca.
 		@FXML public void click_mas(ActionEvent event){
-		
+			ventana = ControladorVentana.getInstancia();
+			ventana.modal("../vista/fxml/RegistrarMarca.fxml", "Registrar marca");
 		}
 		
 		@Override
 		public void setVentanaPrincipal(ControladordeVentanas screenParent) {
-			 ventanas = screenParent;
-			
+			 ventanas = screenParent;	
 		}
 }

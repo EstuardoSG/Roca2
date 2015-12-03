@@ -20,9 +20,10 @@ import javafx.collections.ObservableList;
 public class Servicios {
 	//***************************************************************************************************
 	//VARIABLES Y CONTROLES
-	private IntegerProperty idServicio;
+	private IntegerProperty idServicio, idReparacion;
+	private int  cantidad;
 	private StringProperty nombreServicio;
-	private FloatProperty precio1,precio2;
+	private FloatProperty precio1,precio2, subtotal;
 	private ObservableList<Servicios> servicios;
 	private Conexion con;
 	private Errores er;
@@ -93,7 +94,7 @@ public class Servicios {
 	}
 	//***************************************************************************************************
 	//OBSERVABLES
-	public ObservableList<Servicios> getServicios() throws SQLException{
+	public ObservableList<Servicios> getServicios(boolean activo) throws SQLException{
 		ResultSet rs = null;
 		try {
 			String sql  ="select idservicio,nombreservicio,precio1,precio2 from servicios where activo = '1'";
@@ -112,7 +113,6 @@ public class Servicios {
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
 			er.printLog(e.getMessage(), this.getClass().toString());
 		}
 		finally{
@@ -151,6 +151,30 @@ public class Servicios {
 	}
 	public void setPrecio2(FloatProperty precio2) {
 		this.precio2 = precio2;
+	}
+
+	public String toString() {
+		return nombreServicio.get();
+	}
+	public Float getSubtotal() {
+		return subtotal.get();
+	}
+	public void setSubtotal(FloatProperty subtotal) {
+		this.subtotal = subtotal;
+	}
+	
+	
+	public void setIdReparacion(IntegerProperty idReparacion) {
+		this.idReparacion = idReparacion;
+	}
+	public int getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(int i) {
+		this.cantidad = i;
+	}
+	public Integer getIdReparacion() {
+		return idReparacion.get();
 	}
 
 

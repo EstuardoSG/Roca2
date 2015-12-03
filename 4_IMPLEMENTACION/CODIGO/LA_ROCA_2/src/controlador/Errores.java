@@ -22,7 +22,7 @@ public class Errores {
 		BufferedWriter  bw= null;
 		try {
 			 // si no exite la Clase File Lo crea y doble diagonal para respete la diagonal, para ubicación
-			File archivo = new File("D:\\log.txt");
+			File archivo = new File("src/backup/log.txt");
 			// si no ponemos True borra lo anterior y guardara el ultimo error
 			pw = new FileWriter(archivo, true);
 			bw = new BufferedWriter(pw);

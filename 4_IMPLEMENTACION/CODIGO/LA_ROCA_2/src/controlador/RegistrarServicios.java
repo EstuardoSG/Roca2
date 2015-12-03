@@ -49,6 +49,9 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 	public void nuevoServicio(){
 		tableServicios.getSelectionModel().clearSelection();
 		limpiarFormulario();
+		btnGuardarServicio.setDisable(false);
+		btnActualizarServicio.setDisable(true);
+		btnEstatusServicio.setDisable(true);
 		
 	}
 	
@@ -130,6 +133,9 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 	//***************************************************************************************************
 	//FORMULARIOS Y TABLAS
 	@FXML public void  click_TablaServicios(){
+		btnGuardarServicio.setDisable(true);
+		btnActualizarServicio.setDisable(false);
+		btnEstatusServicio.setDisable(false);
 		 if (tableServicios.getSelectionModel().getSelectedItem()!= null) {
 			serviciosModelo = tableServicios.getSelectionModel().getSelectedItem();
 			//txtPrecio1Servicio.setAlignment(Pos.CENTER_RIGHT);
@@ -142,8 +148,8 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 	public void filtrarServicios(){
 		inicializarTabla();
 		try {
-			tableServicios.setItems(serviciosModelo.getServicios());
-			datosServicio = serviciosModelo.getServicios();
+			tableServicios.setItems(serviciosModelo.getServicios(true));
+			datosServicio = serviciosModelo.getServicios(true);
 		} catch (Exception e) {
 			er.printLog(e.getMessage(), this.getClass().toString());
 		}
@@ -158,6 +164,8 @@ public class RegistrarServicios implements Initializable, IControladorVentanas{
 	
 
 	public void inicializarTabla(){
+		btnActualizarServicio.setDisable(true);
+		btnEstatusServicio.setDisable(true);
 		tcNombreServicio.setCellValueFactory(new PropertyValueFactory<Servicios,String>("nombreServicio"));
 		tcPrecio1Servicio.setCellValueFactory(new PropertyValueFactory<Servicios, Float>("precio1"));
 		tcPrecio2Servicio.setCellValueFactory(new PropertyValueFactory<Servicios, Float>("precio2"));

@@ -18,8 +18,7 @@ public class Repair {
 
 	private Conexion con;
 	private IntegerProperty idreparacion;
-	private StringProperty nombre1;
-	
+	private StringProperty nombre1, apellidoPaterno, apellidoMaterno;
 
 	private Repair rep;
 	private Errores er;
@@ -29,7 +28,7 @@ public class Repair {
 	public Repair(){
 		con = Conexion.getInstancia();
 		 idreparacion = new SimpleIntegerProperty();
-		nombre1 = new SimpleStringProperty();
+		nombre1 = apellidoPaterno = apellidoMaterno = new SimpleStringProperty();
 		er = new Errores();
 	}
 
@@ -56,12 +55,29 @@ public class Repair {
 		this.nombre1 = nombre1;
 	}
 
+	public String getApellidoPaterno() {
+		return apellidoPaterno.get();
+	}
+	public void setApellidoPaterno(StringProperty apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
+	}
+
+
+	public String getApellidoMaterno() {
+		return apellidoMaterno.get();
+	}
+
+
+	public void setApellidoMaterno(StringProperty apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
+	}
+
 	
 	
 	public ObservableList<Repair> getRepair() throws SQLException{
 		ResultSet rs=null;
 		try {
-			String sql="select r.idreparacion, r.idchecklist, c.idcliente,l.nombre1,l.apellidopaterno, c.idmotocicleta,m.modelo, r.dejarefaccion, r.descripcionrefaccion, r.anticipo, r.dejallaves, r.descripcionllaves, r.fechadeentrega, r.activo from registroreparacion r join checklist c on r.idchecklist = c.idchecklist join cliente l on c.idcliente = l.idcliente join motocicleta m on c.idmotocicleta = m.idmotocicleta where r.activo = '1'";
+			String sql="select r.idreparacion, r.idchecklist, c.idcliente, l.nombre1, l.apellidopaterno, l.apellidomaterno, c.idmotocicleta,m.modelo, r.dejarefaccion, r.descripcionrefaccion, r.anticipo, r.dejallaves, r.descripcionllaves, r.fechadeentrega, r.activo from registroreparacion r join checklist c on r.idchecklist = c.idchecklist join cliente l on c.idcliente = l.idcliente join motocicleta m on c.idmotocicleta = m.idmotocicleta where r.activo = '1'";
 			con.conectar();
 			PreparedStatement comando = con.getConexion().prepareStatement(sql);
 			rs= comando.executeQuery();
@@ -69,8 +85,10 @@ public class Repair {
 			while(rs.next()){
 				Repair re = new Repair();
 				re.idreparacion.set(rs.getInt("idreparacion"));
-				re.nombre1.set(rs.getString("nombre1"));
-				
+				re.nombre1 = new SimpleStringProperty(rs.getString("nombre1"));
+				re.apellidoPaterno = new SimpleStringProperty(rs.getString("apellidopaterno"));
+				re.apellidoMaterno = new SimpleStringProperty(rs.getString("apellidomaterno"));
+
 				elementos.add(re); //Se agrega el objeto a la lista 
 			}		
 		} catch (Exception e) {
@@ -84,7 +102,8 @@ public class Repair {
 	}
 	
 	public String toString(){
-		return this.nombre1.getValue();
+		return nombre1.getValue() + " " + apellidoPaterno.getValue() + " " + apellidoMaterno.getValue();
+		
 	}
 	
 }

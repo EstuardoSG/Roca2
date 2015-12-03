@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainRoca2 extends Application {
@@ -24,9 +25,11 @@ public class MainRoca2 extends Application {
  			Scene scene = new Scene(root);
  			MainRoca2.primaryStage = primaryStage;
  			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+ 			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("images/trii.png")));
  			primaryStage.setTitle("Iniciar Sesión");
  			primaryStage.setScene(scene);
  			primaryStage.show();
+ 		
  		}catch(Exception e){
  			er.printLog(e.getMessage(), this.getClass().toString());
  		}

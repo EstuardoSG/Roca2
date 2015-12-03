@@ -12,9 +12,7 @@ import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.spec.SecretKeySpec;
 
-import controlador.Errores;
 import controlador.Respaldo;
-import javafx.collections.ObservableList;
 
 public class Backup {
 	
@@ -25,6 +23,7 @@ public class Backup {
 	private String algoritmo;
 	private File archivo,archivo_original;
 	private Respaldo r;
+	
 	public Backup(String algoritmo,String ruta){
 		this.algoritmo=algoritmo; 
 		this.archivo=new File(ruta); 

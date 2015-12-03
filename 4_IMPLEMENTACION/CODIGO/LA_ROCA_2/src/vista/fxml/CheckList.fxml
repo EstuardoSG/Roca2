@@ -10,7 +10,7 @@
    <children>
       <ToolBar layoutY="29.0" prefHeight="50.0" prefWidth="850.0">
          <items>
-            <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
+            <Button fx:id="btnNuevo" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#nuevo" prefHeight="40.0" prefWidth="120.0" text="Nuevo">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>

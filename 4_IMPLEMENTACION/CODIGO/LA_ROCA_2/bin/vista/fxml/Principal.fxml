@@ -28,7 +28,7 @@
       </AnchorPane>
    </top>
    <left>
-      <VBox prefHeight="507.0" prefWidth="200.0" stylesheets="@application.css" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="500.0" prefWidth="150.0" stylesheets="@application.css" BorderPane.alignment="CENTER" />
    </left>
    <center>
       <ImageView fitHeight="335.0" fitWidth="515.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">

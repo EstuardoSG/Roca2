@@ -68,6 +68,8 @@ public class CheckList implements Initializable, IControladorVentanas {
 			cbCliente.setItems(cus.getCustomer());
 			cbMotocicleta.setItems(mc.getMotorCycle());
 			llenarTableView(true);
+			btnEditar.setDisable(true);
+			btnEliminar.setDisable(true);
 		} catch (SQLException e) {
 			er.printLog(e.getMessage(), this.getClass().toString());
 		}
@@ -118,6 +120,15 @@ public class CheckList implements Initializable, IControladorVentanas {
 	}
 	
 	@FXML public void click_TablaCheckList(){
+		if(chkListadeComprobacionesEliminadas.isSelected()){
+			btnGuardar.setDisable(true);
+			btnEliminar.setDisable(true);
+			btnEditar.setDisable(true);
+		}else{
+		btnGuardar.setDisable(true);
+		btnEliminar.setDisable(false);
+		btnEditar.setDisable(false);
+		}
 		if(tvCheckList.getSelectionModel().getSelectedItem()!=null){
 			ch =  tvCheckList.getSelectionModel().getSelectedItem();
 			id = ch.getIdchecklist();
@@ -136,7 +147,14 @@ public class CheckList implements Initializable, IControladorVentanas {
 		}
 	}
 
-	
+	@FXML public void nuevo(){
+		btnEditar.setDisable(true);
+		btnEliminar.setDisable(true);
+		btnGuardar.setDisable(false);
+		llenarTableView(true);
+		limpiar();
+		
+	}
 	@FXML public void guardar(){
 		try {
 			if(txtGasolina.getText().trim().isEmpty() ||
@@ -239,16 +257,27 @@ public class CheckList implements Initializable, IControladorVentanas {
 		txtFecha.setText("");
 		txtaFallas.setText("");
 		txtaDiagnostico.setText("");
-		cbCliente.getSelectionModel().select(-1);
-		cbMotocicleta.getSelectionModel().select(-1);
+		cbCliente.setValue(null);
+		cbMotocicleta.setValue(null);
+		chkListadeComprobacionesEliminadas.setSelected(false);
+		chkActivo.setSelected(false);
+		chkEliminados.setSelected(false);
 			
 	}
 	
 	@FXML public void click_inactivos(){
-		if(chkListadeComprobacionesEliminadas.isSelected())
-			llenarTableView(false);
-		else
+		if(chkListadeComprobacionesEliminadas.isSelected()){
+			btnEditar.setDisable(true);
+			btnEliminar.setDisable(true);
+			btnGuardar.setDisable(true);
 			llenarTableView(true);
+		
+		}else{
+			btnEditar.setDisable(false);
+			btnEliminar.setDisable(false);
+			btnGuardar.setDisable(true);
+			llenarTableView(true);
+		}
 	}
 	@FXML public void buscarTexto(){
 	if(txtFiltro.getText().trim().isEmpty()){

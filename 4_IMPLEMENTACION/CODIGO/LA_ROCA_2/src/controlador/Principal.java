@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -21,6 +23,7 @@ public class Principal implements Initializable {
 	
 	private Errores er;
 	private ControladorVentana ventana;
+
 	
 	@FXML Button btnCerrarSesion;
 	
@@ -45,19 +48,19 @@ public class Principal implements Initializable {
 	  * Si el TreeItem el fxml tiene controlador añadir la interfaz
 	  */
 
-    private static TreeItem<String> tiRespaldo;
-    private static TreeItem<String> tiAlmacen;
-    private static TreeItem<String> tiProveedor;
-    private static TreeItem<String> tiCompra;
-    private static TreeItem<String> tiRegistrar;
-    private static TreeItem<String> tiReparacion;
-    private static TreeItem<String> tiRestaurarContacto;
-    private static TreeItem<String> tiVentaPartes;
-    
-	 public static TreeView<String> tvMenu;
+    private TreeItem<String> tiRespaldo;
+    private TreeItem<String> tiAlmacen;
+    private TreeItem<String> tiProveedor;
+    private TreeItem<String> tiCompra;
+    private TreeItem<String> tiRegistrar;
+    private TreeItem<String> tiReparacion;
+    private TreeItem<String> tiRestaurarContacto;
 
-	 static ControladordeVentanas contenedor = new ControladordeVentanas();
-	 static BorderPane plantilla =null;
+    
+    public  TreeView<String> tvMenu;
+
+	static ControladordeVentanas contenedor = new ControladordeVentanas();
+	BorderPane plantilla =null;
 	 
     /*
      * Paso 2# agregarle valores un nombre y la ruta del fxml.
@@ -148,33 +151,35 @@ public class Principal implements Initializable {
 
 	
 	
-	  static VBox miMenuEmpleado(){
+	 public VBox miMenuEmpleado(){
 		VBox mnu = new VBox();
 		mnu.setPrefWidth(200);
             mnu.setPrefHeight(507);
             
-		 padre = new TreeItem<String> ("La Roca 2");
-		 padre.setExpanded(true);
-             
-	  /*
-	   * Paso 4# Aqui se Inicializa los TreeItem del TreeView Dandole un nombre el cual aparecerá en la vista final del TreeView
-	   */
-     tiAlmacen = new TreeItem<String>("Almacén");
-     tiProveedor = new TreeItem<String> ("Proveedor");
-     tiVentaPartes = new TreeItem<String>("Venta");
-     tiProveedor.getChildren().add(new TreeItem<String>("Contacto"));
-     tiCompra = new TreeItem<String>("Compra");
-     
-     tiRegistrar = new TreeItem<String> ("Registrar");
-     tiRegistrar.getChildren().add(new TreeItem<String>("Cliente"));
-     tiRegistrar.getChildren().add(new TreeItem<String> ("Motocicleta"));
-     
-     tiReparacion = new TreeItem<String> ("Reparación");
-     tiReparacion.getChildren().add(new TreeItem<String>("CheckList"));
-    // tiReparacion.getChildren().add(new TreeItem<String>("Reparacion"));
-     tiReparacion.getChildren().add(new TreeItem<String>("Servicios"));
-    // tiReparacion.getChildren().add(new TreeItem<String>("Realizados"));
-     tiReparacion.getChildren().add(new TreeItem<String>("Refacción"));
+   		 padre = new TreeItem<String> ("La Roca 2", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/trii.png"))));
+   		 padre.setExpanded(true);
+                
+   	  /*
+   	   * Paso 4# Aqui se Inicializa los TreeItem del TreeView Dandole un nombre el cual aparecerá en la vista final del TreeView
+   	   */
+       
+        tiAlmacen = new TreeItem<String>("Almacén", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/almacens.png"))));
+        tiCompra = new TreeItem<String>("Compra", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/compras.png"))));
+        tiProveedor = new TreeItem<String> ("Proveedor", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/contacto.png"))));
+        tiProveedor.getChildren().add(new TreeItem<String>("Contacto", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/proveedor.png")))));
+        
+        
+        tiRegistrar = new TreeItem<String> ("Registrar", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/registrar.png"))));
+        tiRegistrar.getChildren().add(new TreeItem<String>("Cliente", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/cliente.png")))));
+        tiRegistrar.getChildren().add(new TreeItem<String> ("Motocicleta", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/moto.png")))));
+      
+        tiReparacion = new TreeItem<String> ("Reparación", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/reparacion.png"))));
+        tiReparacion.getChildren().add(new TreeItem<String>("CheckList", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/check.png")))));
+       // tiReparacion.getChildren().add(new TreeItem<String>("Reparacion"));
+        tiReparacion.getChildren().add(new TreeItem<String>("Servicios", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/fix.png")))));
+      //  tiReparacion.getChildren().add(new TreeItem<String>("Realizados"));
+        tiReparacion.getChildren().add(new TreeItem<String>("Refacción", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/bujia.png")))));
+        
 
 		 /*
 		  * Paso 5# Agregamos el TreeItem Inicializado.
@@ -184,7 +189,6 @@ public class Principal implements Initializable {
              padre.getChildren().add(tiRegistrar);
              padre.getChildren().add(tiReparacion);
              padre.getChildren().add(tiProveedor);
-             padre.getChildren().add(tiVentaPartes);
 		    
 	     tvMenu = new TreeView<String> (padre);        
 	 
@@ -211,17 +215,13 @@ public class Principal implements Initializable {
                                 *break;
                                 */
                                    case "Almacén":
-                                    contenedor.loadScreen(Principal.ventanaAlmacen, Principal.fxmlAlamcen);
+                                   contenedor.loadScreen(Principal.ventanaAlmacen, Principal.fxmlAlamcen);
                                    contenedor.setScreen(Principal.ventanaAlmacen);        
                                    break;
                                    case "Compra":
                                        contenedor.loadScreen(Principal.ventanaCompra, Principal.fxmlCompra);
                                       contenedor.setScreen(Principal.ventanaCompra);        
-                                      break;
-                                   case "Venta":
-                                	   contenedor.loadScreen(Principal.ventanaVP, Principal.fxmlVP);
-                                	   contenedor.setScreen(Principal.ventanaVP);
-                                	   break;
+                                   break;
                             }
                         case "Proveedor":
                        	 switch(pulsoSobre){
@@ -283,44 +283,43 @@ public class Principal implements Initializable {
 	}
 	
 	
-	static VBox miMenuAdministrador(){
+	public VBox miMenuAdministrador(){
 		VBox mn = new VBox();
 		mn.setPrefWidth(200);
             mn.setPrefHeight(507);
   
-		 padre = new TreeItem<String> ("La Roca 2");
+		 padre = new TreeItem<String> ("La Roca 2", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/trii.png"))));
 		 padre.setExpanded(true);
              
 	  /*
 	   * Paso 4# Aqui se Inicializa los TreeItem del TreeView Dandole un nombre el cual aparecerá en la vista final del TreeView
 	   */
-     tiRespaldo = new TreeItem<String> ("Respaldo"/*, new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/respaldo.png")))*/);
-     tiAlmacen = new TreeItem<String>("Almacén");
-     tiCompra = new TreeItem<String>("Compra");
-     tiProveedor = new TreeItem<String> ("Proveedor");
-     tiProveedor.getChildren().add(new TreeItem<String>("Contacto"));
+     tiRespaldo = new TreeItem<String> ("Respaldo", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/respaldo.png"))));
+     tiAlmacen = new TreeItem<String>("Almacén", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/almacens.png"))));
+     tiCompra = new TreeItem<String>("Compra", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/compras.png"))));
+     tiProveedor = new TreeItem<String> ("Proveedor", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/contacto.png"))));
+     tiProveedor.getChildren().add(new TreeItem<String>("Contacto", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/proveedor.png")))));
      
-     tiVentaPartes = new TreeItem<String>("Venta");
      
-     tiRegistrar = new TreeItem<String> ("Registrar");
-     tiRegistrar.getChildren().add(new TreeItem<String>("Cliente"));
-     tiRegistrar.getChildren().add(new TreeItem<String> ("Motocicleta"));
-     tiRegistrar.getChildren().add(new TreeItem<String> ("Empleado"));
+     tiRegistrar = new TreeItem<String> ("Registrar", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/registrar.png"))));
+     tiRegistrar.getChildren().add(new TreeItem<String>("Cliente", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/cliente.png")))));
+     tiRegistrar.getChildren().add(new TreeItem<String> ("Motocicleta", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/moto.png")))));
+     tiRegistrar.getChildren().add(new TreeItem<String> ("Empleado", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/empleado.png")))));
      
-     tiReparacion = new TreeItem<String> ("Reparación");
-     tiReparacion.getChildren().add(new TreeItem<String>("CheckList"));
+     tiReparacion = new TreeItem<String> ("Reparación", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/reparacion.png"))));
+     tiReparacion.getChildren().add(new TreeItem<String>("CheckList", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/check.png")))));
     // tiReparacion.getChildren().add(new TreeItem<String>("Reparacion"));
-     tiReparacion.getChildren().add(new TreeItem<String>("Servicios"));
+     tiReparacion.getChildren().add(new TreeItem<String>("Servicios", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/fix.png")))));
    //  tiReparacion.getChildren().add(new TreeItem<String>("Realizados"));
-     tiReparacion.getChildren().add(new TreeItem<String>("Refacción"));
+     tiReparacion.getChildren().add(new TreeItem<String>("Refacción", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/bujia.png")))));
      
-     tiRestaurarContacto = new TreeItem<String> ("Papelera");
-     tiRestaurarContacto.getChildren().add(new TreeItem<String>("Contactos"));
-     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Clientes"));
-     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Motocicletas"));
-     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Empleados"));
-     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Lista de comprobación"));
-     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Refacciones"));
+     tiRestaurarContacto = new TreeItem<String> ("Papelera", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/trash_can1.png"))));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String>("Contactos", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/papelera.png")))));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Clientes", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/papelera.png")))));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Motocicletas", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/papelera.png")))));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Empleados", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/papelera.png")))));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("CheckList", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/papelera.png")))));
+     tiRestaurarContacto.getChildren().add(new TreeItem<String> ("Refacciones", new ImageView(new Image(getClass().getResourceAsStream("../vista/images/iconos/papelera.png")))));
 		 /*
 		  * Paso 5# Agregamos el TreeItem Inicializado.
 		  */
@@ -331,8 +330,6 @@ public class Principal implements Initializable {
              padre.getChildren().add(tiProveedor);
              padre.getChildren().add(tiRespaldo);
              padre.getChildren().add(tiRestaurarContacto);
-             padre.getChildren().add(tiVentaPartes);
-    		 
 		 
 		    
 	     tvMenu = new TreeView<String> (padre);        
@@ -374,10 +371,6 @@ public class Principal implements Initializable {
                             	   contenedor.loadScreen(Principal.ventanaCompra, Principal.fxmlCompra);
                                contenedor.setScreen(Principal.ventanaCompra);
                                break;
-                               case "Venta":
-                            	   contenedor.loadScreen(Principal.ventanaVP, Principal.fxmlVP);
-                            	   contenedor.setScreen(Principal.ventanaVP);
-                              break;
                             }
                         case "Proveedor":
                        	 switch(pulsoSobre){

@@ -92,7 +92,12 @@ public class Usuario {
 			//Validar los datos.
 			//Si exiten datos en el ResultSet.
 			while(rs.next()){
+				/*
+				 * En esta parte del codigo almacenamos los datos de la base de datos para despues poder utilizarlos
+				 * con un get según sea la función 	que se le de.
+				 */
 				this.privilegio = rs.getString("privilegio");
+				this.estatus = rs.getBoolean("estatus");
 				bandera = true;
 			}
 			

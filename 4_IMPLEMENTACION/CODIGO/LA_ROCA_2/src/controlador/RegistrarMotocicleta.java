@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import vista.ControladordeVentanas;
 import vista.IControladorVentanas;
 import modelo.Brand;
-import modelo.Employee;
+import modelo.Empleado;
 import modelo.Motocicleta;
 import modelo.Reportes;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -36,7 +36,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 	private ControladordeVentanas ventanas;
 	private ControladorVentana ventana;
 	private Motocicleta m;
-	private Employee em;
+	private Empleado em;
 	private Brand br;
 	private Errores er;
 	public int id;
@@ -56,7 +56,7 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 	@FXML TextField txtModelo, txtMotor, txtColor, txtFiltro, txtFecha;
 	@FXML TextArea txtaDescripciondelaMotocicleta;
 	@FXML Button btnGuardar, btnEditar, btnEliminar, btnBuscar, btnNuevo, btnMarca, btnReporte;
-	@FXML ComboBox<Employee> cbEmpleado;
+	@FXML ComboBox<Empleado> cbEmpleado;
 	@FXML ComboBox<Brand>  cbMarca;
 	@FXML CheckBox chkPlacas, chkMotocicletasEliminadas, chkActivos, chkEliminados;
 	@FXML TableView<Motocicleta> tvMotocicletas;
@@ -64,17 +64,18 @@ public class RegistrarMotocicleta implements Initializable, IControladorVentanas
 	
 	public RegistrarMotocicleta(){
 		m = new Motocicleta();
-		em = new Employee();
+		em = new Empleado();
 		br = new Brand();
 		er = new Errores();
 		datos = FXCollections.observableArrayList();
 		filasXPagina=10;
 		re = new Reportes();
 	}
+	
 	public void initialize(URL location, ResourceBundle resources) {
 			try {
 				cbMarca.setItems(br.getBrand());
-				cbEmpleado.setItems(em.getEmployee());
+				cbEmpleado.setItems(em.getEmpleado());
 				llenarTableView(true);
 				btnEditar.setDisable(true);
 				btnEliminar.setDisable(true);

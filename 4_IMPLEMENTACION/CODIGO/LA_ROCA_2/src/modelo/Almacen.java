@@ -32,10 +32,6 @@ public class Almacen {
 	}
 
 	// #region Getters and Setters
-	public String toString() {
-		return nombre.get();
-	}
-	
 	public String getNombre() {
 		return nombre.get();
 	}
@@ -118,48 +114,6 @@ public class Almacen {
 	}
 	
 		
-
-		public ObservableList<Almacen> getAlmacens(boolean activo) throws SQLException{
-	
-			ResultSet rs = null;
-			try {
-				String sql="";
-				if(activo)
-				sql = "select f.idrefaccionalmacen, f.idmarca, l.nombre as nombremarca, f.nombre, f.modelo, f.precio1, f.precio2, f.iva, f.existencia, f.stockminimo, f.stockmaximo from almacen f inner join marca l on l.idmarca=f.idmarca where f.activo = '1'";
-				else
-				sql = "select f.idrefaccionalmacen, f.idmarca, l.nombre as nombremarca, f.nombre, f.modelo, f.precio1, f.precio2, f.iva, f.existencia, f.stockminimo, f.stockmaximo from almacen f inner join marca l on l.idmarca=f.idmarca where f.activo = '0'";
-				con.conectar();
-				PreparedStatement comando = con.getConexion().prepareStatement(sql);
-				rs= comando.executeQuery();
-				elementos = FXCollections.observableArrayList();
-				while(rs.next()){
-					Almacen f = new Almacen();
-					f.idrefaccionalmacen = new SimpleIntegerProperty(rs.getInt("idrefaccionalmacen"));
-					f.l.setIdmarca(new SimpleIntegerProperty(rs.getInt("idmarca")));
-					f.l.setNombre(new SimpleStringProperty(rs.getString("nombremarca")));
-					f.nombre = new SimpleStringProperty(rs.getString("nombre"));
-					f.modelo = new SimpleStringProperty(rs.getString("modelo"));
-					f.precio1=new SimpleFloatProperty(rs.getFloat("precio1"));
-					f.precio2=new SimpleFloatProperty(rs.getFloat("precio2"));
-					f.iva= new SimpleStringProperty(rs.getString("iva"));
-					f.existencia= new SimpleIntegerProperty(rs.getInt("existencia"));
-					f.stockminimo= new SimpleIntegerProperty(rs.getInt("stockminimo"));
-					f.stockmaximo= new SimpleIntegerProperty(rs.getInt("stockmaximo"));
-					
-					elementos.add(f);
-				}
-	
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			finally{
-				rs.close();
-				con.desconectar();			
-			}
-			return elementos;
-			
-		}
-		
 		public boolean insertar(){
 				BigDecimal precio01 = BigDecimal.valueOf(this.getPrecio1());
 				BigDecimal precio02 = BigDecimal.valueOf(this.getPrecio2());
@@ -236,10 +190,49 @@ public class Almacen {
 					con.desconectar();
 				}
 			}
-		
-
-		
+				
+		public ObservableList<Almacen> getAlmacens(boolean activo) throws SQLException{
+			
+			ResultSet rs = null;
+			try {
+				String sql="";
+				if(activo)
+				sql = "select f.idrefaccionalmacen, f.idmarca, l.nombre as nombremarca, f.nombre, f.modelo, f.precio1, f.precio2, f.iva, f.existencia, f.stockminimo, f.stockmaximo from almacen f inner join marca l on l.idmarca=f.idmarca where f.activo = '1'";
+				else
+				sql = "select f.idrefaccionalmacen, f.idmarca, l.nombre as nombremarca, f.nombre, f.modelo, f.precio1, f.precio2, f.iva, f.existencia, f.stockminimo, f.stockmaximo from almacen f inner join marca l on l.idmarca=f.idmarca where f.activo = '0'";
+				con.conectar();
+				PreparedStatement comando = con.getConexion().prepareStatement(sql);
+				rs= comando.executeQuery();
+				elementos = FXCollections.observableArrayList();
+				while(rs.next()){
+					Almacen f = new Almacen();
+					f.idrefaccionalmacen = new SimpleIntegerProperty(rs.getInt("idrefaccionalmacen"));
+					f.l.setIdmarca(new SimpleIntegerProperty(rs.getInt("idmarca")));
+					f.l.setNombre(new SimpleStringProperty(rs.getString("nombremarca")));
+					f.nombre = new SimpleStringProperty(rs.getString("nombre"));
+					f.modelo = new SimpleStringProperty(rs.getString("modelo"));
+					f.precio1=new SimpleFloatProperty(rs.getFloat("precio1"));
+					f.precio2=new SimpleFloatProperty(rs.getFloat("precio2"));
+					f.iva= new SimpleStringProperty(rs.getString("iva"));
+					f.existencia= new SimpleIntegerProperty(rs.getInt("existencia"));
+					f.stockminimo= new SimpleIntegerProperty(rs.getInt("stockminimo"));
+					f.stockmaximo= new SimpleIntegerProperty(rs.getInt("stockmaximo"));
+					
+					elementos.add(f);
+				}
 	
-
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				rs.close();
+				con.desconectar();			
+			}
+			return elementos;
+			
+		}
 		
+	public String toString() {
+		return nombre.get();
+	}
 }

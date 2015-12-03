@@ -13,13 +13,13 @@ import javafx.collections.ObservableList;
 
 public class Customer {
 
-	private StringProperty nombre1;
+	private StringProperty nombre1, apellidopaterno, apellidomaterno;
 	private IntegerProperty idcliente;
 	private Conexion con;
 	private ObservableList<Customer> elementos;
 	
 	public Customer(){
-		nombre1 = new SimpleStringProperty();
+		nombre1 = apellidopaterno = apellidomaterno = new SimpleStringProperty();
 		idcliente = new SimpleIntegerProperty();
 		con = Conexion.getInstancia();
 	}
@@ -30,6 +30,23 @@ public class Customer {
 	public void setNombre1(StringProperty nombre1) {
 		this.nombre1 = nombre1;
 	}
+	
+	public String getApellidopaterno() {
+		return apellidopaterno.get();
+	}
+
+	public void setApellidopaterno(StringProperty apellidopaterno) {
+		this.apellidopaterno = apellidopaterno;
+	}
+
+	public String getApellidomaterno() {
+		return apellidomaterno.get();
+	}
+
+	public void setApellidomaterno(StringProperty apellidomaterno) {
+		this.apellidomaterno = apellidomaterno;
+	}
+
 	public Integer getIdcliente() {
 		return idcliente.get();
 	}
@@ -40,15 +57,17 @@ public class Customer {
 	public ObservableList<Customer> getCustomer() throws SQLException{
 		ResultSet rs=null;
 		try {
-			String sql="select idcliente, nombre1 from cliente where activo =  '1'";
+			String sql="select idcliente, nombre1, apellidopaterno, apellidomaterno from cliente where activo =  '1'";
 			con.conectar();
 			PreparedStatement comando = con.getConexion().prepareStatement(sql);
 			rs= comando.executeQuery();
 			elementos = FXCollections.observableArrayList();
 			while(rs.next()){
 				Customer cus = new Customer();
-				cus.nombre1.set(rs.getString("nombre1"));
-				cus.idcliente.set(rs.getInt("idcliente"));
+				cus.idcliente = new SimpleIntegerProperty(rs.getInt("idcliente"));
+				cus.nombre1 = new SimpleStringProperty(rs.getString("nombre1"));
+				cus.apellidopaterno = new SimpleStringProperty(rs.getString("apellidopaterno"));
+				cus.apellidomaterno = new SimpleStringProperty(rs.getString("apellidomaterno"));
 				elementos.add(cus); //Se agrega el objeto a la lista 
 			}		
 		} catch (Exception e) {
@@ -62,6 +81,6 @@ public class Customer {
 	}
 	
 	public String toString(){
-		return nombre1.getValue();
+		return nombre1.getValue() + " " + apellidopaterno.getValue() + " " + apellidomaterno.getValue();
 	}
 }

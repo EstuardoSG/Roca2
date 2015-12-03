@@ -22,7 +22,7 @@ public class Motocicleta {
 	private IntegerProperty  idmotocicleta;
 	private BooleanProperty placa;
 	
-	private Employee em;
+	private Empleado em;
 	private Brand br;
 	
 	public Brand getBr() {
@@ -31,10 +31,10 @@ public class Motocicleta {
 	public void setBr(Brand br) {
 		this.br = br;
 	}
-	public Employee getEm() {
+	public Empleado getEm() {
 		return em;
 	}
-	public void setEm(Employee em) {
+	public void setEm(Empleado em) {
 		this.em = em;
 	}
 	
@@ -87,7 +87,7 @@ public class Motocicleta {
 		idmotocicleta = new SimpleIntegerProperty();
 		placa = new SimpleBooleanProperty();
 		con = Conexion.getInstancia();
-		em = new Employee();
+		em = new Empleado();
 		br = new Brand();
 	}
 	

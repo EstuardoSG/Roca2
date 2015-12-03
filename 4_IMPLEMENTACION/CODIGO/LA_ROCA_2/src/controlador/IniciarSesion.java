@@ -36,6 +36,8 @@ public class IniciarSesion implements Initializable, IControladorVentanas {
 	private Usuario modeloUsuario;
 	private ControladorVentana ventana;
 	private ControladordeVentanas ventanas;
+	private Principal pr;
+	private Errores er;
 	
 	private MainRoca2 main;
 
@@ -69,6 +71,14 @@ public class IniciarSesion implements Initializable, IControladorVentanas {
 	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
 	 * acVista y tbIniciar es para mostrar el TitledPane de IniciarSesión.
 	 */
+	public IniciarSesion(){
+		er = new Errores();
+		try {
+			pr = new Principal();
+		} catch (IOException e) {
+			er.printLog(e.getMessage(), this.getClass().toString());
+		}
+	}
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		acVista.setExpandedPane(tbIniciarSesion);
 	}
@@ -88,20 +98,26 @@ public class IniciarSesion implements Initializable, IControladorVentanas {
 			modeloUsuario.setContrasenia(pwdContrasenia.getText());
 			//Verificamos si existe en la Base de datos.
 			boolean resultado = modeloUsuario.Existe();
+			// Este syso se hizo para comprobar que retornaba un true o un false para el inicio de sesión
+			//para que solo permita que ingresen los empleados activos
+			//System.out.println(modeloUsuario.getEstatus());
 			if(resultado){
-				if(modeloUsuario.getPrivilegio().equals("Administrador")){
-					Principal.start();
+				if(modeloUsuario.getPrivilegio().equals("Administrador") && modeloUsuario.getEstatus().equals(true)){
+					pr.start();
 			    	ventana = ControladorVentana.getInstancia();
 					ventana.asignarEscenaAdministrador("../vista/fxml/Principal.fxml", "Administrador");
 					System.out.println("Existe el usuario, es:"+ modeloUsuario.getPrivilegio());
 					
-				}else{
-					Principal.start();
+				}
+				if(modeloUsuario.getPrivilegio().equals("Empleado") && modeloUsuario.getEstatus().equals(true)){
+					pr.start();
 			    	ventana = ControladorVentana.getInstancia();
 					ventana.asignarEscenaEmpleado("../vista/fxml/Principal.fxml", "Empleado");
 					System.out.println("cargo empleado");
 					System.out.println("Existe el usuario, es:"+ modeloUsuario.getPrivilegio());
-
+				}
+				else{
+					lblMensaje.setText("Usuario no valido");
 				}
 			}
 			else{
@@ -147,6 +163,11 @@ public class IniciarSesion implements Initializable, IControladorVentanas {
 		dialogAcceso();
 		if(ButtonData.OK_DONE != null){
 			if(username.getText().isEmpty()==false & password.getText().isEmpty()==false){
+				/*
+				 * Este codigo es para tener una llave maestra aun no 100% implementada
+				 * if(username.getText().equals("Roca2") && password.getText().equals("Roca2")){
+					tpConfiguracion.setExpanded(true);
+				}*/
 				if(modeloUsuario == null){
 					modeloUsuario = new Usuario();
 				}
@@ -154,7 +175,7 @@ public class IniciarSesion implements Initializable, IControladorVentanas {
 				modeloUsuario.setContrasenia(password.getText());
 				boolean resultado = modeloUsuario.Existe();
 				if(resultado){
-					if(modeloUsuario.getPrivilegio().equals("Administrador")){
+					if(modeloUsuario.getPrivilegio().equals("Administrador") && modeloUsuario.getEstatus().equals(true)){
 					tpConfiguracion.setExpanded(true);
 					System.out.println("Existe el usuario, es:"+ modeloUsuario.getPrivilegio());	
 					lblMensaje.setText("");

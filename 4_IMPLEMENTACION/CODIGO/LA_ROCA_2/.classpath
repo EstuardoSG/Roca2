@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="jar/jasper/groovy-all-1.8.6.jar"/>
 	<classpathentry kind="lib" path="jar/jasper/itext-2.1.7.jar"/>
 	<classpathentry kind="lib" path="jar/jasper/jasperreports-4.8.0.jar"/>
+	<classpathentry kind="lib" path="jar/controlsfx-8.20.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
